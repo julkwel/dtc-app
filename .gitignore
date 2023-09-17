@@ -22,4 +22,5 @@
 ###> idea/ide ###
 .vscode
 /.idea/
+/data/*
 ###< idea/ide ###
