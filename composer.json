@@ -29,7 +29,7 @@
         "symfony/process": "5.4.*",
         "symfony/property-access": "5.4.*",
         "symfony/property-info": "5.4.*",
-        "symfony/runtime": "5.4.*",
+        "symfony/runtime": "*",
         "symfony/security-bundle": "5.4.*",
         "symfony/serializer": "5.4.*",
         "symfony/stimulus-bundle": "^2.11",
