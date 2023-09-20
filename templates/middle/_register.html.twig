@@ -1,0 +1,60 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}DTC | Register {% endblock %}
+
+{% block body %}
+    <body>
+        <div class="container">
+
+            <div class="card o-hidden border-0 shadow-lg my-5">
+                <div class="card-body p-0">
+                    <!-- Nested Row within Card Body -->
+                    <div class="row">
+                        <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+                        <div class="col-lg-7">
+                            <div class="p-5">
+                                <div class="text-center">
+                                    <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+                                </div>
+                                {{ form_errors(registrationForm) }}
+
+                                {{ form_start(registrationForm) }}
+                                    <div class="form-group row">
+                                        <div class="col-sm-6 mb-3 mb-sm-0">
+                                            {{ form_row(registrationForm.firstname, { 'label': false }) }}
+                                        </div>
+                                        <div class="col-sm-6">
+                                            {{ form_row(registrationForm.lastname, { 'label': false }) }}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        {{ form_row(registrationForm.username, { 'label': false }) }}
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-sm-12 mb-3 mb-sm-0">
+                                            <div class="d-flex justify-content-between">
+                                                {{ form_row(registrationForm.password, {
+                                                    label: false
+                                                }) }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <button type="submit" class="btn btn-primary btn-user btn-block">Register</button>
+                                {{ form_end(registrationForm) }}
+                                <hr>
+                                <div class="text-center">
+                                    <a class="small" href="forgot-password.html">Forgot Password?</a>
+                                </div>
+                                <div class="text-center">
+                                    <a class="small" href="{{ path('app_login')}} ">Already have an account? Login!</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </body>
+{% endblock %}
