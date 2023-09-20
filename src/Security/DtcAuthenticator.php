@@ -2,6 +2,7 @@
 
 namespace App\Security;
 
+use App\Entity\User;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -32,7 +33,6 @@ class DtcAuthenticator extends AbstractLoginFormAuthenticator
     public function authenticate(Request $request): Passport
     {
         $username = $request->request->get('username', '');
-
         $request->getSession()->set(Security::LAST_USERNAME, $username);
 
         return new Passport(
@@ -60,7 +60,11 @@ class DtcAuthenticator extends AbstractLoginFormAuthenticator
             return new RedirectResponse($targetPath);
         }
 
-        return new RedirectResponse($this->urlGenerator->generate('admin_dashboard_index'));
+        if ($token->getUser()->isAdmin()) {
+            return new RedirectResponse($this->urlGenerator->generate('admin_dashboard_index'));
+        }
+
+        return new RedirectResponse($this->urlGenerator->generate('dt_student_profile'));
     }
 
     /**

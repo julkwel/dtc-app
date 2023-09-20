@@ -7,17 +7,20 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Serializable;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\EquatableInterface;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-/**
- * @method string getUserIdentifier()
- */
+
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[UniqueEntity(fields: ['username'], message: 'There is already an account with this username')]
-class User implements UserInterface, PasswordAuthenticatedUserInterface
+class User implements UserInterface, Serializable, EquatableInterface, PasswordAuthenticatedUserInterface
 {
+    public const ROLE_STUDENT = 'ROLE_STUDENT';
+    public const ROLE_TRAINER = 'ROLE_TRAINER';
+    public const ROLE_ADMIN = 'ROLE_ADMIN';
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -43,11 +46,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $password = null;
+    private ?string $salt = null;
 
     public function __construct()
     {
         $this->contacts = new ArrayCollection();
-        $this->roles = ['ROLE_STUDENT'];
+        $this->roles = [self::ROLE_STUDENT];
     }
 
     public function getId(): ?int
@@ -58,7 +62,21 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function getRoles(): array
     {
-        return $this->roles;
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    public function isStudent()
+    {
+        return in_array(self::ROLE_STUDENT, $this->getRoles());
+    }
+
+    public function isAdmin()
+    {
+        return in_array(self::ROLE_ADMIN, $this->getRoles());
     }
 
     /**
@@ -206,5 +224,45 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function eraseCredentials(): void
     {
         $this->password = "";
+    }
+
+    public function getUserIdentifier(): string
+    {
+        return $this->username;
+    }
+
+    public function serialize()
+    {
+        return serialize(array($this->id, $this->username, $this->password, $this->salt));
+    }
+
+    public function unserialize(?string $data): void
+    {
+        list ($this->id, $this->username, $this->password, $this->salt) = unserialize($data, array('allowed_classes' => false));
+    }
+
+    public function isEqualTo(UserInterface $user): bool
+    {
+        if (!$user instanceof User) {
+            return false;
+        }
+
+        if ($user->getId() == $this->getId()) {
+            return true;
+        }
+
+        if ($this->password !== $user->getPassword()) {
+            return false;
+        }
+
+        if ($this->salt !== $user->getSalt()) {
+            return false;
+        }
+
+        if ($this->username !== $user->getUsername()) {
+            return false;
+        }
+
+        return true;
     }
 }
