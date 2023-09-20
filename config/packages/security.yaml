@@ -7,19 +7,21 @@ security:
             algorithm: auto
     # https://symfony.com/doc/current/security.html#loading-the-user-the-user-provider
     providers:
-        users_in_memory: { memory: null }
+        dtc_user_provider:
+            entity:
+                class: App\Entity\User
+                property: username
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
             lazy: true
-            provider: users_in_memory
+            provider: dtc_user_provider
             custom_authenticator: App\Security\DtcAuthenticator
             logout:
-                path: app_logout
-                # where to redirect after logout
-                # target: app_any_route
+                path: /logout
+                target: dtc_home_page
 
             remember_me:
                 secret: '%kernel.secret%'

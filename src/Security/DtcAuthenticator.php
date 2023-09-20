@@ -16,15 +16,18 @@ use Symfony\Component\Security\Http\Authenticator\Passport\Credentials\PasswordC
 use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
 use Symfony\Component\Security\Http\Util\TargetPathTrait;
 
+/**
+ * Class DtcAuthenticator
+ *
+ * Handle user authentication
+ */
 class DtcAuthenticator extends AbstractLoginFormAuthenticator
 {
     use TargetPathTrait;
 
-    public const LOGIN_ROUTE = 'app_login';
+    public const LOGIN_ROUTE = 'dtc_login';
 
-    public function __construct(private UrlGeneratorInterface $urlGenerator)
-    {
-    }
+    public function __construct(private readonly UrlGeneratorInterface $urlGenerator){}
 
     public function authenticate(Request $request): Passport
     {
@@ -42,17 +45,29 @@ class DtcAuthenticator extends AbstractLoginFormAuthenticator
         );
     }
 
+    /**
+     * Handle user when login is succeed|failur handle by firewall
+     *
+     * @param Request        $request
+     * @param TokenInterface $token
+     * @param string         $firewallName
+     *
+     * @return Response|null
+     */
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
         if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
             return new RedirectResponse($targetPath);
         }
 
-        // For example:
-        // return new RedirectResponse($this->urlGenerator->generate('some_route'));
-        throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
+        return new RedirectResponse($this->urlGenerator->generate('admin_dashboard_index'));
     }
 
+    /**
+     * @param Request $request
+     *
+     * @return string
+     */
     protected function getLoginUrl(Request $request): string
     {
         return $this->urlGenerator->generate(self::LOGIN_ROUTE);
