@@ -29,6 +29,21 @@ class Cohorte
     #[ORM\Column(length: 255)]
     private ?string $amount = null;
 
+    #[ORM\Column]
+    private ?bool $isRegisterOpen = null;
+
+    #[ORM\Column]
+    private ?bool $isEnded = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $endedAt = null;
+
+    public function __construct()
+    {
+        $this->isRegisterOpen = false;
+        $this->isEnded = false;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -90,6 +105,42 @@ class Cohorte
     public function setAmount(string $amount): static
     {
         $this->amount = $amount;
+
+        return $this;
+    }
+
+    public function isIsRegisterOpen(): ?bool
+    {
+        return $this->isRegisterOpen;
+    }
+
+    public function setIsRegisterOpen(bool $isRegisterOpen): static
+    {
+        $this->isRegisterOpen = $isRegisterOpen;
+
+        return $this;
+    }
+
+    public function isIsEnded(): ?bool
+    {
+        return $this->isEnded;
+    }
+
+    public function setIsEnded(bool $isEnded): static
+    {
+        $this->isEnded = $isEnded;
+
+        return $this;
+    }
+
+    public function getEndedAt(): ?\DateTimeImmutable
+    {
+        return $this->endedAt;
+    }
+
+    public function setEndedAt(?\DateTimeImmutable $endedAt): static
+    {
+        $this->endedAt = $endedAt;
 
         return $this;
     }

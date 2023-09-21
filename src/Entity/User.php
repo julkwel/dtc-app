@@ -48,10 +48,14 @@ class User implements UserInterface, Serializable, EquatableInterface, PasswordA
     private ?string $password = null;
     private ?string $salt = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?bool $isEnable = null;
+
     public function __construct()
     {
         $this->contacts = new ArrayCollection();
         $this->roles = [self::ROLE_STUDENT];
+        $this->isEnable = true;
     }
 
     public function getId(): ?int
@@ -264,5 +268,17 @@ class User implements UserInterface, Serializable, EquatableInterface, PasswordA
         }
 
         return true;
+    }
+
+    public function isIsEnable(): ?bool
+    {
+        return $this->isEnable;
+    }
+
+    public function setIsEnable(?bool $isEnable): static
+    {
+        $this->isEnable = $isEnable;
+
+        return $this;
     }
 }
