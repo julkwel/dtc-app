@@ -2,7 +2,7 @@
 
 namespace App\Controller\Middle;
 
-use App\Entity\Student;
+use App\Entity\User;
 use App\Form\RegistrationFormType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -19,7 +19,7 @@ class RegistrationController extends AbstractController
         UserPasswordHasherInterface $userPasswordHasher,
         EntityManagerInterface $entityManager
     ): Response {
-        $student = new Student();
+        $student = new User();
         $form = $this->createForm(RegistrationFormType::class, $student);
         $form->handleRequest($request);
 

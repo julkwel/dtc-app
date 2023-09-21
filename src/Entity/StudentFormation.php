@@ -18,7 +18,7 @@ class StudentFormation
     private ?Cohorte $formation = null;
 
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    private ?Student $Student = null;
+    private ?User $User = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $certificate = null;
@@ -51,14 +51,14 @@ class StudentFormation
         return $this;
     }
 
-    public function getStudent(): ?Student
+    public function getUser(): ?User
     {
-        return $this->Student;
+        return $this->User;
     }
 
-    public function setStudent(?Student $Student): static
+    public function setUser(?User $User): static
     {
-        $this->Student = $Student;
+        $this->User = $User;
 
         return $this;
     }
