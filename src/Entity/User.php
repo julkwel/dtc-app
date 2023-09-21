@@ -235,14 +235,14 @@ class User implements UserInterface, Serializable, EquatableInterface, PasswordA
         return $this->username;
     }
 
-    public function serialize()
+    public function serialize(): ?string
     {
         return serialize(array($this->id, $this->username, $this->password, $this->salt));
     }
 
-    public function unserialize(?string $data): void
+    public function unserialize(?string $data)
     {
-        list ($this->id, $this->username, $this->password, $this->salt) = unserialize($data, array('allowed_classes' => false));
+        list($this->id, $this->username, $this->password, $this->salt) = unserialize($data, array('allowed_classes' => false));
     }
 
     public function isEqualTo(UserInterface $user): bool

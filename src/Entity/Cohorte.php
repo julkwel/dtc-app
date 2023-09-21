@@ -30,10 +30,10 @@ class Cohorte
     private ?string $amount = null;
 
     #[ORM\Column]
-    private ?bool $isRegisterOpen = null;
+    private ?bool $isRegisterOpen;
 
     #[ORM\Column]
-    private ?bool $isEnded = null;
+    private ?bool $isEnded;
 
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $endedAt = null;
