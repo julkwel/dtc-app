@@ -17,7 +17,7 @@ class TrainerFormation
     private ?Cohorte $formation = null;
 
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    private ?Trainer $trainer = null;
+    private ?User $trainer = null;
 
     #[ORM\Column]
     private ?\DateTimeImmutable $startedAt = null;
@@ -42,12 +42,12 @@ class TrainerFormation
         return $this;
     }
 
-    public function getTrainer(): ?Trainer
+    public function getTrainer(): ?User
     {
         return $this->trainer;
     }
 
-    public function setTrainer(?Trainer $trainer): static
+    public function setTrainer(?User $trainer): static
     {
         $this->trainer = $trainer;
 
