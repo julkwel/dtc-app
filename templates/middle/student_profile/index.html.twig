@@ -1,0 +1,9 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}DTC | Student {% endblock %}
+
+{% block body %}
+    <body>
+        Hello {{ student ? student.username : '' }}
+    </body>
+{% endblock %}
