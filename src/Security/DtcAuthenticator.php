@@ -64,7 +64,7 @@ class DtcAuthenticator extends AbstractLoginFormAuthenticator
             return new RedirectResponse($this->urlGenerator->generate('admin_dashboard_index'));
         }
 
-        return new RedirectResponse($this->urlGenerator->generate('dt_student_profile'));
+        return new RedirectResponse($this->urlGenerator->generate('dtc_student_profile'));
     }
 
     /**
