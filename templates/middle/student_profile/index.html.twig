@@ -7,15 +7,19 @@
 	<body>
 		<div class="container">
 			<div class="main-body">
-
+            
 				<div class="row gutters-sm">
 					<div class="col-md-4 mb-3">
 						<div class="card">
 							<div class="card-body">
 								<div class="d-flex flex-column align-items-center text-center">
                                     <div>
-                                        <a class="btn btn-info mx-3" target="__blank" href="https://www.bootdey.com/snippets/view/profile-edit-data-and-skills" style="position:absolute;right:0;">Edit</a>
-                                        <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
+                                        <a class="btn btn-info mx-3" target="__blank" href="{{ path("dtc_student_edit", {'id': student.id}) }}" style="position:absolute;right:0;">Edit</a>
+                                        {% if student.image is not null %}
+                                            <img src="data:image/jpeg;base64,{{ student.image }}" alt="{{ student.firstname }} {{ student.lastname }}" class="rounded-circle" width="150">
+                                        {% else %}
+                                            <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
+                                        {% endif %}
                                     </div>
                                     <div class="mt-3">
                                         <h4>{{ student.firstname }} {{ student.lastname }} ({{ student.username }})</h4>

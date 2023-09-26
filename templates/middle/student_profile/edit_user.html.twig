@@ -1,0 +1,35 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}DTC | Edit Student{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h2>Edit User</h2>
+
+        <form method="post" enctype="multipart/form-data">
+            {{ form_start(form) }}
+            <div class="form-group">
+                {{ form_label(form.firstname) }}
+                {{ form_widget(form.firstname, {'attr': {'class': 'form-control'}}) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_label(form.lastname) }}
+                {{ form_widget(form.lastname, {'attr': {'class': 'form-control'}}) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_label(form.username) }}
+                {{ form_widget(form.username, {'attr': {'class': 'form-control'}}) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_label(form.image) }}
+                {{ form_widget(form.image) }}
+            </div>
+
+            <button type="submit" class="btn btn-primary">Save</button>
+            {{ form_end(form) }}
+        </form>
+    </div>
+{% endblock %}
