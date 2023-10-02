@@ -48,6 +48,10 @@ class StudentProfileController extends AbstractController
 
                 $user->setImage($fileContents);
             }
+
+            foreach ($user->getContacts() as $contact) {
+                $contact->setUser($user);
+            }
             
             $entityManager->flush();
 
