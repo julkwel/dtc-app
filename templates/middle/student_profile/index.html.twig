@@ -14,7 +14,7 @@
 							<div class="card-body">
 								<div class="d-flex flex-column align-items-center text-center">
                                     <div>
-                                        <a class="btn btn-info mx-3" target="__blank" href="{{ path("dtc_student_edit", {'id': student.id}) }}" style="position:absolute;right:0;">Edit</a>
+                                        <a class="btn btn-info mx-3" href="{{ path("dtc_student_edit", {'id': student.id}) }}" style="position:absolute;right:0;">Edit</a>
                                         {% if student.image is not null %}
                                             <img src="data:image/jpeg;base64,{{ student.image }}" alt="{{ student.firstname }} {{ student.lastname }}" class="rounded-circle" width="150">
                                         {% else %}
