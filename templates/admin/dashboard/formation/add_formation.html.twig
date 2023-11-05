@@ -1,0 +1,38 @@
+{% extends 'admin/_entry_admin.html.twig' %}
+{% block content %}
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+        <div class="d-flex align-items-center justify-content-between">
+            <h2>Add formation</h2>
+        </div>
+
+        <div class="card">
+            <div class="card-body">
+                {{ form_start(form) }}
+                    <div class="form-group">
+                        {{ form_row(form.startDate) }}
+                    </div>
+
+                    <div class="form-group">
+                        {{ form_row(form.endDate) }}
+                    </div>
+
+                    <div class="form-group">
+                        {{ form_row(form.name) }}
+                    </div>
+
+                    <div class="form-group">
+                        {{ form_row(form.alias) }}
+                    </div>
+
+                    <div class="form-group">
+                        {{ form_row(form.amount) }}
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Save</button>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+    <!-- /.container-fluid -->
+{% endblock %}
