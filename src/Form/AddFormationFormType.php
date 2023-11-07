@@ -8,6 +8,7 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\GreaterThanOrEqual;
 
 class AddFormationFormType extends AbstractType
 {
@@ -19,14 +20,23 @@ class AddFormationFormType extends AbstractType
         $builder
             ->add('startDate', DateType::class, [
                 'label' => 'Start date',
-                'attr' => ['class' => 'datepicker'],
+                'widget' => 'single_text',
+                  'attr' => ['class' => 'js-datepicker ' . $inputStyle],
             ])
             ->add('endDate', DateType::class, [
                 'label' => 'End date',
-                'attr' => ['class' => 'datepicker'],
+                'widget' => 'single_text',
+                'attr' => ['class' => 'js-datepicker ' . $inputStyle],
+                'constraints' => [
+                new GreaterThanOrEqual([
+                    'message' => 'Please verify the date interval',
+                    'propertyPath' => 'parent.all[startDate].data',
+                ]),
+                ],
             ])
             ->add('name', TextType::class, [
                 'label' => 'Formation name',
+                'attr' => ['class' => $inputStyle]
                 
             ])
             ->add('alias', TextType::class, [

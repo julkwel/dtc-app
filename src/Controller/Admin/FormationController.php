@@ -9,6 +9,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Cohorte;
 use App\Form\AddFormationFormType;
+use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -33,6 +34,12 @@ class FormationController extends AbstractController
 
         if($form->isSubmitted() && $form->isValid())
         {
+            $cohorte->setIsRegisterOpen(1);
+
+            $endDate = $form->get('endDate')->getData();
+            $endDateImmutable = DateTimeImmutable::createFromMutable($endDate);
+            $cohorte->setEndedAt($endDateImmutable);
+            
             $em->persist($cohorte);
             $em->flush();
         }
