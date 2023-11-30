@@ -7,10 +7,8 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\Cohorte;
+use App\Domain\Cohorte\CohorteService;
 use App\Form\AddFormationFormType;
-use DateTimeImmutable;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -25,23 +23,16 @@ class FormationController extends AbstractController
     }
 
     #[Route(path: '/add', name: 'add')]
-    public function addFormation(Request $request, EntityManagerInterface $em)
+    public function addFormation(Request $request, CohorteService $cohorteService)
     {
-        $cohorte = new Cohorte();
-        $form = $this->createForm(AddFormationFormType::class, $cohorte);
+        $form = $this->createForm(AddFormationFormType::class);
 
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid())
-        {
-            $cohorte->setIsRegisterOpen(1);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $cohorteData = $form->getData();
 
-            $endDate = $form->get('endDate')->getData();
-            $endDateImmutable = DateTimeImmutable::createFromMutable($endDate);
-            $cohorte->setEndedAt($endDateImmutable);
-            
-            $em->persist($cohorte);
-            $em->flush();
+            $cohorteService->createCohorte($cohorteData);
         }
 
         return $this->render('admin/dashboard/formation/add_formation.html.twig', [
