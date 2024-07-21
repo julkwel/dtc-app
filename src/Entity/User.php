@@ -51,11 +51,15 @@ class User implements UserInterface, Serializable, EquatableInterface, PasswordA
     #[ORM\Column(nullable: true)]
     private ?bool $isEnable = null;
 
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: StudentFormation::class)]
+    private Collection $studentFormations;
+
     public function __construct()
     {
         $this->contacts = new ArrayCollection();
         $this->roles = [self::ROLE_STUDENT];
         $this->isEnable = true;
+        $this->studentFormations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -278,6 +282,36 @@ class User implements UserInterface, Serializable, EquatableInterface, PasswordA
     public function setIsEnable(?bool $isEnable): static
     {
         $this->isEnable = $isEnable;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, StudentFormation>
+     */
+    public function getStudentFormations(): Collection
+    {
+        return $this->studentFormations;
+    }
+
+    public function addStudentFormation(StudentFormation $studentFormation): static
+    {
+        if (!$this->studentFormations->contains($studentFormation)) {
+            $this->studentFormations->add($studentFormation);
+            $studentFormation->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStudentFormation(StudentFormation $studentFormation): static
+    {
+        if ($this->studentFormations->removeElement($studentFormation)) {
+            // set the owning side to null (unless already changed)
+            if ($studentFormation->getUser() === $this) {
+                $studentFormation->setUser(null);
+            }
+        }
 
         return $this;
     }

@@ -5,6 +5,11 @@
 * Author: BootstrapMade.com
 * License: https://bootstrapmade.com/license/
 */
+var Swiper = require('../vendor/swiper/swiper-bundle.min.js');
+var GLightbox = require('../vendor/glightbox/js/glightbox.min.js');
+var PureCounter = require('../vendor/purecounter/purecounter_vanilla.js');
+var AOS = require('../vendor/aos/aos.js');
+
 (function() {
   "use strict";
 

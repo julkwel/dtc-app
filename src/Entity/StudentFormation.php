@@ -17,9 +17,6 @@ class StudentFormation
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
     private ?Cohorte $formation = null;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    private ?User $User = null;
-
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $certificate = null;
 
@@ -28,6 +25,9 @@ class StudentFormation
 
     #[ORM\Column]
     private ?bool $isTotalPaid = null;
+
+    #[ORM\ManyToOne(inversedBy: 'studentFormations')]
+    private ?User $user = null;
 
     public function __construct()
     {
@@ -47,18 +47,6 @@ class StudentFormation
     public function setFormation(?Cohorte $formation): static
     {
         $this->formation = $formation;
-
-        return $this;
-    }
-
-    public function getUser(): ?User
-    {
-        return $this->User;
-    }
-
-    public function setUser(?User $User): static
-    {
-        $this->User = $User;
 
         return $this;
     }
@@ -95,6 +83,18 @@ class StudentFormation
     public function setIsTotalPaid(bool $isTotalPaid): static
     {
         $this->isTotalPaid = $isTotalPaid;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
 
         return $this;
     }

@@ -7,7 +7,7 @@ services:
     build:
       context: docker/app
     ports:
-      - "8080:80"
+      - "83:80"
     volumes:
       - ./:/var/www/dtc-app:rw+
       - ./docker/apache_conf:/etc/apache2/sites-enabled

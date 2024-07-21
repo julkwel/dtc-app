@@ -53,7 +53,7 @@ Encore
 
     // enables and configure @babel/preset-env polyfills
     .configureBabelPresetEnv((config) => {
-        config.useBuiltIns = 'usage';
+        config.useBuiltIns = 'entry';
         config.corejs = '3.23';
     })
 

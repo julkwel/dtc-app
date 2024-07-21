@@ -2,6 +2,7 @@
 
 namespace App\Controller\Middle;
 
+use App\Entity\User;
 use App\Form\EditUserFormType;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -31,18 +32,13 @@ class StudentProfileController extends AbstractController
     }
 
     #[Route('/edit/{id}', name: 'edit', methods: ['GET', 'POST'])]
-    public function editUser(Request $request, EntityManagerInterface $entityManager, $id): Response
+    public function editUser(Request $request, EntityManagerInterface $entityManager, User $user): Response
     {
-        $user = $this->userRepository->find($id);
-
         $form = $this->createForm(EditUserFormType::class, $user);
-
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             $file = $form['image']->getData();
-
             if ($file) {
                 $fileContents = base64_encode(file_get_contents($file->getPathname()));
 

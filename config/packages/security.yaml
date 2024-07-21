@@ -33,14 +33,7 @@ security:
                 check_path: dtc_login
                 enable_csrf: true
             entry_point: 'form_login'
-            # activate different ways to authenticate
-            # https://symfony.com/doc/current/security.html#the-firewall
 
-            # https://symfony.com/doc/current/security/impersonating_user.html
-            # switch_user: true
-
-    # Easy way to control access for large sections of your site
-    # Note: Only the *first* access control that matches will be used
     access_control:
         - { path: ^/admin, roles: ROLE_ADMIN }
         - { path: ^/student, roles: ROLE_STUDENT }
