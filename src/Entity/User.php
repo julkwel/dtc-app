@@ -41,7 +41,7 @@ class User implements UserInterface, Serializable, EquatableInterface, PasswordA
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $image = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, unique: true)]
     private ?string $username = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]

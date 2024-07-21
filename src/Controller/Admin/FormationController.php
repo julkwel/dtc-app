@@ -13,7 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route(path: '/admin/dashboard/formation', name: 'admin_formation_')]
+#[Route(path: '/admin/formation', name: 'admin_formation_')]
 class FormationController extends AbstractController
 {
     #[Route(path: '/', name: 'index')]

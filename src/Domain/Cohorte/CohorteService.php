@@ -8,30 +8,22 @@ use Doctrine\ORM\EntityManagerInterface;
 
 class CohorteService
 {
-    private $entityManager;
-
-    public function __construct(EntityManagerInterface $entityManager)
+    public function __construct(private readonly EntityManagerInterface $entityManager)
     {
-        $this->entityManager = $entityManager;
     }
 
-    public function createCohorte($cohorteData)
+    public function createCohorte(Cohorte $cohorteData): void
     {
-        $cohorte = new Cohorte();
+        $cohorteData->setIsRegisterOpen(true);
+        if (!$cohorteData->getId()) {
+            $this->entityManager->persist($cohorteData);
+        }
+        $this->entityManager->flush();
+    }
 
-        $cohorte->setName($cohorteData->getName());
-        $cohorte->setAlias($cohorteData->getAlias());
-        $cohorte->setAmount($cohorteData->getAmount());
-        $cohorte->setIsRegisterOpen(true);
-
-        $cohorte->setStartDate($cohorteData->getStartDate());
-        $cohorte->setEndDate($cohorte->getEndDate());
-
-        // Convert DateTime to DateTimeImmutable
-        $endDate = DateTimeImmutable::createFromMutable($cohorteData->getEndDate());
-        $cohorte->setEndedAt($endDate);
-
-        $this->entityManager->persist($cohorte);
+    public function switchStatus(Cohorte $cohorte): void
+    {
+        $cohorte->setIsRegisterOpen(!$cohorte->isIsRegisterOpen());
         $this->entityManager->flush();
     }
 }

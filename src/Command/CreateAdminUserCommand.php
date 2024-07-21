@@ -2,70 +2,40 @@
 
 namespace App\Command;
 
-use App\Entity\User;
-use Doctrine\ORM\EntityManagerInterface;
+use App\Domain\User\UserService;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 #[AsCommand(
-    name: 'dtc-app:create:admin',
+    name: 'dtc:user',
     description: 'Create user with ROLE_ADMIN',
 )]
 class CreateAdminUserCommand extends Command
 {
-    private $entityManager;
-    private $userPasswordHasher;
-
-    public function __construct(EntityManagerInterface $entityManager, UserPasswordHasherInterface $userPasswordHasher,)
+    public function __construct(private readonly UserService $userService)
     {
-        $this->entityManager = $entityManager;
-        $this->userPasswordHasher = $userPasswordHasher;
         parent::__construct();
     }
 
     protected function configure(): void
     {
-        $this
-            ->addOption('firstname', null, InputOption::VALUE_REQUIRED, 'Firstname')
-            ->addOption('lastname', null, InputOption::VALUE_OPTIONAL, 'Lastname')
-            ->addOption('username', 'u', InputOption::VALUE_REQUIRED, 'Username')
-            ->addOption('password', 'p', InputOption::VALUE_REQUIRED, 'Password');
+        $this->addOption('create', null, InputOption::VALUE_NONE, 'Create user');
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $style = new SymfonyStyle($input, $output);
 
-        $firstname = $style->ask('Please enter your firstname [required]');
-        $lastname = $style->ask('Please enter your lastname [optional]');
-        $username = $style->ask('Please enter your username [required]');
-        $password = $style->askHidden('Please enter your password [required]');
+        if ($input->getOption('create')) {
+            $this->userService->createUserFromCommand($style);
 
-        if (empty($firstname) || empty($username) || empty($password)) {
-            $style->warning('Please fill all fields');
-            return Command::FAILURE;
+            return Command::SUCCESS;
         }
 
-        $user = new User();
-        $user->setFirstname($firstname);
-        $user->setUsername($username);
-        $user->setLastname($lastname);
-
-        $encodedPassword = $this->userPasswordHasher->hashPassword($user, $password);
-        $user->setPassword($encodedPassword);
-        $user->setRoles(['ROLE_ADMIN']);
-
-        $this->entityManager->persist($user);
-        $this->entityManager->flush();
-
-        $style->success('Admin created successfully.');
-
-        return Command::SUCCESS;
-
+        return Command::FAILURE;
     }
 }
