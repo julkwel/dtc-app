@@ -29,7 +29,7 @@ class User implements UserInterface, Serializable, EquatableInterface, PasswordA
     #[ORM\Column(type: Types::JSON)]
     private array $roles = [];
 
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Contact::class)]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Contact::class, cascade: ["persist"])]
     private Collection $contacts;
 
     #[ORM\Column(length: 255)]
