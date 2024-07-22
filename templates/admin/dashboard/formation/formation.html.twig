@@ -4,9 +4,54 @@
     <div class="container-fluid">
         <div class="d-flex align-items-center justify-content-between">
             <h2>Formations</h2>
-            <a href="{{ path('admin_formation_add') }}">Add new formation</a>
+            <a href="{{ path('admin_formation_add') }}">Créer une formation</a>
         </div>
 
+        <div class="container-fluid">
+            <!-- DataTales Example -->
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Liste des formations</h6>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Nom formation</th>
+                                    <th>Alias</th>
+                                    <th>Date début</th>
+                                    <th>Date fin</th>
+                                    <th>Frais</th>
+                                    <th>Ouverte</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for formation in formations %}
+                                <tr>
+                                    <td>{{ formation.name }}</td>
+                                    <td>{{ formation.alias }}</td>
+                                    <td>{{ formation.startDate|date('d-m-Y') }}</td>
+                                    <td>{{ formation.endDate|date('d-m-Y') }}</td>
+                                    <td>{{ formation.amount }}</td>
+                                    <td>
+                                        <a href="{{ path('admin_formation_edit_status', {'id': formation.id}) }}">
+                                            <span class="badge badge-{{ formation.isRegisterOpen ? 'success' : 'warning' }}">{{ formation.isRegisterOpen ? 'OUI' : 'NON' }}</span>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="{{ path('admin_formation_edit', {'id': formation.id}) }}">Modifier</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </div>
     <!-- /.container-fluid -->
 {% endblock %}

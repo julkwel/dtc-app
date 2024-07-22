@@ -3,36 +3,14 @@
     <!-- Begin Page Content -->
     <div class="container-fluid">
         <div class="d-flex align-items-center justify-content-between">
-            <h2>Add formation</h2>
+            <h2>Création formation</h2>
         </div>
 
         <div class="card">
             <div class="card-body">
                 {{ form_start(form) }}
-
-                    <div class="form-group">
-                        {{ form_row(form.name) }}
-                    </div>
-
-                    <div class="form-group">
-                        {{ form_row(form.alias) }}
-                    </div>
-
-                    <div class="form-group">
-                        {{ form_row(form.amount) }}
-                    </div>
-                    
-                    <div class="d-flex">
-                        <div class="form-group mx-auto">
-                            {{ form_row(form.startDate) }}
-                        </div>
-
-                        <div class="form-group">
-                            {{ form_row(form.endDate) }}
-                        </div>
-                    </div>
-
-                    <button type="submit" class="btn btn-primary my-3 w-100">Save</button>
+                    {{ form_widget(form) }}
+                    <button type="submit" class="btn btn-primary my-3 w-100">Sauvegarder</button>
                 {{ form_end(form) }}
             </div>
         </div>

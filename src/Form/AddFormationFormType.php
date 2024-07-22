@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Cohorte;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -18,36 +19,51 @@ class AddFormationFormType extends AbstractType
         $inputStyle = 'form-control';
 
         $builder
-            ->add('startDate', DateType::class, [
-                'label' => 'Start date',
-                'widget' => 'single_text',
-                  'attr' => ['class' => 'js-datepicker ' . $inputStyle],
-            ])
-            ->add('endDate', DateType::class, [
-                'label' => 'End date',
-                'widget' => 'single_text',
-                'attr' => ['class' => 'js-datepicker ' . $inputStyle],
-                'constraints' => [
-                new GreaterThanOrEqual([
-                    'message' => 'Please verify the date interval',
-                    'propertyPath' => 'parent.all[startDate].data',
-                ]),
-                ],
-            ])
-            ->add('name', TextType::class, [
-                'label' => 'Formation name',
-                'attr' => ['class' => $inputStyle]
-                
-            ])
-            ->add('alias', TextType::class, [
-                'label' => 'Alias',
-                'attr' => ['class' => $inputStyle]
-            ])
-            ->add('amount', TextType::class, [
-                'label' => 'Amount',
-                'attr' => ['class' => $inputStyle]
-            ])
-        ;
+            ->add('name',
+                TextType::class,
+                [
+                    'label' => 'Formation name',
+                    'attr' => ['class' => $inputStyle]
+
+                ]
+            )
+            ->add(
+                'alias',
+                TextType::class,
+                [
+                    'label' => 'Alias',
+                    'attr' => ['class' => $inputStyle]
+                ]
+            )
+            ->add('amount',
+                IntegerType::class,
+                [
+                    'label' => 'Frais de formation',
+                    'attr' => ['class' => $inputStyle]
+                ]
+            )
+            ->add('startDate',
+                DateType::class,
+                [
+                    'label' => 'Date début',
+                    'widget' => 'single_text',
+                    'attr' => ['class' => 'js-datepicker ' . $inputStyle],
+                ]
+            )
+            ->add('endDate',
+                DateType::class,
+                [
+                    'label' => 'Date fin',
+                    'widget' => 'single_text',
+                    'attr' => ['class' => 'js-datepicker ' . $inputStyle],
+                    'constraints' => [
+                        new GreaterThanOrEqual([
+                            'message' => 'Please verify the date interval',
+                            'propertyPath' => 'parent.all[startDate].data',
+                        ]),
+                    ],
+                ]
+            );
     }
 
     public function configureOptions(OptionsResolver $resolver)
