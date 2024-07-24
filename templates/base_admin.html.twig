@@ -10,21 +10,9 @@
     {% block stylesheets %}
         {{ encore_entry_link_tags('bo_page') }}
     {% endblock %}
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.css" rel="stylesheet"/>
-    {% block javascripts %}
-        {{ encore_entry_script_tags('bo_page') }}
-    {% endblock %}
 </head>
 {% block body %} {% endblock %}
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.js"></script>
-<script>
-    $(document).ready(function() {
-        $('.js-datepicker').datepicker({
-            format: 'yyyy-mm-dd'
-        });
-    });
-</script>
+{% block javascripts %}
+    {{ encore_entry_script_tags('bo_page') }}
+{% endblock %}
 </html>

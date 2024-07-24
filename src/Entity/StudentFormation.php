@@ -14,9 +14,6 @@ class StudentFormation
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    private ?Cohorte $formation = null;
-
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $certificate = null;
 
@@ -28,6 +25,10 @@ class StudentFormation
 
     #[ORM\ManyToOne(inversedBy: 'studentFormations')]
     private ?User $user = null;
+
+    #[ORM\ManyToOne(inversedBy: 'studentFormations')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Cohorte $formation = null;
 
     public function __construct()
     {

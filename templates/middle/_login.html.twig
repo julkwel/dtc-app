@@ -26,20 +26,20 @@
 
                                             {% if app.user %}
                                                 <div class="mb-3">
-                                                    You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('dtc_logout') }}">Logout</a>
+                                                    Vous êtes déjà connecté en tant que {{ app.user.userIdentifier }}, <a href="{{ path('dtc_logout') }}">Déconnexion</a>
                                                 </div>
                                             {% endif %}
                                             <div class="form-group">
+                                                <label for="username">Nom d'utilisateur</label>
                                                 <input
                                                         type="text" value="{{ last_username }}" name="username"
-                                                        id="inputUsername" class="form-control form-control-user" autocomplete="username" required autofocus
-                                                       placeholder="Username">
+                                                        id="username" class="form-control form-control-user" autocomplete="username" required autofocus>
                                             </div>
                                             <div class="form-group">
+                                                <label for="inputPassword">Mot de passe</label>
                                                 <input type="password" name="password" id="inputPassword"
                                                        class="form-control form-control-user"
-                                                       autocomplete="current-password" required
-                                                       placeholder="Password">
+                                                       autocomplete="current-password" required>
                                             </div>
                                             <div class="form-group">
                                                 <div class="custom-control custom-checkbox small">
@@ -57,10 +57,10 @@
                                         </form>
                                         <hr>
                                         <div class="text-center">
-                                            <a class="small" href="{{ path('dtc_home_page') }}">Forgot Password?</a>
+                                            <a class="small" href="{{ path('dtc_home_page') }}">Mots de passe oublié ?</a>
                                         </div>
                                         <div class="text-center">
-                                            <a class="small" href="{{ path('dtc_register') }}">Create an Account!</a>
+                                            <a class="small" href="{{ path('dtc_register') }}">Créer un compte !</a>
                                         </div>
                                     </div>
                                 </div>
