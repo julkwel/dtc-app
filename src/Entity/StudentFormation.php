@@ -30,6 +30,9 @@ class StudentFormation
     #[ORM\JoinColumn(nullable: false)]
     private ?Cohorte $formation = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?bool $isConfirmed = null;
+
     public function __construct()
     {
         $this->isTotalPaid = false;
@@ -96,6 +99,18 @@ class StudentFormation
     public function setUser(?User $user): static
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function isConfirmed(): ?bool
+    {
+        return $this->isConfirmed;
+    }
+
+    public function setConfirmed(?bool $isConfirmed): static
+    {
+        $this->isConfirmed = $isConfirmed;
 
         return $this;
     }

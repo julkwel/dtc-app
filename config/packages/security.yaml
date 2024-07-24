@@ -36,6 +36,7 @@ security:
 
     access_control:
         - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/register_cohorte, roles: IS_AUTHENTICATED_FULLY }
         - { path: ^/student, roles: ROLE_STUDENT }
 
 when@test:

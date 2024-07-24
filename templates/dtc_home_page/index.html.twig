@@ -2,9 +2,18 @@
 
 {% block title %}Home|DTC-MG{% endblock %}
 {% block body %}
-    {{ include('dtc_home_page/_header.html.twig') }}
     <section id="hero" class="hero d-flex align-items-center">
         <div class="container">
+            {% for message in app.flashes('error') %}
+                <div class="alert alert-danger" role="alert">
+                    {{ message }}
+                </div>
+            {% endfor %}
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success" role="alert">
+                    {{ message }}
+                </div>
+            {% endfor %}
             <div class="row">
                 <div class="col-lg-6 d-flex flex-column justify-content-center">
                     <h1 data-item="fade-up">Votre passerelle vers l'excellence numérique</h1>

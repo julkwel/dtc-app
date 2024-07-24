@@ -21,28 +21,8 @@ class CohorteRepository extends ServiceEntityRepository
         parent::__construct($registry, Cohorte::class);
     }
 
-//    /**
-//     * @return Cohorte[] Returns an array of Cohorte objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('c')
-//            ->andWhere('c.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('c.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
-
-//    public function findOneBySomeField($value): ?Cohorte
-//    {
-//        return $this->createQueryBuilder('c')
-//            ->andWhere('c.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    public function getEnabledFormations()
+    {
+        return $this->findBy(['isRegisterOpen' => true]);
+    }
 }
