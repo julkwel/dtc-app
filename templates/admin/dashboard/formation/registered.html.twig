@@ -1,0 +1,44 @@
+{% extends 'admin/_entry_admin.html.twig' %}
+{% block content %}
+	<!-- Begin Page Content -->
+	<div class="container-fluid">
+		<div class="d-flex align-items-center justify-content-between">
+			<h2>Inscriptions formations {{ formation.name }}</h2>
+		</div>
+
+		<div class="container-fluid">
+			<!-- DataTales Example -->
+			<div class="card shadow mb-4">
+				<div class="card-header py-3">
+					<h6 class="m-0 font-weight-bold text-primary">Liste des inscrits</h6>
+				</div>
+				<div class="card-body">
+					<div class="table-responsive">
+						<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+							<thead>
+							<tr>
+								<th>Nom formation</th>
+								<th>Etudiant</th>
+								<th>Date d'inscription</th>
+								<th>Frais payé</th>
+							</tr>
+							</thead>
+							<tbody>
+							{% for studentCohorte in lists %}
+								<tr>
+									<td>{{ studentCohorte.formation.name }}</td>
+									<td>{{ studentCohorte.user.username }}</td>
+									<td>{{ studentCohorte.createdAt|date('d-m-Y') }}</td>
+									<td>{{ studentCohorte.isTotalPaid ? 'OUI' : 'NON' }}</td>
+								</tr>
+							{% endfor %}
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<!-- /.container-fluid -->
+{% endblock %}

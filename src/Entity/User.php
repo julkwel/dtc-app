@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Serializable;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\EquatableInterface;
@@ -18,6 +19,8 @@ use Symfony\Component\Security\Core\User\UserInterface;
 #[UniqueEntity(fields: ['username'], message: 'There is already an account with this username')]
 class User implements UserInterface, Serializable, EquatableInterface, PasswordAuthenticatedUserInterface
 {
+    use TimestampableEntity;
+
     public const ROLE_STUDENT = 'ROLE_STUDENT';
     public const ROLE_TRAINER = 'ROLE_TRAINER';
     public const ROLE_ADMIN = 'ROLE_ADMIN';

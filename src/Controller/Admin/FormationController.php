@@ -11,6 +11,7 @@ use App\Domain\Cohorte\CohorteService;
 use App\Entity\Cohorte;
 use App\Form\AddFormationFormType;
 use App\Repository\CohorteRepository;
+use App\Repository\StudentFormationRepository;
 use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,7 +21,7 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route(path: '/admin/formation', name: 'admin_formation_')]
 class FormationController extends AbstractController
 {
-    public function __construct(private readonly CohorteRepository $cohorteRepository)
+    public function __construct(private readonly CohorteRepository $cohorteRepository, private StudentFormationRepository $studentFormationRepository)
     {
     }
 
@@ -81,5 +82,19 @@ class FormationController extends AbstractController
         $cohorteService->switchStatus($cohorte);
 
         return $this->redirectToRoute('admin_formation_list');
+    }
+
+    #[Route(path: '/registered/{id}', name: 'show_registered')]
+    public function showRegistered(Cohorte $cohorte)
+    {
+        $registered = $this->studentFormationRepository->findBy(['formation' => $cohorte]);
+
+        return $this->render(
+            'admin/dashboard/formation/registered.html.twig',
+            [
+                'lists' => $registered,
+                'formation' => $cohorte,
+            ]
+        );
     }
 }

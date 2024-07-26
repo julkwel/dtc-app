@@ -1,0 +1,25 @@
+# Read the documentation: https://symfony.com/doc/current/bundles/StofDoctrineExtensionsBundle/index.html
+# See the official DoctrineExtensions documentation for more details: https://github.com/doctrine-extensions/DoctrineExtensions/tree/main/doc
+stof_doctrine_extensions:
+    default_locale: en_US
+
+services:
+    gedmo.mapping.driver.attribute:
+        class: Gedmo\Mapping\Driver\AttributeReader
+
+    gedmo.listener.timestampable:
+        class: Gedmo\Timestampable\TimestampableListener
+        tags:
+            - { name: doctrine.event_listener, event: 'prePersist' }
+            - { name: doctrine.event_listener, event: 'onFlush' }
+            - { name: doctrine.event_listener, event: 'loadClassMetadata' }
+        calls:
+            - [ setAnnotationReader, [ "@gedmo.mapping.driver.attribute" ] ]
+
+    gedmo.listener.softdeleteable:
+        class: Gedmo\SoftDeleteable\SoftDeleteableListener
+        tags:
+            - { name: doctrine.event_listener, event: 'onFlush' }
+            - { name: doctrine.event_listener, event: 'loadClassMetadata' }
+        calls:
+            - [ setAnnotationReader, [ "@gedmo.mapping.driver.attribute" ] ]
