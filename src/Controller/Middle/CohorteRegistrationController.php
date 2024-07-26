@@ -33,6 +33,7 @@ class CohorteRegistrationController extends AbstractController
                 'cohorte' => $cohorte,
                 'user' => $this->getUser(),
                 'formations' => $this->cohorteRepository->getEnabledFormations(),
+                'userIsRegistered' => $this->studentFormationRepository->findOneBy(['user' => $this->getUser(), 'formation' => $cohorte]),
             ]
         );
     }
