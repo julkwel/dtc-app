@@ -62,10 +62,10 @@
                 {% for formation in formations %}
                     <div class="col-lg-4 col-md-6" data-item="fade-up" data-item-delay="200">
                         <div class="service-box blue">
-                            <i class="ri-discuss-line icon"></i>
+                            <img src="{{ asset('img/Logo/DTC-Logo-Orange.png') }}" class="w-100 h-auto" alt="">
                             <h3>{{ formation.name }}</h3>
                             <p>{{ formation.description|slice(0, 150) }}</p>
-                            <a href="{{ path('register_cohorte', {id: formation.id}) }}" class="read-more"><span>Je m'inscris</span> <i class="bi bi-pencil"></i></a>
+                            <a href="{{ path('register_cohorte', {id: formation.id}) }}" class="btn btn-warning"><span>Je m'inscris</span> <i class="bi bi-arrow-right"></i></a>
                         </div>
                     </div>
                 {% endfor %}

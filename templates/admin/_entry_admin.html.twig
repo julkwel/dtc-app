@@ -17,6 +17,17 @@
             {% include 'admin/menu/_top_bar.html.twig' %}
             <!-- End of Topbar -->
 
+            {% for message in app.flashes('error') %}
+                <div class="alert alert-danger" role="alert">
+                    {{ message }}
+                </div>
+            {% endfor %}
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success" role="alert">
+                    {{ message }}
+                </div>
+            {% endfor %}
+
             <!-- Begin Page Content -->
             {% block content %}{% endblock %}
             <!-- /.container-fluid -->

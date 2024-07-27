@@ -47,11 +47,10 @@ class UserController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             try {
                 $this->userService->createUser($form);
-                $this->addFlash('success', 'Utilisateur crée avec success !');
+                $this->addFlash('success', 'Action effectuée avec success !');
 
                 return $this->redirectToRoute('admin_user_list');
             } catch (Exception $exception) {
-                dd($exception->getMessage());
                 $this->addFlash('error', $exception->getMessage());
 
                 $this->redirectToRoute('admin_user_edit', ['id' => $user->getId()]);
