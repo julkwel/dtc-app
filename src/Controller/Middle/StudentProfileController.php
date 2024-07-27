@@ -2,9 +2,9 @@
 
 namespace App\Controller\Middle;
 
+use App\Domain\User\UserService;
 use App\Entity\User;
 use App\Form\UserType;
-use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,6 +14,10 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/student', name: 'dtc_student_')]
 class StudentProfileController extends AbstractController
 {
+    public function __construct(private UserService $userService)
+    {
+    }
+
     #[Route('/profile', name: 'profile')]
     public function index(): Response
     {
@@ -21,7 +25,17 @@ class StudentProfileController extends AbstractController
 
         return $this->render('middle/student_profile/index.html.twig', [
             'student' => $student,
+            'formations' => $this->userService->fetchUserFormation($student),
+            'paiements' => $this->userService->fetchNotPaidUserFormation($student),
         ]);
+    }
+
+    #[Route('/my-formation', name: 'my_formation')]
+    public function myFormation(): Response
+    {
+        $student = $this->getUser();
+
+        return $this->render('middle/student_profile/formations.html.twig', ['formations' => $this->userService->fetchUserFormation($student)]);
     }
 
     #[Route('/edit/{id}', name: 'edit', methods: ['GET', 'POST'])]

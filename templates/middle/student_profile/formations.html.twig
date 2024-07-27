@@ -1,0 +1,29 @@
+{% extends 'base_front.html.twig' %}
+
+{% block title %}DTC | Etudiant {% endblock %}
+
+{% block body %}
+	<main id="main">
+		<!-- ======= Breadcrumbs ======= -->
+		<section class="breadcrumbs">
+			<div class="container">
+				<h2>{{ app.user.username }}</h2>
+			</div>
+		</section><!-- End Breadcrumbs -->
+		<section id="counts" class="counts">
+			<div class="container" data-item="fade-up">
+				<div class="row gy-4">
+					{% for formation in formations %}
+						<div class="col-lg-4 col-md-6" data-item="fade-up" data-item-delay="200">
+							<div class="service-box blue">
+								<img src="{{ asset('img/Logo/DTC-Logo-Orange.png') }}" class="w-100 h-auto" alt="">
+								<h3>{{ formation.formation.name }}</h3>
+								<p>{{ formation.formation.description }}</p>
+							</div>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+		</section><!-- End Counts Section -->
+	</main>
+{% endblock %}

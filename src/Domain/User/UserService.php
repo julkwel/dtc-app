@@ -7,6 +7,7 @@
 
 namespace App\Domain\User;
 
+use App\Entity\StudentFormation;
 use App\Entity\User;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -22,6 +23,7 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
 class UserService
@@ -95,5 +97,15 @@ class UserService
         $this->entityManager->flush();
 
         return true;
+    }
+
+    public function fetchUserFormation(UserInterface $user): array
+    {
+        return $this->entityManager->getRepository(StudentFormation::class)->findBy(['user' => $user]);
+    }
+
+    public function fetchNotPaidUserFormation(UserInterface $user): array
+    {
+        return $this->entityManager->getRepository(StudentFormation::class)->findBy(['user' => $user, 'isTotalPaid' => false]);
     }
 }

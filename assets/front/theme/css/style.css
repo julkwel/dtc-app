@@ -853,7 +853,7 @@ section {
 }
 
 .services .service-box.blue {
-  border-bottom: 3px solid #2db6fa;
+  border-bottom: 3px solid #163b9a;
 }
 
 .services .service-box.blue .icon {
@@ -863,10 +863,6 @@ section {
 
 .services .service-box.blue .read-more {
   color: #2db6fa;
-}
-
-.services .service-box.blue:hover {
-  background: #2db6fa;
 }
 
 .services .service-box.orange {
@@ -952,16 +948,6 @@ section {
 
 .services .service-box.pink:hover {
   background: #f51f9c;
-}
-
-.services .service-box:hover h3,
-.services .service-box:hover p,
-.services .service-box:hover .read-more {
-  color: #fff;
-}
-
-.services .service-box:hover .icon {
-  background: #fff;
 }
 
 /*--------------------------------------------------------------
