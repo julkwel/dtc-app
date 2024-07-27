@@ -7,3 +7,12 @@
 @import "../theme/vendor/remixicon/remixicon.css";
 @import "../theme/vendor/swiper/swiper-bundle.min.css";
 @import "../theme/css/style.css";
+
+.user-info {
+    background: #e67b24;
+    color: black!important;
+    font-size: 12px!important;
+    border-radius: 8px;
+    padding: 10px!important;
+    margin-left: 10px;
+}

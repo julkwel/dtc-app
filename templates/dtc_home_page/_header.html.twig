@@ -1,24 +1,32 @@
 <header id="header" class="header fixed-top">
-    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
-        <a href="{{ path('dtc_home_page') }}" class="logo d-flex align-items-center">
-            <img src="{{ asset('img/Logo/DTC-Logo-Blanc-Tranceparent.png') }}" alt="">
-            <span>DTC</span>
-        </a>
-        <nav id="navbar" class="navbar">
-            <ul>
-                <li><a class="nav-link scrollto active" href="#hero">Bienvenue</a></li>
-                <li><a class="nav-link scrollto" href="#services">Nos catalogues</a></li>
-                <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                    <li>
-                        <a class="nav-link" href="#">
-                            <span class="bi bi-person"></span>
-                            Mon profil
-                        </a>
-                    </li>
-                {% endif %}
-            </ul>
-            <i class="bi bi-list mobile-nav-toggle"></i>
-        </nav><!-- .navbar -->
-    </div>
+	<div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+		<a href="{{ path('dtc_home_page') }}" class="logo d-flex align-items-center">
+			<img src="{{ asset('img/Logo/DTC-Logo-Blanc-Tranceparent.png') }}" alt=""> <span>DTC</span> </a>
+		<nav id="navbar" class="navbar">
+			<ul>
+				{% if not is_granted('IS_AUTHENTICATED_FULLY') %}
+					<li><a class="nav-link scrollto active" href="#hero">Bienvenue</a></li>
+					<li><a class="nav-link scrollto" href="#services">Nos catalogues</a></li>
+					<li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+				{% endif %}
+				{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+					<li>
+						<a class="nav-link scrollto" href="#services">Liste des formations</a>
+					</li>
+					<li class="dropdown">
+						<a href="#" class="user-info">{{ app.user.username}}</a>
+						<ul>
+							<li>
+								<a href="#"><i class="bi bi-person" style="color: #bb0852;"></i>Mon profil</a>
+							</li>
+							<li>
+								<a href="{{ path('dtc_logout') }}"><i class="bi bi-arrow-right"></i>Déconnexion</a>
+							</li>
+						</ul>
+					</li>
+				{% endif %}
+			</ul>
+			<i class="bi bi-list mobile-nav-toggle"></i>
+		</nav><!-- .navbar -->
+	</div>
 </header>
