@@ -24,6 +24,13 @@ class User implements UserInterface, Serializable, EquatableInterface, PasswordA
     public const ROLE_STUDENT = 'ROLE_STUDENT';
     public const ROLE_TRAINER = 'ROLE_TRAINER';
     public const ROLE_ADMIN = 'ROLE_ADMIN';
+
+    public const ROLES = [
+        self::ROLE_STUDENT => self::ROLE_STUDENT,
+        self::ROLE_TRAINER => self::ROLE_TRAINER,
+        self::ROLE_ADMIN => self::ROLE_ADMIN,
+    ];
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -57,6 +64,9 @@ class User implements UserInterface, Serializable, EquatableInterface, PasswordA
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: StudentFormation::class)]
     private Collection $studentFormations;
 
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $cover = null;
+
     public function __construct()
     {
         $this->contacts = new ArrayCollection();
@@ -80,12 +90,12 @@ class User implements UserInterface, Serializable, EquatableInterface, PasswordA
         return array_unique($roles);
     }
 
-    public function isStudent()
+    public function isStudent(): bool
     {
         return in_array(self::ROLE_STUDENT, $this->getRoles());
     }
 
-    public function isAdmin()
+    public function isAdmin(): bool
     {
         return in_array(self::ROLE_ADMIN, $this->getRoles());
     }
@@ -315,6 +325,18 @@ class User implements UserInterface, Serializable, EquatableInterface, PasswordA
                 $studentFormation->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCover(): ?string
+    {
+        return $this->cover;
+    }
+
+    public function setCover(?string $cover): static
+    {
+        $this->cover = $cover;
 
         return $this;
     }

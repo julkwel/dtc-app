@@ -1,0 +1,23 @@
+{% extends 'admin/_entry_admin.html.twig' %}
+{% block content %}
+	<!-- Begin Page Content -->
+	<div class="container-fluid">
+		<div class="d-flex align-items-center justify-content-between">
+			{% if user is defined and not null %}
+				<h2>Modification profil {{ user.username }}</h2>
+			{% else %}
+				<h2>Création utilisateur</h2>
+			{% endif %}
+		</div>
+
+		<div class="card">
+			<div class="card-body">
+				{{ form_start(form) }}
+				{{ form_widget(form) }}
+				<button type="submit" class="btn btn-primary my-3 w-100">Sauvegarder</button>
+				{{ form_end(form) }}
+			</div>
+		</div>
+	</div>
+	<!-- /.container-fluid -->
+{% endblock %}

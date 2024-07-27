@@ -14,25 +14,44 @@ class ContactFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('phone', TextType::class, [
-                'label' => 'Phone Number',
-            ])
-            ->add('facebook', TextType::class, [
-                'label' => 'Facebook Profile (optional)',
-                'required' => false,
-            ])
-            ->add('linkedin', TextType::class, [
-                'label' => 'LinkedIn Profile (optional)',
-                'required' => false,
-            ])
-            ->add('github', TextType::class, [
-                'label' => 'GitHub Profile (optional)',
-                'required' => false,
-            ])
-            ->add('email', EmailType::class, [
-                'label' => 'Email (optional)',
-                'required' => false,
-            ]);
+            ->add(
+                'phone',
+                TextType::class,
+                [
+                    'label' => 'Phone Number',
+                ]
+            )
+            ->add(
+                'facebook',
+                TextType::class,
+                [
+                    'label' => 'Facebook (optional)',
+                    'required' => false,
+                ]
+            )
+            ->add(
+                'linkedin',
+                TextType::class,
+                [
+                    'label' => 'LinkedIn (optional)',
+                    'required' => false,
+                ]
+            )
+            ->add(
+                'github',
+                TextType::class,
+                [
+                    'label' => 'GitHub (optional)',
+                    'required' => false,
+                ])
+            ->add(
+                'email',
+                EmailType::class,
+                [
+                    'label' => 'Mail (optional)',
+                    'required' => false,
+                ]
+            );
     }
 
     public function configureOptions(OptionsResolver $resolver)

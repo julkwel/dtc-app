@@ -10,6 +10,9 @@
     {% block stylesheets %}
         {{ encore_entry_link_tags('bo_page') }}
     {% endblock %}
+    {% if pagination is defined and pagination is not null %}
+        {{ knp_pagination_rel_links(pagination) }}
+    {% endif %}
 </head>
 {% block body %} {% endblock %}
 {% block javascripts %}

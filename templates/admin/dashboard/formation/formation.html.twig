@@ -6,7 +6,6 @@
             <h2>Formations</h2>
             <a href="{{ path('admin_formation_add') }}">Créer une formation</a>
         </div>
-
         <div class="container-fluid">
             <!-- DataTales Example -->
             <div class="card shadow mb-4">
@@ -41,8 +40,14 @@
                                         </a>
                                     </td>
                                     <td>
-                                        <a href="{{ path('admin_formation_edit', {'id': formation.id}) }}">Modifier</a>
-                                        <a href="{{ path('admin_formation_show_registered', {'id': formation.id}) }}">Inscription</a>
+                                        <a class="btn btn-sm btn-success" href="{{ path('admin_formation_edit', {'id': formation.id}) }}">
+                                            <span class="fas fa-edit"></span>
+                                            Modifier
+                                        </a>
+                                        <a class="btn btn-sm btn-info" href="{{ path('admin_formation_show_registered', {'id': formation.id}) }}">
+                                            <span class="fas fa-list"></span>
+                                            Inscription
+                                        </a>
                                     </td>
                                 </tr>
                             {% endfor %}

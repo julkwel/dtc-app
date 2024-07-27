@@ -1,0 +1,75 @@
+{% extends 'admin/_entry_admin.html.twig' %}
+{% block content %}
+	<!-- Begin Page Content -->
+	<div class="container-fluid">
+		<div class="d-flex align-items-center justify-content-between">
+			<h2>Formations</h2>
+			<a href="{{ path('admin_user_edit') }}">Créer un utilisateur</a>
+		</div>
+		<div class="container-fluid">
+			<!-- DataTales Example -->
+			<div class="card shadow mb-4">
+				<form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search p-3">
+					<div class="input-group">
+						<input type="text"
+							   class="form-control bg-light border-0 small"
+							   name="search"
+							   placeholder="Recherche"
+							   aria-label="Search"
+							   aria-describedby="basic-addon2"
+							   value="{{ search }}"
+						>
+						<div class="input-group-append">
+							<button class="btn btn-primary" type="submit">
+								<i class="fas fa-search fa-sm"></i>
+							</button>
+						</div>
+					</div>
+				</form>
+				<div class="card-header py-3">
+					<h6 class="m-0 font-weight-bold text-primary">Liste des utilisateurs ({{ pagination.getTotalItemCount }})</h6>
+				</div>
+				<div class="card-body">
+					<table  class="table table-bordered" width="100%" cellspacing="0">
+						<thead>
+						<tr>
+							<th{% if pagination.isSorted('user.username') %} class="sorted"{% endif %}>
+								{{ knp_pagination_sortable(pagination, "Nom d'utilisateur", 'u.username') }}
+							</th>
+							<th{% if pagination.isSorted(['a.createdAt']) %} class="sorted"{% endif %}>
+								{{ knp_pagination_sortable(pagination, 'Date de création', ['u.createdAt']) }}
+							</th>
+							<th>
+								Action
+							</th>
+						</tr>
+						</thead>
+						<tbody>
+						{% for user in pagination %}
+							<tr>
+								<td>{{ user.username }}</td>
+								<td>{{ user.createdAt | date('Y-m-d') }}</td>
+								<td>
+									<a href="{{ path('admin_user_edit', {'id': user.id}) }}" class="btn btn-sm btn-success">
+										<span class="fa fa-edit"></span>
+										Modifier
+									</a>
+								</td>
+							</tr>
+							{% else %}
+							<tr>
+								<td colspan="3" class="text-center">Aucun résultats</td>
+							</tr>
+						{% endfor %}
+						</tbody>
+					</table>
+					<div class="navigation">
+						{{ knp_pagination_render(pagination) }}
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<!-- /.container-fluid -->
+{% endblock %}

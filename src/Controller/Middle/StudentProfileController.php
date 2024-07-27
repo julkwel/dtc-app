@@ -3,7 +3,7 @@
 namespace App\Controller\Middle;
 
 use App\Entity\User;
-use App\Form\EditUserFormType;
+use App\Form\UserType;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -14,13 +14,6 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/student', name: 'dtc_student_')]
 class StudentProfileController extends AbstractController
 {
-    private $userRepository;
-
-    public function __construct(UserRepository $userRepository)
-    {
-        $this->userRepository = $userRepository;
-    }
-
     #[Route('/profile', name: 'profile')]
     public function index(): Response
     {
@@ -34,7 +27,7 @@ class StudentProfileController extends AbstractController
     #[Route('/edit/{id}', name: 'edit', methods: ['GET', 'POST'])]
     public function editUser(Request $request, EntityManagerInterface $entityManager, User $user): Response
     {
-        $form = $this->createForm(EditUserFormType::class, $user);
+        $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
