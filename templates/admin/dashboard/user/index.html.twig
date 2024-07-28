@@ -30,6 +30,14 @@
 					<h6 class="m-0 font-weight-bold text-primary">Liste des utilisateurs ({{ pagination.getTotalItemCount }})</h6>
 				</div>
 				<div class="card-body">
+					<div class="form-group col-md-4 p-2 m-auto">
+						<label for="role-filter">Filtrer par role</label>
+						<select name="role" id="role-filter" class="form-control">
+							{% for role in constant("App\\Entity\\User::ROLES") %}
+								<option data-url="{{ path('admin_user_list', {'role': role}) }}" value="{{ role }}">{{ role }}</option>
+							{% endfor %}
+						</select>
+					</div>
 					<table  class="table table-bordered" width="100%" cellspacing="0">
 						<thead>
 						<tr>

@@ -28,18 +28,27 @@ class UserRepository extends ServiceEntityRepository
         $qb = $this->createQueryBuilder('u');
 
         $search = $request->get('search');
+        $role = $request->get('role');
         if (!empty($search)) {
-            $qb->andWhere('u.username LIKE :username')->setParameter('username', "%$search%");
+            $qb->orWhere('u.username LIKE :query');
+            $qb->orWhere('u.firstname LIKE :query');
+            $qb->orWhere('u.lastname LIKE :query');
+            $qb->setParameter('query', "%$search%");
         }
 
+        if (!empty($role)) {
+            $qb->andWhere('u.roles LIKE :role')
+                ->setParameter('role', "%$role%");
+        }
         return $qb->getQuery();
     }
 
-    public function getAllStudent(): array
+    public function getUserByRole(string $role = 'ROLE_STUDENT'): array
     {
         return $this->createQueryBuilder('u')
             ->andWhere('u.roles LIKE :role')
-            ->setParameter('role', "%ROLE_STUDENT%")
+            ->andWhere('u.isEnabled =true')
+            ->setParameter('role', "%$role%")
             ->getQuery()
             ->getResult();
     }
