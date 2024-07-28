@@ -7,6 +7,7 @@
 
 namespace App\Domain\User;
 
+use App\Entity\Contact;
 use App\Entity\StudentFormation;
 use App\Entity\User;
 use App\Repository\UserRepository;
@@ -144,6 +145,17 @@ class UserService
         $student->setRoles([User::ROLE_STUDENT]);
 
         $this->entityManager->persist($student);
+        $this->entityManager->flush();
+
+        return true;
+    }
+
+    public function addContact(Contact $contact, ?User $getUser): bool
+    {
+        $contact->setUser($getUser);
+        $getUser->addContact($contact);
+
+        $this->entityManager->persist($contact);
         $this->entityManager->flush();
 
         return true;

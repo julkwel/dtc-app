@@ -48,5 +48,32 @@
 			</div>
 		</div>
 	</section><!-- End Counts Section -->
+	<section>
+		<div class="row gy-4">
+			<div class="col-lg-4 col-md-6 m-auto" data-item="fade-up" data-item-delay="200">
+				<div class="service-box blue">
+					<div class="w-100">
+						{% if app.user.image %}
+							<img src="{{ asset('img/pictures/'~app.user.image) }}" width="50" height="50" style="border-radius: 50%; margin: auto;display:block" alt="">
+						{% else %}
+							<img src="{{ asset('img/Logo/DTC-Logo-Orange.png') }}" width="50" height="50" style="border-radius: 50%; margin: auto;display:block" alt="">
+						{% endif %}
+					</div>
+					<h3>{{ app.user.username }}</h3>
+					<p>{{ app.user.firstname }}</p>
+					{% if app.user.contacts is not empty %}
+						{% for contact in app.user.contacts %}
+							<ul>
+								<li> Téléphone : {{ contact.phone }}</li>
+								<li> Mail : {{ app.user.username }}</li>
+								<li> Facebook : {{ contact.facebook }}</li>
+								<li> LinkedIn : {{ contact.linkedIn }}</li>
+							</ul>
+						{% endfor %}
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</section>
 </main>
 {% endblock %}

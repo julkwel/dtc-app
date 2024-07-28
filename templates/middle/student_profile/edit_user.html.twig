@@ -7,7 +7,7 @@
 		<!-- ======= Breadcrumbs ======= -->
 		<section class="breadcrumbs">
 			<div class="container">
-				<h2>{{ app.user.username }}</h2>
+				<h2>{{ app.user.username }} / Modification profile</h2>
 			</div>
 		</section><!-- End Breadcrumbs -->
 		<section id="counts" class="counts">
@@ -22,10 +22,11 @@
 					<div class="col-lg-4 col-md-6" data-item="fade-up" data-item-delay="200">
 						{{ form_row(form.password) }}
 						{{ form_row(form.image) }}
+						<a href="{{ path('dtc_student_add_contact') }}">Ajouter un contact</a>
 					</div>
 				</div>
 				{{ form_row(form._token) }}
-				<button type="submit" class="btn btn-sm btn-primary text-center m-auto mt-2" style="min-width: 150px;">Save</button>
+				<button type="submit" class="btn btn-sm btn-primary text-center m-auto mt-2" style="min-width: 150px;">Enregistrer</button>
 				{{ form_end(form, {'render_rest': false}) }}
 			</div>
 		</section>

@@ -3,6 +3,8 @@
 namespace App\Controller\Middle;
 
 use App\Domain\User\UserService;
+use App\Entity\Contact;
+use App\Form\ContactFormType;
 use App\Form\UserType;
 use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -57,5 +59,21 @@ class StudentProfileController extends AbstractController
             'user' => $user,
             'form' => $form->createView(),
         ]);
+    }
+
+    #[Route('/add-contact', name: 'add_contact')]
+    public function addContact(Request $request)
+    {
+        $contact = new Contact();
+        $form = $this->createForm(ContactFormType::class, $contact);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->userService->addContact($contact, $this->getUser());
+
+            return  $this->redirectToRoute('dtc_student_profile');
+        }
+
+        return $this->render('middle/student_profile/_add_contact.html.twig', ['form' => $form->createView()]);
     }
 }

@@ -18,7 +18,7 @@ class ContactFormType extends AbstractType
                 'phone',
                 TextType::class,
                 [
-                    'label' => 'Phone Number',
+                    'label' => 'Phone Number'
                 ]
             )
             ->add(
