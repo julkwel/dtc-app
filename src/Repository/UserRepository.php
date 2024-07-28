@@ -34,4 +34,13 @@ class UserRepository extends ServiceEntityRepository
 
         return $qb->getQuery();
     }
+
+    public function getAllStudent(): array
+    {
+        return $this->createQueryBuilder('u')
+            ->andWhere('u.roles LIKE :role')
+            ->setParameter('role', "%ROLE_STUDENT%")
+            ->getQuery()
+            ->getResult();
+    }
 }
