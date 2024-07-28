@@ -1,11 +1,13 @@
 {% extends 'base_admin.html.twig' %}
 
-{% block title %}DTC | Register {% endblock %}
+{% block title %}DTC | Inscription {% endblock %}
 
 {% block body %}
     <body>
         <div class="container">
-
+            <div class="p-4">
+                <a href="{{ path('dtc_home_page') }}" style="text-decoration: none">Page d'accueil</a>
+            </div>
             <div class="card o-hidden border-0 shadow-lg my-5">
                 <div class="card-body p-0">
                     <!-- Nested Row within Card Body -->
@@ -42,10 +44,10 @@
                                 {{ form_end(registrationForm) }}
                                 <hr>
                                 <div class="text-center">
-                                    <a class="small" href="forgot-password.html">Mot de passe oublié ?</a>
+                                    <a class="small" href="#">Mot de passe oublié ?</a>
                                 </div>
                                 <div class="text-center">
-                                    <a class="small" href="{{ path('dtc_login')}} ">Avez-vous un compte ? Se connecter !</a>
+                                    Avez-vous un compte ? <a class="small" href="{{ path('dtc_login')}} ">Se connecter !</a>
                                 </div>
                             </div>
                         </div>
