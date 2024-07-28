@@ -50,6 +50,18 @@
 								<td>{{ user.username }}</td>
 								<td>{{ user.createdAt | date('Y-m-d') }}</td>
 								<td>
+									{% if user.id == app.user.id %}
+										<a href="#" class="btn btn-sm btn-success">
+											Actif
+										</a>
+									{% else %}
+										<a href="{{ path('admin_user_status', {'id': user.id}) }}" class="btn btn-sm btn-{{ user.isEnabled ? 'warning' : 'success' }}">
+											<span class="fa fa-{{ user.isEnabled ? 'times' : 'check' }}"></span>
+											{{ user.isEnabled ? 'Désactivé' : 'Activé' }}
+										</a>
+									{% endif %}
+								</td>
+								<td>
 									<a href="{{ path('admin_user_edit', {'id': user.id}) }}" class="btn btn-sm btn-success">
 										<span class="fa fa-edit"></span>
 										Modifier

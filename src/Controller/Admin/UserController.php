@@ -37,6 +37,15 @@ class UserController extends AbstractController
         );
     }
 
+    #[Route('/change-status/{id}', name: 'status')]
+    public function changeUserStatus(User $user)
+    {
+        $this->userService->changeStatus($user);
+        $this->addFlash('success', 'Action effectuée avec success !');
+
+        return $this->redirectToRoute('admin_user_list');
+    }
+
     #[Route('/edit/{id?}', name: 'edit')]
     public function editUser(Request $request, User $user = null): Response
     {

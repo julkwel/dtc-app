@@ -2,6 +2,7 @@
 
 namespace App\Controller\Middle;
 
+use App\Domain\User\UserService;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -14,21 +15,16 @@ use Symfony\Component\Routing\Annotation\Route;
 class RegistrationController extends AbstractController
 {
     #[Route('/register', name: 'dtc_register')]
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response {
+    public function register(Request $request, UserService $userService, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response {
         $student = new User();
         $form = $this->createForm(RegistrationFormType::class, $student);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $plainPassword = $form->get('password')->getData();
+            $userService->registerFromHomePage($form, $student);
+            $this->addFlash('success', 'Merci pour votre inscription, nous vous contacterons plus tard');
 
-            $encodedPassword = $userPasswordHasher->hashPassword($student, $plainPassword);
-            $student->setPassword($encodedPassword);
-
-            $entityManager->persist($student);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('dtc_student_profile');
+            return $this->redirectToRoute('dtc_home_page');
         }
 
         return $this->render('middle/_register.html.twig', [

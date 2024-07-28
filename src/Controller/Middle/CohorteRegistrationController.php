@@ -16,16 +16,17 @@ use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
 class CohorteRegistrationController extends AbstractController
 {
-    public function __construct(private StudentFormationRepository $studentFormationRepository, private CohorteRepository $cohorteRepository)
+    public function __construct(private readonly StudentFormationRepository $studentFormationRepository, private CohorteRepository $cohorteRepository)
     {
     }
 
     #[Route('/register_cohorte/{id}', name: 'register_cohorte')]
-    public function register(Cohorte $cohorte)
+    public function register(Cohorte $cohorte): Response
     {
         return $this->render(
             'middle/cohorte/register_to_cohorte.html.twig',

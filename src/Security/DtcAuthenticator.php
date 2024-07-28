@@ -3,11 +3,13 @@
 namespace App\Security;
 
 use App\Entity\User;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Http\Authenticator\AbstractLoginFormAuthenticator;
 use Symfony\Component\Security\Http\Authenticator\Passport\Badge\CsrfTokenBadge;
@@ -28,12 +30,17 @@ class DtcAuthenticator extends AbstractLoginFormAuthenticator
 
     public const LOGIN_ROUTE = 'dtc_login';
 
-    public function __construct(private readonly UrlGeneratorInterface $urlGenerator){}
+    public function __construct(private readonly UrlGeneratorInterface $urlGenerator, private EntityManagerInterface $entityManager){}
 
     public function authenticate(Request $request): Passport
     {
         $username = $request->request->get('username', '');
-        $request->getSession()->set(Security::LAST_USERNAME, $username);
+        $user = $this->entityManager->getRepository(User::class)->findOneBy(['username' => $username]);
+        if (!$user->isEnabled()) {
+            throw new AccessDeniedException('Accès non autorisé !');
+        }
+
+        $request->getSession()->set('_security.last_username', $username);
 
         return new Passport(
             new UserBadge($username),
@@ -46,7 +53,7 @@ class DtcAuthenticator extends AbstractLoginFormAuthenticator
     }
 
     /**
-     * Handle user when login is succeed|failur handle by firewall
+     * Handle user when login is succeeded handle by firewall
      *
      * @param Request        $request
      * @param TokenInterface $token
@@ -60,7 +67,9 @@ class DtcAuthenticator extends AbstractLoginFormAuthenticator
             return new RedirectResponse($targetPath);
         }
 
-        if ($token->getUser()->isAdmin()) {
+        /** @var User $user */
+        $user = $token->getUser();
+        if ($user->isAdmin()) {
             return new RedirectResponse($this->urlGenerator->generate('admin_dashboard_index'));
         }
 

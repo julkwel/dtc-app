@@ -59,7 +59,7 @@ class User implements UserInterface, Serializable, EquatableInterface, PasswordA
     private ?string $salt = null;
 
     #[ORM\Column(nullable: true)]
-    private ?bool $isEnable = null;
+    private ?bool $isEnabled = null;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: StudentFormation::class)]
     private Collection $studentFormations;
@@ -71,7 +71,7 @@ class User implements UserInterface, Serializable, EquatableInterface, PasswordA
     {
         $this->contacts = new ArrayCollection();
         $this->roles = [self::ROLE_STUDENT];
-        $this->isEnable = true;
+        $this->isEnabled = true;
         $this->studentFormations = new ArrayCollection();
     }
 
@@ -287,14 +287,14 @@ class User implements UserInterface, Serializable, EquatableInterface, PasswordA
         return true;
     }
 
-    public function isIsEnable(): ?bool
+    public function isEnabled(): ?bool
     {
-        return $this->isEnable;
+        return $this->isEnabled;
     }
 
-    public function setIsEnable(?bool $isEnable): static
+    public function setIsEnabled(?bool $isEnable): static
     {
-        $this->isEnable = $isEnable;
+        $this->isEnabled = $isEnable;
 
         return $this;
     }

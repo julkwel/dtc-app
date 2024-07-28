@@ -108,4 +108,26 @@ class UserService
     {
         return $this->entityManager->getRepository(StudentFormation::class)->findBy(['user' => $user, 'isTotalPaid' => false]);
     }
+
+    public function changeStatus(User $user): bool
+    {
+        $user->setIsEnabled(!$user->isEnabled());
+        $this->entityManager->flush();
+
+        return true;
+    }
+
+    public function registerFromHomePage(FormInterface $form, User $student): bool
+    {
+        $plainPassword = $form->get('password')->getData();
+
+        $encodedPassword = $this->userPasswordHasher->hashPassword($student, $plainPassword);
+        $student->setPassword($encodedPassword);
+        $student->setRoles([User::ROLE_STUDENT]);
+
+        $this->entityManager->persist($student);
+        $this->entityManager->flush();
+
+        return true;
+    }
 }
