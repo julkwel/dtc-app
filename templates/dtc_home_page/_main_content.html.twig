@@ -81,7 +81,7 @@
                                     {{ review.review }}
                                 </p>
                                 <div class="profile mt-auto">
-                                    <img src="{{ asset('img/Logo/DTC-Logo.png') }}" class="testimonial-img" alt="">
+                                    <img src="{{ asset('img/avatar.png') }}" class="testimonial-img" alt="">
                                     {% if review.user is null or 'ROLE_ADMIN' in review.user.roles %}
                                         <h3>Anonymous</h3>
                                     {% else %}
