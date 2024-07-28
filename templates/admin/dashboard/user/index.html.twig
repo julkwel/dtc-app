@@ -34,7 +34,7 @@
 						<label for="role-filter">Filtrer par role</label>
 						<select name="role" id="role-filter" class="form-control">
 							{% for role in constant("App\\Entity\\User::ROLES") %}
-								<option data-url="{{ path('admin_user_list', {'role': role}) }}" value="{{ role }}">{{ role }}</option>
+								<option data-url="{{ path('admin_user_list', {'role': role}) }}" {% if app.request.get('role') == role %} selected {% endif%} value="{{ role }}">{{ role }}</option>
 							{% endfor %}
 						</select>
 					</div>
