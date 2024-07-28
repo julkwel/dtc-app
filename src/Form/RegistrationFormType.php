@@ -41,7 +41,7 @@ class RegistrationFormType extends AbstractType
                 'username',
                 EmailType::class,
                 [
-                    'label' => 'Mail',
+                    'label' => 'Nom d\'utilisateur (mail)',
                     'attr' => [
                         'class' => $inputStyle,
                     ],

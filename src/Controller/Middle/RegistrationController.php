@@ -24,7 +24,7 @@ class RegistrationController extends AbstractController
             $userService->registerFromHomePage($form, $student);
             $this->addFlash('success', 'Merci pour votre inscription, nous vous contacterons plus tard');
 
-            return $this->redirectToRoute('dtc_home_page');
+            return $this->redirectToRoute('dtc_login');
         }
 
         return $this->render('middle/_register.html.twig', [
