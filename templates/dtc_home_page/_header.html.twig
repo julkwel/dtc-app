@@ -8,6 +8,7 @@
 					<li><a class="nav-link scrollto active" href="#hero">Bienvenue</a></li>
 					<li><a class="nav-link scrollto" href="#services">Nos catalogues</a></li>
 					<li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+					<li><a class="nav-link scrollto" href="{{ path('dtc_login') }}">Se connecter <i class="bi bi-arrow-right"></i></a></li>
 				{% endif %}
 				{% if is_granted('IS_AUTHENTICATED_FULLY') %}
 					<li>
@@ -17,10 +18,10 @@
 						<a href="#" class="user-info">{{ app.user.username}}</a>
 						<ul>
 							<li>
-								<a href="{{ path('dtc_student_profile') }}"><i class="bi bi-person" style="color: #bb0852;padding: 10px; font-size: 25px; margin:0"></i>Mon profil</a>
+								<a href="{{ path('dtc_student_profile') }}"><i class="bi bi-person" style="color: #e67b24;padding: 10px; font-size: 25px; margin:0"></i>Mon profil</a>
 							</li>
 							<li>
-								<a href="{{ path('dtc_logout') }}"><i class="bi bi-arrow-right" style="color: #bb0852;padding: 10px; font-size: 25px; margin:0"></i>Déconnexion</a>
+								<a href="{{ path('dtc_logout') }}"><i class="bi bi-arrow-right" style="color: #e67b24;padding: 10px; font-size: 25px; margin:0"></i>Déconnexion</a>
 							</li>
 						</ul>
 					</li>
