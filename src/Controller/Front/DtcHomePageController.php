@@ -3,6 +3,7 @@
 namespace App\Controller\Front;
 
 use App\Entity\Cohorte;
+use App\Entity\Review;
 use App\Entity\StudentFormation;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -21,11 +22,13 @@ class DtcHomePageController extends AbstractController
     {
         $openFormation = $this->entityManager->getRepository(Cohorte::class)->findBy(['isRegisterOpen' => true]);
         $students = $this->entityManager->getRepository(StudentFormation::class)->findBy([]);
+        $reviews = $this->entityManager->getRepository(Review::class)->findBy(['isEnabled' => true]);
 
         return $this->render('dtc_home_page/index.html.twig', [
             'controller_name' => '',
             'formations' => $openFormation,
-            'students' => $students
+            'students' => $students,
+            'reviews' => $reviews,
         ]);
     }
 }

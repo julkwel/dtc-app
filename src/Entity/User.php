@@ -67,12 +67,19 @@ class User implements UserInterface, Serializable, EquatableInterface, PasswordA
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $cover = null;
 
+    /**
+     * @var Collection<int, Review>
+     */
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Review::class)]
+    private Collection $reviews;
+
     public function __construct()
     {
         $this->contacts = new ArrayCollection();
         $this->roles = [self::ROLE_STUDENT];
         $this->isEnabled = true;
         $this->studentFormations = new ArrayCollection();
+        $this->reviews = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -337,6 +344,36 @@ class User implements UserInterface, Serializable, EquatableInterface, PasswordA
     public function setCover(?string $cover): static
     {
         $this->cover = $cover;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Review>
+     */
+    public function getReviews(): Collection
+    {
+        return $this->reviews;
+    }
+
+    public function addReview(Review $review): static
+    {
+        if (!$this->reviews->contains($review)) {
+            $this->reviews->add($review);
+            $review->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReview(Review $review): static
+    {
+        if ($this->reviews->removeElement($review)) {
+            // set the owning side to null (unless already changed)
+            if ($review->getUser() === $this) {
+                $review->setUser(null);
+            }
+        }
 
         return $this;
     }
