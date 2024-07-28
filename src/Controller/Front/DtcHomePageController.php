@@ -31,4 +31,10 @@ class DtcHomePageController extends AbstractController
             'reviews' => $reviews,
         ]);
     }
+
+    #[Route('/rest-password', name: 'reset_password')]
+    public function resetPassword(): Response
+    {
+        return $this->render('dtc_home_page/_reset_pass.html.twig');
+    }
 }
