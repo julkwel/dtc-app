@@ -2,48 +2,36 @@
     <!-- ======= Counts Section ======= -->
     <section id="counts" class="counts">
         <div class="container" data-item="fade-up">
-            <div class="row gy-4">
-
+            <div class="row gy-4 d-flex justify-content-between">
                 <div class="col-lg-3 col-md-6">
                     <div class="count-box">
-                        <i class="bi bi-emoji-smile"></i>
+                        <i class="bi bi-people" style="color:#173c9c!important;"></i>
                         <div>
-                            <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1" class="purecounter"></span>
-                            <p>Happy Clients</p>
+                            <span data-purecounter-start="0" data-purecounter-end="{{ students|length }}" data-purecounter-duration="1" class="purecounter"></span>
+                            <p>Etudiants</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="col-lg-3 col-md-6">
                     <div class="count-box">
-                        <i class="bi bi-journal-richtext" style="color: #ee6c20;"></i>
+                        <i class="bi bi-journal-richtext" style="color: #e67b24;"></i>
                         <div>
-                            <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1" class="purecounter"></span>
-                            <p>Projects</p>
+                            <span data-purecounter-start="0" data-purecounter-end="{{ formations|length }}" data-purecounter-duration="1" class="purecounter"></span>
+                            <p>Formations</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="col-lg-3 col-md-6">
                     <div class="count-box">
-                        <i class="bi bi-headset" style="color: #15be56;"></i>
+                        <i class="bi bi-person-badge" style="color: #15be56;"></i>
                         <div>
-                            <span data-purecounter-start="0" data-purecounter-end="1463" data-purecounter-duration="1" class="purecounter"></span>
-                            <p>Hours Of Support</p>
+                            <span data-purecounter-start="0" data-purecounter-end="8" data-purecounter-duration="1" class="purecounter"></span>
+                            <p>Formateurs</p>
                         </div>
                     </div>
                 </div>
-
-                <div class="col-lg-3 col-md-6">
-                    <div class="count-box">
-                        <i class="bi bi-people" style="color: #bb0852;"></i>
-                        <div>
-                            <span data-purecounter-start="0" data-purecounter-end="15" data-purecounter-duration="1" class="purecounter"></span>
-                            <p>Hard Workers</p>
-                        </div>
-                    </div>
-                </div>
-
             </div>
 
         </div>
@@ -64,7 +52,7 @@
                         <div class="service-box blue">
                             <img src="{{ asset('img/Logo/DTC-Logo-Orange.png') }}" class="w-100 h-auto" alt="">
                             <h3>{{ formation.name }}</h3>
-                            <p>{{ formation.description|slice(0, 150) }}</p>
+                            <p>{{ formation.description|slice(0, 90)~' ...' }}</p>
                             <a href="{{ path('register_cohorte', {id: formation.id}) }}" class="btn btn-warning"><span>Je m'inscris</span> <i class="bi bi-arrow-right"></i></a>
                         </div>
                     </div>
