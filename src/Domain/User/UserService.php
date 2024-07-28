@@ -58,8 +58,7 @@ class UserService
         $user->setUsername($username);
         $user->setLastname($lastname);
 
-        $encodedPassword = $this->userPasswordHasher->hashPassword($user, $password);
-        $user->setPassword($encodedPassword);
+        $user = $this->hashPassword($user, $password);
         $user->setRoles([$role]);
 
         $this->entityManager->persist($user);
@@ -68,14 +67,25 @@ class UserService
         $style->success('Admin created successfully.');
     }
 
+    public function hashPassword(User $user, string $plainPassword): User
+    {
+        $encodedPassword = $this->userPasswordHasher->hashPassword($user, $plainPassword);
+        $user->setPassword($encodedPassword);
+
+        return $user;
+    }
+
     /**
      * @throws Exception
      */
-    public function createUser(FormInterface $form): bool
+    public function handleUser(FormInterface $form): bool
     {
         /** @var User $user */
         $user = $form->getData();
         $file = $form->get('image')->getData();
+        $password = $form->get('password')->getData();
+        $roles = $form->get('roles')->getData();
+
         if ($file instanceof UploadedFile) {
             $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
             $safeFilename = $this->slugger->slug($originalFilename);
@@ -88,6 +98,14 @@ class UserService
             }
 
             $user->setImage($newFilename);
+        }
+
+        if (!empty($password)) {
+            $user = $this->hashPassword($user, $password);
+        }
+
+        if (!empty($roles) && is_array($roles)) {
+            $user->setRoles($roles);
         }
 
         if (!$user->getId()) {

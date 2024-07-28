@@ -36,7 +36,7 @@ class DtcAuthenticator extends AbstractLoginFormAuthenticator
     {
         $username = $request->request->get('username', '');
         $user = $this->entityManager->getRepository(User::class)->findOneBy(['username' => $username]);
-        if (!$user->isEnabled()) {
+        if (!$user || !$user->isEnabled()) {
             throw new AccessDeniedException('Accès non autorisé !');
         }
 

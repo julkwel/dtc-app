@@ -13,8 +13,20 @@
 	</section><!-- End Breadcrumbs -->
 	<section id="counts" class="counts">
 		<div class="container" data-item="fade-up">
-			<div class="row gy-4">
-
+			<div class="row gy-4 d-flex justify-content-between">
+				<div class="col-lg-3 col-md-6">
+					<a href="{{ path('dtc_student_edit') }}" class="count-box">
+						{% if app.user.image is null %}
+								<i class="bi bi-person"></i>
+							{% else %}
+								<img class="" height="50" width="50" style="border-radius: 50%" src="{{ asset('img/pictures/'~app.user.image) }}" alt="">
+						{% endif %}
+						<div>
+							<span><i class="bi bi-pencil"></i></span>
+							<p>Mon profile</p>
+						</div>
+					</a>
+				</div>
 				<div class="col-lg-3 col-md-6">
 					<a href="{{ path('dtc_student_my_formation') }}" class="count-box">
 						<i class="bi bi-list-check"></i>
@@ -24,7 +36,6 @@
 						</div>
 					</a>
 				</div>
-
 				<div class="col-lg-3 col-md-6">
 					<a href="#" class="count-box">
 						<i class="bi bi-wallet" style="color: #ee6c20;"></i>

@@ -1,76 +1,33 @@
-{% extends 'base_admin.html.twig' %}
+{% extends 'base_front.html.twig' %}
 
 {% block title %}DTC | Edit Student{% endblock %}
 
 {% block body %}
-    <div class="container">
-        <h2>Edit User</h2>
-
-        <form method="post" enctype="multipart/form-data">
-            {{ form_start(form) }}
-            <div class="form-group">
-                {{ form_label(form.firstname) }}
-                {{ form_widget(form.firstname, {'attr': {'class': 'form-control'}}) }}
-            </div>
-
-            <div class="form-group">
-                {{ form_label(form.lastname) }}
-                {{ form_widget(form.lastname, {'attr': {'class': 'form-control'}}) }}
-            </div>
-
-            <div class="form-group">
-                {{ form_label(form.username) }}
-                {{ form_widget(form.username, {'attr': {'class': 'form-control'}}) }}
-            </div>
-
-            <div class="form-group">
-                {{ form_label(form.image) }}
-                {{ form_widget(form.image) }}
-            </div>
-
-            <div class="form-group">
-                <label for="contactToggle" class="accordion-toggle">Contact</label>
-                <button type="button" id="contactToggle" data-toggle="collapse" data-target="#contactFields" aria-expanded="true">
-                    Show/Hide
-                </button>
-                <div id="contactFields" class="collapse show">
-                    <div class="form-group">
-                        {{ form_label(form.contacts.0.phone, 'Phone Number') }}
-                        {{ form_widget(form.contacts.0.phone, {'attr': {'class': 'form-control'}}) }}
-                    </div>
-
-                    <div class="form-group">
-                        {{ form_label(form.contacts.0.facebook, 'Facebook Profile (optional)') }}
-                        {{ form_widget(form.contacts.0.facebook, {'attr': {'class': 'form-control'}}) }}
-                    </div>
-
-                    <div class="form-group">
-                        {{ form_label(form.contacts.0.linkedin, 'LinkedIn Profile (optional)') }}
-                        {{ form_widget(form.contacts.0.linkedin, {'attr': {'class': 'form-control'}}) }}
-                    </div>
-
-                    <div class="form-group">
-                        {{ form_label(form.contacts.0.github, 'GitHub Profile (optional)') }}
-                        {{ form_widget(form.contacts.0.github, {'attr': {'class': 'form-control'}}) }}
-                    </div>
-
-                    <div class="form-group">
-                        {{ form_label(form.contacts.0.email, 'Email (optional)') }}
-                        {{ form_widget(form.contacts.0.email, {'attr': {'class': 'form-control'}}) }}
-                    </div>
-                </div>
-            </div>
-
-            <button type="submit" class="btn btn-primary">Save</button>
-            {{ form_end(form) }}
-        </form>
-    </div>
-
-    <script>
-        $(document).ready(function () {
-            $('#contactToggle').on('click', function () {
-                $('#contactFields').collapse('toggle');
-            });
-        });
-    </script>
+	<main id="main">
+		<!-- ======= Breadcrumbs ======= -->
+		<section class="breadcrumbs">
+			<div class="container">
+				<h2>{{ app.user.username }}</h2>
+			</div>
+		</section><!-- End Breadcrumbs -->
+		<section id="counts" class="counts">
+			<div class="container" data-item="fade-up">
+				{{ form_start(form) }}
+				<div class="row gy-4 d-flex">
+					<div class="col-lg-4 col-md-6" data-item="fade-up" data-item-delay="200">
+						{{ form_row(form.firstname) }}
+						{{ form_row(form.lastname) }}
+						{{ form_row(form.username) }}
+					</div>
+					<div class="col-lg-4 col-md-6" data-item="fade-up" data-item-delay="200">
+						{{ form_row(form.password) }}
+						{{ form_row(form.image) }}
+					</div>
+				</div>
+				{{ form_row(form._token) }}
+				<button type="submit" class="btn btn-sm btn-primary text-center m-auto mt-2" style="min-width: 150px;">Save</button>
+				{{ form_end(form, {'render_rest': false}) }}
+			</div>
+		</section>
+	</main>
 {% endblock %}
