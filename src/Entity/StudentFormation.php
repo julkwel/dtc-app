@@ -20,7 +20,7 @@ class StudentFormation
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $certificate = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column(type: Types::INTEGER, nullable: true)]
     private ?string $paidAmount = null;
 
     #[ORM\Column]

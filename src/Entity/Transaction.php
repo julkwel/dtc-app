@@ -33,6 +33,12 @@ class Transaction
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $commentaire = null;
 
+    #[ORM\Column]
+    private ?bool $isValidate = false;
+
+    #[ORM\Column(nullable: true)]
+    private ?bool $isValidByAdmin = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -94,6 +100,30 @@ class Transaction
     public function setCommentaire(?string $commentaire): static
     {
         $this->commentaire = $commentaire;
+
+        return $this;
+    }
+
+    public function isValidate(): ?bool
+    {
+        return $this->isValidate;
+    }
+
+    public function setValidate(bool $isValidate): static
+    {
+        $this->isValidate = $isValidate;
+
+        return $this;
+    }
+
+    public function isValidByAdmin(): ?bool
+    {
+        return $this->isValidByAdmin;
+    }
+
+    public function setValidByAdmin(?bool $isValidByAdmin): static
+    {
+        $this->isValidByAdmin = $isValidByAdmin;
 
         return $this;
     }

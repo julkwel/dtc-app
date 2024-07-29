@@ -1,0 +1,72 @@
+{% extends 'base_front.html.twig' %}
+
+{% block body %}
+	<main id="main">
+		<!-- ======= Breadcrumbs ======= -->
+		<section class="breadcrumbs">
+			<div class="container">
+				<h2>{{ app.user.username }}</h2>
+			</div>
+		</section><!-- End Breadcrumbs -->
+		<section id="counts" class="counts">
+			<div class="container" data-item="fade-up">
+				<div class="card">
+					<div class="card-body">
+						<table class="table table-responsive">
+							<thead>
+							<tr>
+								<th>Formation</th>
+								<th>Montant total</th>
+								<th>Montant payer</th>
+								<th>Reste à payer</th>
+								<th>Action</th>
+							</tr>
+							</thead>
+							<tbody>
+							{% for formation in needToPaids %}
+								<tr>
+									<td>{{ formation.formation.name }}</td>
+									<td>{{ formation.formation.amount|default(0) }} Ar</td>
+									<td>{{ formation.paidAmount|default(0) }} Ar</td>
+									<td>{{ formation.formation.amount - formation.paidAmount }}</td>
+									<td>
+										<a href="{{ path('transaction_generate', {'formation': formation.id}) }}">Regler le paiement</a>
+									</td>
+								</tr>
+							{% endfor %}
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="row gy-4">
+					<div class="" data-item="fade-up" data-item-delay="200">
+						<div class="service-box blue">
+							<table class="table table-responsive">
+								<thead>
+								<tr>
+									<th>Date</th>
+									<th>Montant</th>
+									<th>Reférence</th>
+									<th>Formation</th>
+									<th>Validation</th>
+								</tr>
+								</thead>
+								<tbody>
+								{% for transaction in transactions %}
+									<tr>
+										<td>{{ transaction.createdAt|date('d-m-Y H:i:s') }}</td>
+										<td>{{ transaction.amount }} Ar</td>
+										<td>{{ transaction.reference }}</td>
+										<td>{{ transaction.formation ? transaction.formation.formation.name : '' }}</td>
+										<td>{{ transaction.validByAdmin ? 'Validé' : 'En attente validation ADMIN' }}</td>
+									</tr>
+								{% endfor %}
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section><!-- End Counts Section -->
+	</main>
+{% endblock %}

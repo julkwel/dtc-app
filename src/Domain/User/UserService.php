@@ -29,7 +29,7 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 
 class UserService
 {
-    public function __construct(private readonly EntityManagerInterface $entityManager, private readonly UserPasswordHasherInterface $userPasswordHasher, private UserRepository $userRepository, private PaginatorInterface $paginator, private SluggerInterface $slugger, #[Autowire('%kernel.project_dir%/public/img/pictures')] private string $brochuresDirectory)
+    public function __construct(private readonly EntityManagerInterface $entityManager, private readonly UserPasswordHasherInterface $userPasswordHasher, private readonly UserRepository $userRepository, private readonly PaginatorInterface $paginator, private readonly SluggerInterface $slugger, #[Autowire('%kernel.project_dir%/public/img/pictures')] private string $brochuresDirectory)
     {
     }
 

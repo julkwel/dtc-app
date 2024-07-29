@@ -1,0 +1,31 @@
+{% extends 'base_front.html.twig' %}
+
+{% block title %}DTC | Edit Student{% endblock %}
+
+{% block body %}
+	<main id="main">
+		<!-- ======= Breadcrumbs ======= -->
+		<section class="breadcrumbs">
+			<div class="container">
+				<h2>{{ app.user.username }} / Paiement</h2>
+			</div>
+		</section><!-- End Breadcrumbs -->
+		<section id="counts" class="counts">
+			<div class="container" data-item="fade-up">
+				<div class="col-md-6 m-auto">
+					<div class="pb-2">
+						<a href="{{ path('transaction_list') }}" style="text-decoration: none">
+							<i class="bi bi-arrow-left"></i> Retour
+						</a>
+					</div>
+					{{ form_start(form) }}
+					{{ form_widget(form) }}
+					<div class="form-group">
+						<button type="submit" class="btn btn-sm btn-primary text-center m-auto mt-2 form-control">Enregistrer</button>
+					</div>
+					{{ form_end(form) }}
+				</div>
+			</div>
+		</section>
+	</main>
+{% endblock %}

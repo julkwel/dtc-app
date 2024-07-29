@@ -1,0 +1,30 @@
+{% extends 'base_front.html.twig' %}
+
+{% block body %}
+		<main id="main">
+			<!-- ======= Breadcrumbs ======= -->
+			<section class="breadcrumbs">
+				<div class="container">
+					<h2>{{ app.user.username }}</h2>
+				</div>
+			</section><!-- End Breadcrumbs -->
+			<section id="counts" class="counts">
+				<div class="container" data-item="fade-up">
+					<div class="row gy-4">
+						<div class="col-lg-4 col-md-6" data-item="fade-up" data-item-delay="200">
+							<div class="service-box blue">
+								<img src="{{ asset('img/Logo/DTC-Logo-Orange.png') }}" class="w-100 h-auto" alt="">
+								<ul>
+									<li>Montant : {{ transaction.amount }}</li>
+									<li>Réference : {{ transaction.reference }}</li>
+								</ul>
+								<form method="post" action="{{ path('transaction_validate', {'transaction': transaction.id}) }}">
+									<button type="submit" class="btn btn-success" value="confirmer" name="confirm">Confirmer</button>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section><!-- End Counts Section -->
+		</main>
+{% endblock %}

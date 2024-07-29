@@ -41,8 +41,8 @@ class StudentFormationRepository extends ServiceEntityRepository
         return true;
     }
 
-    public function getUnpaidFormation(User $user)
+    public function getUnpaidFormation(User $user): array
     {
-
+        return $this->findBy(['user' => $user, 'isTotalPaid' => false]);
     }
 }

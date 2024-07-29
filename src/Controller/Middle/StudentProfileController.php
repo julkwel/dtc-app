@@ -7,6 +7,7 @@ use App\Entity\Contact;
 use App\Entity\User;
 use App\Form\ContactFormType;
 use App\Form\UserType;
+use App\Repository\TransactionRepository;
 use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
