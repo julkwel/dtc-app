@@ -61,6 +61,7 @@ class TransactionController extends AbstractController
     {
         if ($request->request->get('confirm')) {
             $this->transactionServices->validateTransaction($transaction);
+            $this->addFlash('success', "Paiement enregistré. En attente de validation par l'administrateur.");
 
             return $this->redirectToRoute('transaction_list');
         }
