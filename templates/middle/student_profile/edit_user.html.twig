@@ -13,20 +13,29 @@
 		<section id="counts" class="counts">
 			<div class="container" data-item="fade-up">
 				{{ form_start(form) }}
-				<div class="row gy-4 d-flex">
-					<div class="col-lg-4 col-md-6" data-item="fade-up" data-item-delay="200">
-						{{ form_row(form.firstname) }}
-						{{ form_row(form.lastname) }}
-						{{ form_row(form.username) }}
+				<div class="row gy-4 col-md-6 m-auto">
+					<div class="pb-2">
+						<a href="{{ path('dtc_student_profile') }}" style="text-decoration: none">
+							<i class="bi bi-arrow-left"></i> Retour
+						</a>
 					</div>
-					<div class="col-lg-4 col-md-6" data-item="fade-up" data-item-delay="200">
-						{{ form_row(form.password) }}
-						{{ form_row(form.image) }}
-						<a href="{{ path('dtc_student_add_contact') }}">Ajouter un contact</a>
+					<div class="d-lg-flex justify-content-lg-between">
+						<div class="col-lg-4 col-md-6 col-sm-12" data-item="fade-up" data-item-delay="200">
+							{{ form_row(form.firstname) }}
+							{{ form_row(form.lastname) }}
+							{{ form_row(form.username) }}
+						</div>
+						<div class="col-lg-4 col-md-6" data-item="fade-up" data-item-delay="200">
+							{{ form_row(form.password) }}
+							{{ form_row(form.image) }}
+							<a class="btn btn-info" href="{{ path('dtc_student_add_contact') }}">Ajouter mon contact</a>
+						</div>
+					</div>
+					{{ form_row(form._token) }}
+					<div class="form-group">
+						<button type="submit" class="btn btn-sm btn-primary text-center m-auto mt-2 form-control" style="min-width: 150px;">Enregistrer</button>
 					</div>
 				</div>
-				{{ form_row(form._token) }}
-				<button type="submit" class="btn btn-sm btn-primary text-center m-auto mt-2" style="min-width: 150px;">Enregistrer</button>
 				{{ form_end(form, {'render_rest': false}) }}
 			</div>
 		</section>

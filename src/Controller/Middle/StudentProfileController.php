@@ -4,6 +4,7 @@ namespace App\Controller\Middle;
 
 use App\Domain\User\UserService;
 use App\Entity\Contact;
+use App\Entity\User;
 use App\Form\ContactFormType;
 use App\Form\UserType;
 use Exception;
@@ -65,6 +66,12 @@ class StudentProfileController extends AbstractController
     public function addContact(Request $request)
     {
         $contact = new Contact();
+        /** @var User $user */
+        $user = $this->getUser();
+        if (!$user->getContacts()->isEmpty()) {
+            $contact = $user->getContacts()->get(0);
+        }
+
         $form = $this->createForm(ContactFormType::class, $contact);
         $form->handleRequest($request);
 
