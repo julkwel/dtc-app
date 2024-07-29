@@ -43,7 +43,7 @@ class FormationController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $cohorteData = $form->getData();
-            $cohorteService->createCohorte($cohorteData);
+            $cohorteService->createCohorte($form, $cohorteData);
 
             return $this->redirectToRoute('admin_formation_list');
         }
@@ -63,7 +63,7 @@ class FormationController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $cohorteData = $form->getData();
-            $cohorteService->createCohorte($cohorteData);
+            $cohorteService->createCohorte($form, $cohorteData);
 
             return $this->redirectToRoute('admin_formation_list');
         }

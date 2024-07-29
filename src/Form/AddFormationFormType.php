@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Cohorte;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -74,7 +75,17 @@ class AddFormationFormType extends AbstractType
                         ]),
                     ],
                 ]
-            );
+            )
+            ->add('cover',
+                FileType::class, [
+                    'label' => 'Photo de couverture',
+                    'mapped' => false,
+                    'required' => false,
+                    'attr' => [
+                        'accept' => "image/*"
+                    ],
+                ])
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver)

@@ -16,10 +16,15 @@
 					{% for formation in formations %}
 						<div class="col-lg-4 col-md-6" data-item="fade-up" data-item-delay="200">
 							<div class="service-box blue">
-								<img src="{{ asset('img/Logo/DTC-Logo-Orange.png') }}" class="w-100 h-auto" alt="">
+								{% if formation.formation.cover is not empty %}
+									<img src="{{ asset('img/pictures/'~formation.formation.cover) }}" class="w-100" style="height: 200px" alt="">
+								{% else %}
+									<img src="{{ asset('img/Logo/DTC-Logo-Orange.png') }}" style="height: 200px" class="w-100" alt="">
+								{% endif %}
 								<h3>{{ formation.formation.name }}</h3>
 								<p>{{ formation.formation.description }}</p>
 							</div>
+							<span>{{ formation.formation.startDate|date('d-m-Y') }} - {{ formation.formation.endDate|date('d-m-Y') }}</span>
 						</div>
 					{% endfor %}
 				</div>

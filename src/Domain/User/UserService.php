@@ -7,6 +7,7 @@
 
 namespace App\Domain\User;
 
+use App\Domain\Files\FileUploadService;
 use App\Entity\Contact;
 use App\Entity\StudentFormation;
 use App\Entity\User;
@@ -29,7 +30,7 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 
 class UserService
 {
-    public function __construct(private readonly EntityManagerInterface $entityManager, private readonly UserPasswordHasherInterface $userPasswordHasher, private readonly UserRepository $userRepository, private readonly PaginatorInterface $paginator, private readonly SluggerInterface $slugger, #[Autowire('%kernel.project_dir%/public/img/pictures')] private string $brochuresDirectory)
+    public function __construct(private readonly EntityManagerInterface $entityManager, private readonly UserPasswordHasherInterface $userPasswordHasher, private readonly UserRepository $userRepository, private readonly PaginatorInterface $paginator, private FileUploadService $fileUploadService)
     {
     }
 
@@ -88,15 +89,7 @@ class UserService
         $roles = $form->get('roles')->getData();
 
         if ($file instanceof UploadedFile) {
-            $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
-            $safeFilename = $this->slugger->slug($originalFilename);
-            $newFilename = $safeFilename.'-'.uniqid().'.'.$file->guessExtension();
-
-            try {
-                $file->move($this->brochuresDirectory, $newFilename);
-            } catch (FileException $e) {
-                throw new Exception($e->getMessage());
-            }
+            $newFilename = $this->fileUploadService->uploadFile($file);
 
             $user->setImage($newFilename);
         }
