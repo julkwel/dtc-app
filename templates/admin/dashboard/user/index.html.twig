@@ -42,10 +42,10 @@
 					<table  class="table table-bordered" width="100%" cellspacing="0">
 						<thead>
 						<tr>
-							<th{% if pagination.isSorted('user.username') %} class="sorted"{% endif %}>
+							<th{% if pagination.isSorted('u.username') %} class="sorted"{% endif %}>
 								{{ knp_pagination_sortable(pagination, "Nom d'utilisateur", 'u.username') }}
 							</th>
-							<th{% if pagination.isSorted(['a.createdAt']) %} class="sorted"{% endif %}>
+							<th{% if pagination.isSorted(['u.createdAt']) %} class="sorted"{% endif %}>
 								{{ knp_pagination_sortable(pagination, 'Date de création', ['u.createdAt']) }}
 							</th>
 							<th>

@@ -15,20 +15,22 @@
 					<table class="table table-bordered" width="100%" cellspacing="0">
 						<thead>
 							<tr>
+								<th{% if pagination.isSorted(['t.createdAt']) %} class="sorted"{% endif %}>
+									{{ knp_pagination_sortable(pagination, 'Date de transaction', ['t.createdAt']) }}
+								</th>
 								<th>Utilisateur</th>
 								<th>Réference</th>
 								<th>Montant</th>
-								<th>Date de transaction</th>
 								<th>Validation</th>
 							</tr>
 						</thead>
 						<tbody>
 						{% for transaction in pagination %}
 							<tr>
+								<td>{{ transaction.createdAt | date('Y-m-d H:i:s') }}</td>
 								<td>{{ transaction.user.username }}</td>
 								<td>{{ transaction.reference }}</td>
 								<td>{{ transaction.amount }}</td>
-								<td>{{ transaction.createdAt | date('Y-m-d H:i:s') }}</td>
 								<td>
 									{% if transaction.isValidByAdmin %}
 										Validé
