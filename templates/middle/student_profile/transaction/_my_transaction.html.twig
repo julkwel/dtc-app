@@ -30,7 +30,11 @@
 									<td>{{ formation.paidAmount|default(0) }} Ar</td>
 									<td>{{ formation.formation.amount - formation.paidAmount }}</td>
 									<td>
-										<a href="{{ path('transaction_generate', {'formation': formation.id}) }}">Regler le paiement</a>
+										{% if formation.formation.amount <= formation.paidAmount %}
+											En attente validation
+										{% else %}
+											<a href="{{ path('transaction_generate', {'formation': formation.id}) }}">Regler le paiement</a>
+										{% endif %}
 									</td>
 								</tr>
 							{% endfor %}

@@ -26,10 +26,6 @@ class TransactionServices
     {
         $transaction->setUser($user);
 
-        $formation = $transaction->getFormation();
-        $currentAmount = $transaction->getAmount();
-        $formation->setPaidAmount($formation->getPaidAmount() + $currentAmount);
-
         $this->entityManager->persist($transaction);
         $this->entityManager->flush();
 
@@ -62,6 +58,10 @@ class TransactionServices
 
     public function validateTransaction(Transaction $transaction): bool
     {
+        $formation = $transaction->getFormation();
+        $currentAmount = $transaction->getAmount();
+        $formation->setPaidAmount($formation->getPaidAmount() + $currentAmount);
+
         $transaction->setValidate(true);
         $this->entityManager->flush();
 
