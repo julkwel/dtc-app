@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Cohorte;
 use App\Entity\StudentFormation;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Exception;
@@ -38,5 +39,10 @@ class StudentFormationRepository extends ServiceEntityRepository
         $this->getEntityManager()->flush();
 
         return true;
+    }
+
+    public function getUnpaidFormation(User $user)
+    {
+
     }
 }
