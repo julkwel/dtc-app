@@ -31,7 +31,7 @@ h1,h2, h3, h4, h5, h6{
     position: relative;
     z-index: 1;
 }  */
-.content_registration_picture::before{
+/* .content_registration_picture::before{
     content: '';
     height: 43%;
     width: 40%;
@@ -52,7 +52,7 @@ h1,h2, h3, h4, h5, h6{
     z-index: -1;
     border-bottom: 20px double #FFFFFF;
     border-right: 20px double #FFFFFF;
-}
+} */
 .registration_plus{
     color: #E57B23;
     font-weight: bold!important;
