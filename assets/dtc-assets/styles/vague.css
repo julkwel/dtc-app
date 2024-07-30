@@ -1,0 +1,16 @@
+body{
+    height: 100dvh;
+}
+#image{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+ul{
+    display: flex;
+}
+.left-nav{
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+}
