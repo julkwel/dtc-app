@@ -1,0 +1,69 @@
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Righteous&display=swap');
+
+body{
+    display: flex;
+    height: 100dvh;
+    background-color: #F6F6F6;
+}
+
+label{
+    font-family: "Poppins",sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #292F36;
+    font-style: normal;
+}
+
+.input{
+    width: 400px;
+}
+.footer{
+    font-family: "poppins",sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 24px;
+}
+
+.log{
+    background-color: white;
+    border-radius: 0px 16px 16px 0px;
+}
+#img{
+    width: 452px;
+    height: 329px;
+}
+.pl{
+    height: 70px;
+}
+.left{
+    display: flex;
+    width: 556px;
+    background-color: #173B99;
+    border-radius: 16px 0px 0px 16px;
+    padding-left: 52px;
+    padding-right: 52px;
+}
+
+
+#connect{
+    font-size: 30px;
+    font-weight: 400;
+    line-height: 37.25px;
+    color: #173B99;
+    font-family:"Righteous",sans-serif;
+}
+#btn{
+    background-color: #173B99;
+    width: 375px;
+}
+#tri{
+    position: relative;
+    left: 350px;
+}
+#tri2{
+    position: relative;
+    top: 240px;
+    right: 450px;
+}

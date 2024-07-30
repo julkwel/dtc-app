@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bree+Serif&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+body{
+    /* font-family: "Poppins", sans-serif; */
+  font-family: "Montserrat", sans-serif;
+  background-color: #F6F6F6;
+}
+h1,h2, h3, h4, h5, h6{
+    font-family: "Righteous", sans-serif;
+    font-style: normal;
+
+}
+.registration_content_left{
+    background: radial-gradient(circle, rgba(4,178,253,1) 5%, rgba(23,59,153,1) 95%);
+
+}
+.registration_content h1,h4{
+    color: #E57B23;
+}
+#submitInscription{
+    background: #173b99;
+    color: #F6F6F6;
+}
+
+.content_registration_picture{
+    /* background: #04B2FD!important; */
+    position: relative;
+    z-index: 1;
+} 
+.content_registration_picture::before{
+    content: '';
+    height: 43%;
+    width: 40%;
+    position: absolute;
+    top: 1%;
+    left: 0.5%;
+    z-index: -1;
+    border-left: 20px double #E57B23;
+    border-top: 20px double #E57B23;
+}
+.content_registration_picture::after{
+    content: '';
+    height: 43%;
+    width: 40%;
+    position: absolute;
+    bottom: 1%;
+    right: 0.5%;
+    z-index: -1;
+    border-bottom: 20px double #FFFFFF;
+    border-right: 20px double #FFFFFF;
+}
+.registration_plus{
+    color: #E57B23;
+    font-weight: bold!important;
+    letter-spacing: 10px;
+}

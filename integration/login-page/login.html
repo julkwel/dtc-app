@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DTC-Platform</title>
+    <link rel="stylesheet" href="../bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../style/session.css">
+</head>
+<body class=" justify-content-center align-items-center p-5 ">
+    <main class="row">
+          <div class="col align-items-center justify-content-center left">
+            <img src="../image/image.svg" alt="img" id="img">
+          </div>
+        <div class="col pt-3 log">
+          <img src="../image/triangle.svg" alt="triangle" id="tri">
+          <header class="text-center">
+              
+              <img src="../image/logo2.svg" alt="logo">
+              <p id="connect" class="pt-3">Connectez-vous</p>
+          </header>
+          <form id="loginForm" action="submit" methode="poste" class="mx-5">
+            <div class="row input justify-content-center">
+              <div class="row mt-3">
+                <label for="Email" class="form-label ">Email</label>
+                <input type="email" class="form-control" id="Email" name="email"required>
+              </div>
+              <div class="row mt-3">
+                <label for="password" class="form-label">Mot de passe</label>
+                <input type="password" class="form-control" id="password" name="password"required>
+              </div>
+              <div class="col mt-4">
+                <button class="btn text-white" id="btn">connexion</button>
+              </div>
+            </div>
+            <div class="row text-center mt-5 footer">
+              <p class="footer">Vous n'avez pas encore du compte? <a href="#" class="nav-link text-primary">Inscrivez-vous</a></p>
+             
+            </div>
+          </form>
+        </div>
+
+    </main>
+    
+    <script src="../bootstrap/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
