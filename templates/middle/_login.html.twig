@@ -2,76 +2,55 @@
 
 {% block title %}DTC | Connexion {% endblock %}
 
+{% block stylesheets %}
+    {{ encore_entry_link_tags('dtc_fo_page') }}
+    {{ encore_entry_link_tags('login_page') }}
+{% endblock %}
+
 {% block body %}
-    <body>
-        <div class="container">
-            <!-- Outer Row -->
-            <div class="row justify-content-center">
-                <div class="col-xl-10 col-lg-12 col-md-9">
-                    <div class="p-4">
-                        <a href="{{ path('dtc_home_page') }}" style="text-decoration: none"><i class="fa fa-arrow-left"></i> Page d'accueil</a>
-                    </div>
-                    <div class="card o-hidden border-0 shadow-lg my-5">
-                        <div class="card-body p-0">
-                            <!-- Nested Row within Card Body -->
-                            <div class="row">
-                                <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
-                                <div class="col-lg-6">
-                                    <div class="p-5">
-                                        <div class="text-center">
-                                            <h1 class="h4 text-gray-900 mb-4">Digital Training Center</h1>
-                                        </div>
-                                        <form class="user" method="post">
+    <body class=" justify-content-center align-items-center p-5 ">
+        <main class="row">
+            <div class="col align-items-center justify-content-center left">
+                <img src="{{ asset('images/image.svg') }}" alt="img" id="img">
+            </div>
+            <div class="col pt-3 log">
+                <div class="justify-content-end">
+                    <img src="{{ asset('images/triangle.svg') }}" alt="triangle" id="tri">
+                </div>
+                <header class="text-center">
 
-                                            {% if error %}
-                                                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-                                            {% endif %}
-
-                                            {% if app.user %}
-                                                <div class="mb-3">
-                                                    Vous êtes déjà connecté en tant que {{ app.user.userIdentifier }}, <a href="{{ path('dtc_logout') }}">Déconnexion</a>
-                                                </div>
-                                            {% endif %}
-                                            <div class="form-group">
-                                                <label for="username">Nom d'utilisateur</label>
-                                                <input
-                                                        type="text" value="{{ last_username }}" name="username"
-                                                        id="username" class="form-control form-control-user" autocomplete="username" required autofocus>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="inputPassword">Mot de passe</label>
-                                                <input type="password" name="password" id="inputPassword"
-                                                       class="form-control form-control-user"
-                                                       autocomplete="current-password" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="custom-control custom-checkbox small">
-                                                    <input type="checkbox" class="custom-control-input" id="customCheck">
-                                                    <label class="custom-control-label" for="customCheck">
-                                                        Remember Me
-                                                    </label>
-                                                </div>
-                                            </div>
-                                            <input type="text" class="custom-control-input d-none"  name="_csrf_token" value="{{ csrf_token('authenticate') }}" id="customCheck">
-                                            <button type="submit" class="btn btn-primary btn-user btn-block">
-                                                Connexion
-                                            </button>
-                                            <hr>
-                                        </form>
-                                        <hr>
-                                        <div class="text-center">
-                                            <a class="small" href="{{ path('dtc_reset_password') }}">Mots de passe oublié ?</a>
-                                        </div>
-                                        <div class="text-center">
-                                            <a class="small" href="{{ path('dtc_register') }}">Créer un compte !</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                    <img src="{{ asset('images/logo2.svg') }}" alt="logo">
+                    <p id="connect" class="pt-3">Connectez-vous</p>
+                </header>
+                <form id="loginForm" method="post" class="mx-lg-5">
+                    {% if error %}
+                        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                    {% endif %}
+                    <div class="row input justify-content-center">
+                        <div class="row mt-3">
+                            <label for="Email" class="form-label ">Email</label>
+                            <input type="email" class="form-control" id="Email" name="username" required>
+                        </div>
+                        <div class="row mt-3">
+                            <label for="password" class="form-label">Mot de passe</label>
+                            <input type="password" class="form-control" id="password" name="password" required>
+                        </div>
+                        <div class="col mt-4">
+                            <input type="text" class="custom-control-input d-none"  name="_csrf_token" value="{{ csrf_token('authenticate') }}" id="customCheck">
+                            <button type="submit" class="btn text-white" id="btn">connexion</button>
                         </div>
                     </div>
-                </div>
+                    <div class="row text-center mt-5 footer">
+                        <a class="small" href="{{ path('dtc_reset_password') }}">Mots de passe oublié ?</a>
+                        <p class="footer">Vous n'avez pas encore du compte? <a href="{{ path('dtc_register') }}" class="nav-link text-primary">Inscrivez-vous</a></p>
+                    </div>
+                </form>
             </div>
-        </div>
+
+        </main>
     </body>
+{% endblock %}
+{% block javascripts %}
+    {{ encore_entry_script_tags('dtc_fo_page') }}
+    {{ encore_entry_script_tags('login_page') }}
 {% endblock %}

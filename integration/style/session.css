@@ -62,8 +62,36 @@ label{
     position: relative;
     left: 350px;
 }
-#tri2{
-    position: relative;
-    top: 240px;
-    right: 450px;
+.retour{
+    font-size: 16px;
+    font-weight: 400;
+    font-family: "Poppins",sans-serif;
+}
+@media only screen and (max-width:600px){
+
+    .left{
+        display: flex;
+        justify-content: center;
+        padding: 40px;
+    }
+    #img{
+        width: 450px;
+        height: 250px;
+        margin-left: 10%;
+    }
+    .log{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .input{
+        display: flex;
+        justify-content: center;
+        margin-left: 30px;
+    }
+    #tri{
+        width: 30px;
+        position: relative;
+        left: 400px;
+    }
 }

@@ -22,6 +22,8 @@ Encore
      */
     .addEntry('fo_page', './assets/front/fo_page.js')
     .addEntry('bo_page', './assets/admin/bo_entry.js')
+    .addEntry('dtc_fo_page', './assets/dtc-assets/dtc_fo.js')
+    .addEntry('login_page', './assets/dtc-assets/entry_points/login_page.js')
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()

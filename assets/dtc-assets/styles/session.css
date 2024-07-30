@@ -1,0 +1,98 @@
+body{
+    display: flex;
+    height: 100dvh;
+    background-color: #F6F6F6;
+}
+
+label{
+    font-family: "Poppins",sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #292F36;
+    font-style: normal;
+}
+
+.input{
+    width: 400px;
+}
+.footer{
+    font-family: "poppins",sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 24px;
+}
+
+.log{
+    background-color: white;
+    border-radius: 0px 16px 16px 0px;
+}
+#img{
+    width: 452px;
+    height: 329px;
+}
+.pl{
+    height: 70px;
+}
+.left{
+    display: flex;
+    width: 556px;
+    background-color: #173B99;
+    border-radius: 16px 0px 0px 16px;
+    padding-left: 52px;
+    padding-right: 52px;
+}
+
+
+#connect{
+    font-size: 30px;
+    font-weight: 400;
+    line-height: 37.25px;
+    color: #173B99;
+    font-family:"Righteous",sans-serif;
+}
+#btn{
+    background-color: #173B99;
+    width: 375px;
+}
+#tri{
+    position: relative;
+    left: 350px;
+}
+.retour{
+    font-size: 16px;
+    font-weight: 400;
+    font-family: "Poppins",sans-serif;
+}
+
+.form-label {
+    padding: 0;
+}
+
+@media only screen and (max-width:600px){
+    .left{
+        display: none;
+        justify-content: center;
+        padding: 40px;
+    }
+    #img{
+        width: 450px;
+        height: 250px;
+        margin-left: 10%;
+    }
+    .log{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .input{
+        display: flex;
+        justify-content: center;
+        margin-left: 30px;
+    }
+    #tri{
+        width: 30px;
+        position: relative;
+        left: 400px;
+    }
+}
