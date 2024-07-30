@@ -4,51 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DTC-Platform</title>
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../bootstrap/dist/css/bootstrap.min.css">
+   <link rel="stylesheet" href="../style/landing.css">
 </head>
 <body>
     <main class="fluid-container py-3">
       <nav class="navbar navbar-expand-lg mx-5">
         <div class="container-fluid">
-          <a class="icon-link icon-link-hover" href="#">
-             <img src="../image/logo3.svg" alt="">
-          </a>
-          
-            <div class="d-flex justify-content-center ">
-
-              <div class=" ">
-                <button class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                  Dropdown
-                </button>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Menu item</a></li>
-                  <li><a class="dropdown-item" href="#">Menu item</a></li>
-                  <li><a class="dropdown-item" href="#">Menu item</a></li>
-                </ul>
-              </div>
-
-              <a href="" class="nav-link">Contacter nous</a>
-              <button class="btn btn-primary" type="submit">S'inscrire</button>
+            <a class="icon-link icon-link-hover" href="#">
+                <img src="../image/logo3.svg" alt="Logo">
+            </a>
+            <div class="d-flex align-items-center ms-auto">
+                <div class="dropdown me-3">
+                    <a href="#" class="d-flex align-items-center" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="../image/flag-fr.png" alt="Dropdown Icon" class="rounded" style="width: 40px; height: 20px;">
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <li><a class="dropdown-item" href="#">Menu item</a></li>
+                        <li><a class="dropdown-item" href="#">Menu item</a></li>
+                        <li><a class="dropdown-item" href="#">Menu item</a></li>
+                    </ul>
+                </div>
+                <a href="#" class="nav-link me-3 py-3">Nous contacter </a>
+                <button class="btn btn-primary" type="submit">S'inscrire</button>
             </div>
-            
+        </div>
+    </nav>
+
+
+    <header class="container py-3 mx-5 ">
+      <div class="container-fluid d-flex justify-content-between align-items-center p-200">
+          <div class="header-title">
+              <h1 class="title1">Level-<span>up</span> your skills</h1>
+              <p>“Si vous voulez maîtriser une compétence qui sera toujours demandée, apprenez à coder.” - Steve Jobs</p>
+              <p>Si vous souhaitez vous impliquer dans le monde de la technologie ou améliorer vos compétences, nous sommes là pour vous aider à bâtir un avenir meilleur.</p>
           </div>
-        
-      </nav>
-
-
-        <header class="container">
-          <div class=" container-fluid d-flex">
-             <div>
-                <h1>Level-<span>up</span> your skills</h1>
-                <p>“Si vous voulez maîtriser une compétence qui sera toujours demandée, apprenez à coder.” - Steve Jobs</p>
-                <p> Si vous souhaitez vous impliquer dans le monde de la technologie ou améliorer vos compétences, nous sommes là pour vous aider à bâtir un avenir meilleur.</p>
-              </div>
-
-             <div>
-             <img src="../image/Frame 1845.svg" alt="">
-             </div>
+          <div>
+              <img src="../image/Frame 1845.svg" id="header-img" alt="Skill Illustration">
           </div>
-        </header>
+      </div>
+  </header>
 
 
         <jumbotron class="container">
