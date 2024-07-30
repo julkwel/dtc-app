@@ -20,10 +20,12 @@ h1,h2, h3, h4, h5, h6{
     color: #E57B23;
 }
 #submitInscription{
-    background: #173b99;
+    background: radial-gradient(circle, rgba(4,178,253,1) 5%, rgba(23,59,153,1) 95%);
     color: #F6F6F6;
 }
-
+.sectionSubmitInscription a{
+    color: radial-gradient(circle, rgba(4,178,253,1) 5%, rgba(23,59,153,1) 95%); ;
+}
 .content_registration_picture{
     /* background: #04B2FD!important; */
     position: relative;
