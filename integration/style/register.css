@@ -26,11 +26,11 @@ h1,h2, h3, h4, h5, h6{
 .sectionSubmitInscription a{
     color: radial-gradient(circle, rgba(4,178,253,1) 5%, rgba(23,59,153,1) 95%); ;
 }
-.content_registration_picture{
+/* .content_registration_picture{
     /* background: #04B2FD!important; */
     position: relative;
     z-index: 1;
-} 
+}  */
 .content_registration_picture::before{
     content: '';
     height: 43%;
