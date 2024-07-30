@@ -19,6 +19,10 @@ h1,h2, h3, h4, h5, h6{
 .registration_content h1,h4{
     color: #E57B23;
 }
+.registration_content_right h2 {
+    font-family: "Poppins", sans-serif;
+    color: #292F36;
+}
 #submitInscription{
     background: #173B99;
     color: #F6F6F6;
