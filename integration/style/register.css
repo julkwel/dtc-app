@@ -22,6 +22,8 @@ h1,h2, h3, h4, h5, h6{
 .registration_content_right h2 {
     font-family: "Poppins", sans-serif;
     color: #292F36;
+    font-size: 24px;
+    font-weight: 600;
 }
 #submitInscription{
     background: #173B99;
@@ -30,35 +32,14 @@ h1,h2, h3, h4, h5, h6{
 .sectionSubmitInscription a{
     color: #173B99;
 }
-/* .content_registration_picture{
-    /* background: #04B2FD!important; 
-    position: relative;
-    z-index: 1;
-}  */
-/* .content_registration_picture::before{
-    content: '';
-    height: 43%;
-    width: 40%;
-    position: absolute;
-    top: 1%;
-    left: 0.5%;
-    z-index: -1;
-    border-left: 20px double #E57B23;
-    border-top: 20px double #E57B23;
-}
-.content_registration_picture::after{
-    content: '';
-    height: 43%;
-    width: 40%;
-    position: absolute;
-    bottom: 1%;
-    right: 0.5%;
-    z-index: -1;
-    border-bottom: 20px double #FFFFFF;
-    border-right: 20px double #FFFFFF;
-} */
 .registration_plus{
     color: #E57B23;
     font-weight: bold!important;
     letter-spacing: 10px;
+}
+.registration_content_right .toggle_password {
+    position: absolute;
+    top: 50%;
+    right: 1%;
+    font-size: 20px;
 }
