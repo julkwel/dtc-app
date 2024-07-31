@@ -7,6 +7,8 @@ use App\Entity\Transaction;
 use App\Entity\User;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -15,8 +17,8 @@ class TransactionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('amount')
-            ->add('reference')
+            ->add('amount', IntegerType::class, ['label' => 'Montant en Ar. '])
+            ->add('reference', TextType::class, ['label' => 'Ref. Mobile Money'])
         ;
     }
 
