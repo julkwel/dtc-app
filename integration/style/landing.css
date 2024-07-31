@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Righteous&display=swap');
 :root {
     --primary: #173B99;
     --secondary: #E57B23;
@@ -8,45 +11,175 @@
     --line-height: 89.4px;
     --text-align: left;
   }
-body{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: sans-serif;
-
-}
-header{
-    background-color: aliceblue;   
-}
-
-.header-title{
-    width: 540px;
-    height: 337px;
-    margin: 24px;
-    padding: 24px;
-    
-}
-.header-title h1{
-    width: 400px;
+  main{
+    width: 100%;
+  }
+  header{
+    background-color: #f6f6f6;
+  }
+  #header-img{
+    width: 100%;
+  }
+  .header-title h1{
     font-size: 72px;
     font-weight: 400;
     line-height: 89.4px;
     font-family: var(--font-family);
-}
+  }
+  .header-title span{
+    color: var(--secondary);
+  }
 
-.header-title .title1{
+body{
+    justify-content: center;
+    font-family: sans-serif;
+
+}
+.title1{
     color: var(--primary);
 }
-.header-title span{
-    color: var(--secondary);
+nav{
+    width: 100%;
 }
-#header-img{
-      width: 404px;
-      height: 284px;
-      top: 24px;
-      left: 24px;
-      gap: 0px;
-      border-radius: 12px 0px 0px 0px;
-      opacity: 0px;
 
+#flag-fr{
+    width: 30px;
+    height: 20px;
+}
+.bout{
+    background-color: #173B99;
+    font-family: "Poppins",sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 27px;
+    color: #ffffff;
+}
+.bout:hover{
+    background-color: #173B99;
+    font-family: "Poppins",sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 27px;
+    color: #ffffff;
+}
+.mod{
+    width: 350px;
+}
+.header-img{
+    width: 450px;
+    height: 350px;
+}
+.name{
+    font-family: "Poppins",sans-serif;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 36px;
+    color: #E57B23;
+}
+.prof{
+    margin-top: 10px;
+    margin-left: 40%;
+    width: 110px;
+    height: 110px;
+}
+.Professeurs{
+    background-color: #f6f6f6;
+    padding: 20px;
+}
+.article{
+    background-color: #f6f6f6;
+}
+.texte{
+    font-family: "Poppins",sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+}
+
+.entête{
+    font-family: "Righteous";
+    font-size: 42px;
+    line-height: 52.15px;
+    font-weight: 400;
+    color: #173B99;
+}
+.phrase{
+    font-family: "Poppins",sans-serif;
+    font-size: 18px;
+    line-height: 27px;
+    font-weight: 400;
+}
+.letfoot{
+    font-family: "Poppins",sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 27px;
+}
+.foot{
+    background-color: #E57B23;
+}
+.title{
+    font-family: "Poppins",sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 36px;
+    color: #173B99;
+}
+.card-body{
+    background-color: #f6f6f6;
+}
+.insrc{
+    background-color: #E57B23;
+    color: white;
+    font-family: "Montserrat",sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 21.94px;
+}
+.insrc:hover{
+    background-color: #E57B23;
+    color: white;
+    font-family: "Montserrat",sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 21.94px;
+}
+.spec{
+    font-family: "Poppins",sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    color: #292F36;
+}
+.ap{
+    font-family:  "Montserrat", sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 21.94px;
+    color: #E57B23;
+}
+.pro{
+    text-align: start;
+    font-family: "Poppins",sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    color: #292F36;
+}
+@media only screen and (max-width:990px){
+    header{
+        display: flex;
+        flex-direction: column;
+    }
+    .header-img{
+        width: 100%;
+    }
+    .section{
+        display: flex;
+        flex-direction: column;
+    }
+    .article{
+        display: flex;
+        flex-direction: column;
+    }
 }
