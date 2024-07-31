@@ -26,13 +26,35 @@
         <div class="row">
             <div class="col-12 col-lg-5 " >
                 <div class="pt-4">
-                    <label for="loadPictureStudent">
-                        <i class="bi bi-camera"></i>
-                        <i>Modifier photo</i>
-                    </label>
-                    <input type="file">
                     <img src="../image/studentprofile.jpg" alt="..." class="img-thumbnail rounded-circle mx-auto d-block picture_student">
                 </div>
+                <!-- Modal test-->
+
+                <div class="pt-4">
+                    <!-- Button trigger modal -->
+                    <button type="button"  data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <i class="bi bi-camera"></i>
+                        <i>Modifier photo</i>
+                    </button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                            <form action="#" method="POST">
+                                <input type="file" name="" id="loadPictureStudent">
+                                <button type="submit" class="btn btn-primary">Enregistrer</button>
+                            </form>
+                            </div>
+                        </div>
+                        </div>
+                    </div>                    
+                </div>
+
+                <!---->
             </div>
             <div class="col-12 col-lg-5 p-5 registration_content_right">
                 <div>
