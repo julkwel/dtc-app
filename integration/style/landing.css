@@ -50,3 +50,35 @@ header{
       opacity: 0px;
 
 }
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    margin-right: 1rem;
+}
+.dropdown-toggle {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.dropdown-toggle img {
+    border-radius: 2px;
+    width: 40px;
+    height: 20px;
+}
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    min-width: 160px;
+    z-index: 1;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdown-menu img{
+    border-radius: 2px;
+    width: 40px;
+    height: 20px;
+}
