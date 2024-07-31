@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bree+Serif&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+body{
+    font-family: "Poppins", sans-serif;
+  /* font-family: "Montserrat", sans-serif; */
+  background-color: #F6F6F6;
+}
+h1,h2, h3, h4, h5, h6{
+    font-family: "Righteous", sans-serif;
+    font-style: normal;
+
+}
+.registration_content h1,h4{
+    color: #E57B23;
+}
+.registration_content_right h2 {
+    font-family: "Poppins", sans-serif;
+    color: #292F36;
+    font-size: 24px;
+    font-weight: 600;
+}
+#submitInscription{
+    background: #173B99;
+    color: #F6F6F6;
+}
+.sectionSubmitInscription a{
+    color: #173B99;
+}
+.sectionSubmitInscription{
+    padding-top: 1em;
+}
+.registration_plus{
+    color: #E57B23;
+    font-weight: bold!important;
+    letter-spacing: 10px;
+}
+.registration_content_right .toggle_password {
+    position: absolute;
+    top: 50%;
+    right: 1%;
+    font-size: 20px;
+}
+/**/
+.picture_student{
+    width: 50%;
+    height: 50%;
+}
+.button_blue{
+    background: #173B99;
+    color: #F6F6F6;
+}
+.button_orange{
+    background: #E57B23;
+    color: #F6F6F6;
+}
+.box_profile{
+    box-shadow: 0 0 30px rgba(1, 41, 112, .08);
+}
+.btn_breadcrump a{
+    color: #F6F6F6;
+    text-decoration:none;
+}
+.btn_breadcrump{
+    background: #04B2FD;
+}
+/**/
