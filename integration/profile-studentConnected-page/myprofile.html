@@ -32,12 +32,12 @@
 
                 <!-- <div class="pt-4"> -->
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn_changePictureStudent" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <button type="button" class="btn btn_changePictureStudent" data-bs-toggle="modal" data-bs-target="#pictureStudent">
                         <i class="bi bi-camera"></i>
                         <i>Modifier photo</i>
                     </button>
                     <!-- Modal -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="pictureStudent" tabindex="-1" aria-labelledby="pictureStudentLabel" aria-hidden="true">
                         <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -46,7 +46,10 @@
                             <div class="modal-body">
                             <form action="#" method="POST">
                                 <input type="file" name="" id="loadPictureStudent">
-                                <button type="submit" class="btn btn-primary">Enregistrer</button>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-primary">Enregistrer</button>
+                                </div>
+                                
                             </form>
                             </div>
                         </div>
