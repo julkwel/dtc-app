@@ -1,0 +1,52 @@
+:root {
+    --primary: #173B99;
+    --secondary: #E57B23;
+    --font-size1: 16px;
+    --font-family: Righteous;
+    --font-size2: 72px;
+    --font-weight: 400;
+    --line-height: 89.4px;
+    --text-align: left;
+  }
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+
+}
+header{
+    background-color: aliceblue;   
+}
+
+.header-title{
+    width: 540px;
+    height: 337px;
+    margin: 24px;
+    padding: 24px;
+    
+}
+.header-title h1{
+    width: 400px;
+    font-size: 72px;
+    font-weight: 400;
+    line-height: 89.4px;
+    font-family: var(--font-family);
+}
+
+.header-title .title1{
+    color: var(--primary);
+}
+.header-title span{
+    color: var(--secondary);
+}
+#header-img{
+      width: 404px;
+      height: 284px;
+      top: 24px;
+      left: 24px;
+      gap: 0px;
+      border-radius: 12px 0px 0px 0px;
+      opacity: 0px;
+
+}
