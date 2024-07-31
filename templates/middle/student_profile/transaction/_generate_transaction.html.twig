@@ -21,8 +21,14 @@
 					<ul>
 						<li>
 							Formations : {{ formation.formation.name }}
+						</li>
+						<li>
 							Frais Total : {{ formation.formation.amount }}
+						</li>
+						<li>
 							Frais payé : {{ formation.paidAmount }} Ar.
+						</li>
+						<li>
 							Reste à payer : {{ formation.formation.amount - formation.paidAmount }} Ar.
 						</li>
 					</ul>
