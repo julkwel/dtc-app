@@ -58,8 +58,9 @@ h1,h2, h3, h4, h5, h6{
 .box_profile{
     box-shadow: 0 0 30px rgba(1, 41, 112, .08);
 }
-.btn_breadcrump{
+.btn_breadcrump a{
     background: #04B2FD;
     color: #F6F6F6;
+    text-decoration:none;
 }
 /**/
