@@ -65,4 +65,12 @@ h1,h2, h3, h4, h5, h6{
 .btn_breadcrump{
     background: #04B2FD;
 }
+.btn_changePictureStudent{
+    position: absolute;
+    top: 38%;
+    left: 20%;
+    background-color: transparent;
+    box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset;
+    border-radius: 2px;
+}
 /**/
