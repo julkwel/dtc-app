@@ -73,7 +73,8 @@ label{
     .left{
         display: none;
         justify-content: center;
-        padding: 40px;
+        width: 0px;
+        height: 0px;
     }
     #img{
         width: 450px;
