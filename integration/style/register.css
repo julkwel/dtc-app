@@ -32,6 +32,9 @@ h1,h2, h3, h4, h5, h6{
 .sectionSubmitInscription a{
     color: #173B99;
 }
+.sectionSubmitInscription{
+    padding-top: 1em;
+}
 .registration_plus{
     color: #E57B23;
     font-weight: bold!important;
