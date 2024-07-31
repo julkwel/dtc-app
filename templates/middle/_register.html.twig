@@ -2,52 +2,87 @@
 
 {% block title %}DTC | Inscription {% endblock %}
 
+{% block stylesheets %}
+	{{ encore_entry_link_tags('dtc_fo_page') }}
+	{{ encore_entry_link_tags('register_page') }}
+{% endblock %}
 {% block body %}
-    <body>
-        <div class="container">
-            <div class="p-4">
-                <a href="{{ path('dtc_home_page') }}" style="text-decoration: none"><i class="fa fa-arrow-left"></i> Page d'accueil</a>
-            </div>
-            <div class="card o-hidden border-0 shadow-lg my-5">
-                <div class="card-body p-0">
-                    <!-- Nested Row within Card Body -->
-                    <div class="row">
-                        <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
-                        <div class="col-lg-7">
-                            <div class="p-5">
-                                <div class="text-center">
-                                    <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
-                                </div>
-                                {{ form_errors(registrationForm) }}
+	<body>
+	<div class="container-fluid bg-light registration_content">
+		<div class="row vh-100">
+			<div class="col-lg-4 d-none d-lg-block registration_content_left d-lg-flex flex-lg-column justify-content-center">
+				<div class="m-4 ">
+					<img class="w-100" src="{{ asset('images/registration_page.png') }}" alt="...">
+				</div>
+				<div class="m-4">
+					<h3 class="text-light">Formation</h3>
+					<p class="text-light">Spécial samedi</p>
+					<h4>Au programme</h4>
+					<p class="text-light">
+						Une formation intensive encadrée par des professionnels expérimentés dans le domaine.
+					</p>
+				</div>
+				<div class="m-4">
+					<div class="row">
+						<div class="col-12">
+							{% for i in range(1,7) %}
+								<i class="bi bi-plus-lg registration_plus fw-bold fa-bold fa-solid" style="-webkit-text-stroke: 1px;"></i>
+							{% endfor %}
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-12">
+							{% for i in range(1,7) %}
+								<i class="bi bi-plus-lg registration_plus fw-bold" style="-webkit-text-stroke: 1px;"></i>
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-12 col-lg-5  m-auto p-5 registration_content_right">
+				<div>
+					<h1>C'est le premier pas</h1>
+					<h2>Continuez à remplir vos informations</h2>
+				</div>
+				{{ form_errors(registrationForm) }}
+				{{ form_start(registrationForm) }}
+					<div class=" form-group mb-3">
+						{{ form_label(registrationForm.firstname) }}
+						{{ form_widget(registrationForm.firstname) }}
+					</div>
+					<div class=" form-group mb-3">
+						{{ form_label(registrationForm.lastname) }}
+						{{ form_widget(registrationForm.lastname) }}
+					</div>
+					<div class=" form-group mb-3">
+						{{ form_label(registrationForm.username) }}
+						{{ form_widget(registrationForm.username) }}
+					</div>
+					<div class=" form-group mb-3 position-relative">
+						{{ form_label(registrationForm.password.first) }}
+						{{ form_widget(registrationForm.password.first) }}
+						<i class="bi bi-eye-fill position-absolute toggle_password"></i>
+					</div>
+					<div class="form-group mb-3 position-relative">
+						{{ form_label(registrationForm.password.second) }}
+						{{ form_widget(registrationForm.password.second) }}
+						<i class="bi bi-eye-fill position-absolute toggle_password"></i>
+					</div>
+					{{ form_widget(registrationForm) }}
+				<div class="form-group mb-3 sectionSubmitInscription">
+					<button type="submit" class="btn form-control" id="submitInscription">S'enregistrer</button>
+					<p class="text-center mt-3">Avez-vous déjà un compte ?
+						<a href="{{ path('dtc_login') }}">Se connecter</a></p>
+				</div>
+				{{ form_end(registrationForm) }}
+			</div>
+		</div>
+	</div>
+	</body>
+{% endblock %}
 
-                                {{ form_start(registrationForm) }}
-                                    <div class="form-group row">
-                                        <div class="col-sm-6">
-                                            {{ form_row(registrationForm.lastname) }}
-                                        </div>
-                                        <div class="col-sm-6 mb-3 mb-sm-0">
-                                            {{ form_row(registrationForm.firstname) }}
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        {{ form_row(registrationForm.username) }}
-                                    </div>
-                                    <div class="form-group">
-                                        {{ form_row(registrationForm.password) }}
-                                    </div>
-                                    <hr>
-                                    <button type="submit" class="btn btn-primary btn-user btn-block">S'enregistrer</button>
-                                {{ form_end(registrationForm) }}
-                                <hr>
-                                <div class="text-center">
-                                    Avez-vous un compte ? <a class="small" href="{{ path('dtc_login')}} ">Se connecter !</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-        </div>
-    </body>
+{% block javascripts %}
+	{{ encore_entry_script_tags('dtc_fo_page') }}
+	{{ encore_entry_script_tags('register_page') }}
 {% endblock %}

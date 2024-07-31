@@ -55,7 +55,7 @@ class RegistrationFormType extends AbstractType
                     'options' => [
                         'attr' => [
                             'autocomplete' => 'new-password',
-                            'class' => $inputStyle,
+                            'class' => $inputStyle.' password-input',
                         ],
                     ],
                     'first_options' => [
@@ -64,7 +64,7 @@ class RegistrationFormType extends AbstractType
                     'second_options' => [
                         'label' => 'Entrer à nouveau votre mots de passe',
                         'attr' => [
-                            'class' => $inputStyle,
+                            'class' => $inputStyle.' password-input',
                         ],
                     ],
                 ]
