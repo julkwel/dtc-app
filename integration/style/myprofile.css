@@ -47,3 +47,19 @@ h1,h2, h3, h4, h5, h6{
     width: 50%;
     height: 50%;
 }
+.button_blue{
+    background: #173B99;
+    color: #F6F6F6;
+}
+.button_orange{
+    background: #E57B23;
+    color: #F6F6F6;
+}
+.box_profile{
+    box-shadow: 0 0 30px rgba(1, 41, 112, .08);
+}
+.btn_breadcrump{
+    background: #04B2FD;
+    color: #F6F6F6;
+}
+/**/
