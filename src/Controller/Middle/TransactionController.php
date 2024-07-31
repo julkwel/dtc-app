@@ -51,7 +51,7 @@ class TransactionController extends AbstractController
             return  $this->redirectToRoute('transaction_validate', ['transaction' => $transaction->getId()]);
         }
 
-        return $this->render('middle/student_profile/transaction/_generate_transaction.html.twig', ['form' => $form->createView()]);
+        return $this->render('middle/student_profile/transaction/_generate_transaction.html.twig', ['form' => $form->createView(), 'formation' => $formation]);
 
     }
 
