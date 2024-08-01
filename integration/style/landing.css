@@ -14,6 +14,9 @@
   main{
     width: 100%;
   }
+  .jum{
+    padding: 40px;
+  }
   header{
     background-color: #f6f6f6;
   }
