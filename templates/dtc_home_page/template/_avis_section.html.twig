@@ -1,0 +1,50 @@
+<section id="testimonials" class="testimonials section">
+	<!-- Section Title -->
+	<div class="container section-title" data-aos="fade-up">
+		<p>Ce qu'ils disent de nous<br></p>
+	</div><!-- End Section Title -->
+
+	<div class="container" data-aos="fade-up" data-aos-delay="100">
+		<div class="swiper init-swiper">
+			<div class="swiper-wrapper">
+				<div class="swiper-slide">
+					<div class="testimonial-item">
+						<div class="stars"></div>
+						<p>
+							Chez Digital Training Center, nous nous engageons à propulser nos étudiants vers l'excellence grâce à des cours intensifs, pratiques et alignés avec les dernières tendances technologiques.
+						</p>
+						<div class="profile mt-auto">
+							<img src="{{ asset('img/team/julien.png') }}" class="testimonial-img" alt="">
+							<h3>Julien RAJERISON</h3>
+							<h4>Fondateur</h4>
+						</div>
+					</div>
+				</div><!-- End testimonial item -->
+
+				{% for review in reviews %}
+					<div class="swiper-slide">
+						<div class="testimonial-item">
+							<div class="stars">
+								{% for star in range(1, review.note) %}
+									<i class="bi bi-star-fill"></i>
+								{% endfor %}
+							</div>
+							<p>
+								{{ review.review }}
+							</p>
+							<div class="profile mt-auto">
+								<img src="{{ asset('img/avatar.png') }}" class="testimonial-img" alt="">
+								{% if review.user is null or 'ROLE_ADMIN' in review.user.roles %}
+									<h3>Anonymous</h3>
+								{% else %}
+									<h3>{{ review.user.username }}</h3>
+								{% endif %}
+							</div>
+						</div>
+					</div><!-- End testimonial item -->
+				{% endfor %}
+			</div>
+			<div class="swiper-pagination"></div>
+		</div>
+	</div>
+</section><!-- /Testimonials Section -->

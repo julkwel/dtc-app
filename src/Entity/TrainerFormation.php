@@ -3,18 +3,19 @@
 namespace App\Entity;
 
 use App\Repository\TrainerFormationRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
 
 #[ORM\Entity(repositoryClass: TrainerFormationRepository::class)]
 class TrainerFormation
 {
+    use TimestampableEntity;
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
-
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    private ?Cohorte $formation = null;
 
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
     private ?User $trainer = null;
@@ -25,21 +26,12 @@ class TrainerFormation
     #[ORM\Column(length: 255)]
     private ?string $alias = null;
 
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $description = null;
+
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getFormation(): ?Cohorte
-    {
-        return $this->formation;
-    }
-
-    public function setFormation(?Cohorte $formation): static
-    {
-        $this->formation = $formation;
-
-        return $this;
     }
 
     public function getTrainer(): ?User
@@ -74,6 +66,18 @@ class TrainerFormation
     public function setAlias(string $alias): static
     {
         $this->alias = $alias;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): static
+    {
+        $this->description = $description;
 
         return $this;
     }

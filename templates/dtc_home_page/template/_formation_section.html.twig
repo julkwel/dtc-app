@@ -1,0 +1,31 @@
+<section id="services" class="services section">
+
+	<!-- Section Title -->
+	<div class="container section-title" data-aos="fade-up">
+		<p>Nos catalogues de formation<br></p>
+	</div><!-- End Section Title -->
+
+	<div class="container">
+		<div class="row gy-4">
+			{% for formation in formations %}
+				<div class="col-lg-4 col-md-6" data-item="fade-up" data-item-delay="100">
+					<div class="item-cyan position-relative">
+						{% if formation.cover is not empty %}
+							<img src="{{ asset('img/pictures/'~formation.cover) }}" class="w-100" style="height: 200px" alt="">
+						{% else %}
+							<img src="{{ asset('img/Logo/DTC-Logo-Orange.png') }}" class="w-100" style="height: 200px" alt="">
+						{% endif %}
+						<div class="service-item">
+							<h3>{{ formation.name }}</h3>
+							<p>{{ formation.description|slice(0, 90)~' ...' }}</p>
+							<a href="{{ path('register_cohorte', {id: formation.id}) }}" class="read-more stretched-link">
+								<span>Je m'inscris</span>
+								<i class="bi bi-arrow-right"></i>
+							</a>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+</section><!-- /Services Section -->

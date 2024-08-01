@@ -1,0 +1,42 @@
+{% extends 'admin/_entry_admin.html.twig' %}
+{% block content %}
+	<div class="container-fluid">
+		<div class="d-flex align-items-center justify-content-between">
+			<h2>Message</h2>
+		</div>
+		<div class="container-fluid">
+			<!-- DataTales Example -->
+			<div class="card shadow mb-4">
+				<div class="card-header py-3">
+					<h6 class="m-0 font-weight-bold text-primary">Liste des messages</h6>
+				</div>
+				<div class="card-body">
+					<div class="table-responsive">
+						<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+							<thead>
+							<tr>
+								<th>Date</th>
+								<th>Nom</th>
+								<th>Email</th>
+								<th>Sujet</th>
+								<th>Message</th>
+							</tr>
+							</thead>
+							<tbody>
+							{% for message in messages %}
+								<tr>
+									<td>{{ message.createdAt|date('d-m-Y-H-i-s') }}</td>
+									<td>{{ message.firstname }}</td>
+									<td>{{ message.email }}</td>
+									<td>{{ message.subject }}</td>
+									<td>{{ message.message }}</td>
+								</tr>
+							{% endfor %}
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

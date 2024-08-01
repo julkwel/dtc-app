@@ -2,38 +2,15 @@
 
 {% block title %}Home|DTC-MG{% endblock %}
 {% block body %}
-    <section id="hero" class="hero d-flex align-items-center">
-        <div class="container">
-            {% for message in app.flashes('error') %}
-                <div class="alert alert-danger" role="alert">
-                    {{ message }}
-                </div>
-            {% endfor %}
-            {% for message in app.flashes('success') %}
-                <div class="alert alert-success" role="alert">
-                    {{ message }}
-                </div>
-            {% endfor %}
-            <div class="row">
-                <div class="col-lg-6 d-flex flex-column justify-content-center">
-                    <img src="{{ asset('img/frame_lv_up.png') }}" width="400" class="img-fluid" alt="">
-                    <h2 data-item="fade-up" data-item-delay="400">Des modules de formation qui vous permettant d'acquérir les compétences essentielles pour réussir dans le monde du Digital. </h2>
-                    <div data-item="fade-up" data-item-delay="600">
-                        <div class="text-center text-lg-start">
-                            <a href="{{ path('dtc_register') }}" class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
-                                <span>Rejoignez-nous</span>
-                                <i class="bi bi-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 hero-img" data-item="zoom-out" data-item-delay="200">
-                    <img src="{{ asset('img/dtc_ref.png') }}" class="img-fluid" alt="">
-                </div>
-            </div>
-        </div>
-    </section><!-- End Hero -->
-    {{ include('dtc_home_page/_main_content.html.twig') }}
-    {{ include('dtc_home_page/_footer.html.twig') }}
-    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+	{{ include('dtc_home_page/_header.html.twig') }}
+	<main class="main">
+		{{ include('dtc_home_page/template/_hero_section.html.twig') }}
+		{{ include('dtc_home_page/template/_counter_section.html.twig') }}
+		{{ include('dtc_home_page/template/_formation_section.html.twig') }}
+		{{ include('dtc_home_page/template/_avis_section.html.twig') }}
+		{{ include('dtc_home_page/template/_trainers_section.html.twig') }}
+		{{ include('dtc_home_page/template/_contact_section.html.twig') }}
+		{{ include('dtc_home_page/_footer.html.twig') }}
+		<a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+	</main>
 {% endblock %}

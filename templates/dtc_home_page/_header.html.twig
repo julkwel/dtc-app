@@ -1,18 +1,21 @@
-<header id="header" class="header fixed-top">
-	<div class="container-fluid container-xl d-flex align-items-center justify-content-between">
-		<a href="{{ path('dtc_home_page') }}" class="logo d-flex align-items-center">
-			<img src="{{ asset('img/Logo/DTC-Logo-Blanc-Tranceparent.png') }}" alt=""> <span>DTC</span> </a>
-		<nav id="navbar" class="navbar">
+<header id="header" class="header d-flex align-items-center fixed-top">
+	<div class="container-fluid container-xl position-relative d-flex align-items-center">
+		<a href="{{ path('dtc_home_page') }}" class="logo d-flex align-items-center me-auto">
+			<img src="{{ asset('img/Logo/DTC-Logo-Blanc-Tranceparent.png') }}" alt="">
+			<h1 class="sitename">DTC.MG</h1>
+		</a>
+
+		<nav id="navmenu" class="navmenu">
 			<ul>
 				{% if not is_granted('IS_AUTHENTICATED_FULLY') %}
-					<li><a class="nav-link scrollto active" href="#hero">Bienvenue</a></li>
-					<li><a class="nav-link scrollto" href="#services">Nos catalogues</a></li>
-					<li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-					<li><a class="nav-link scrollto" href="{{ path('dtc_login') }}">Se connecter <i class="bi bi-arrow-right"></i></a></li>
+					<li><a href="#hero">Bienvenue</a></li>
+					<li><a href="#services">Nos catalogues</a></li>
+					<li><a href="#contact">Contact</a></li>
+					<li><a href="{{ path('dtc_login') }}">Se connecter <i class="bi bi-arrow-right"></i></a></li>
 				{% endif %}
 				{% if is_granted('IS_AUTHENTICATED_FULLY') %}
 					<li>
-						<a class="nav-link scrollto" href="#services">Liste des formations</a>
+						<a class="nav-link scrollto" href="{{ path('dtc_student_my_formation') }}">Liste des formations</a>
 					</li>
 					<li class="dropdown">
 						<a href="#" class="user-info">{{ app.user.username}}</a>
@@ -27,7 +30,7 @@
 					</li>
 				{% endif %}
 			</ul>
-			<i class="bi bi-list mobile-nav-toggle"></i>
-		</nav><!-- .navbar -->
+			<i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+		</nav>
 	</div>
 </header>

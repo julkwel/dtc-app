@@ -1,0 +1,82 @@
+<section id="contact" class="contact section">
+
+	<!-- Section Title -->
+	<div class="container section-title" data-aos="fade-up">
+		<p>Contact Us</p>
+	</div><!-- End Section Title -->
+
+	<div class="container" data-aos="fade-up" data-aos-delay="100">
+		<div class="row gy-4">
+			<div class="col-lg-6">
+				<div class="row gy-4">
+					<div class="col-md-6">
+						<div class="info-item" data-aos="fade" data-aos-delay="200">
+							<i class="bi bi-geo-alt"></i>
+							<h3>Adresse</h3>
+							<p>Antananarivo</p>
+							<p>101, Madagascar</p>
+						</div>
+					</div><!-- End Info Item -->
+
+					<div class="col-md-6">
+						<div class="info-item" data-aos="fade" data-aos-delay="300">
+							<i class="bi bi-telephone"></i>
+							<h3>Téléphone</h3>
+							<p>+261 38 44 569 90</p>
+							<p>+261 32 94 730 33</p>
+						</div>
+					</div><!-- End Info Item -->
+
+					<div class="col-md-6">
+						<div class="info-item" data-aos="fade" data-aos-delay="400">
+							<i class="bi bi-envelope"></i>
+							<h3>Mail</h3>
+							<p>digitaltrainingcenter.mg@gmail.com</p>
+						</div>
+					</div><!-- End Info Item -->
+
+					<div class="col-md-6">
+						<div class="info-item" data-aos="fade" data-aos-delay="500">
+							<i class="bi bi-clock"></i>
+							<h3>Heure d'ouverture</h3>
+							<p>Samedi</p>
+							<p>8:00AM - 17:00PM</p>
+						</div>
+					</div><!-- End Info Item -->
+
+				</div>
+
+			</div>
+
+			<div class="col-lg-6">
+				<form action="{{ path('dtc_site_message') }}" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
+					<div class="row gy-4">
+
+						<div class="col-md-6">
+							<input type="text" name="firstname" class="form-control" placeholder="Votre nom" required="">
+						</div>
+
+						<div class="col-md-6 ">
+							<input type="email" class="form-control" name="email" placeholder="Mail" required="">
+						</div>
+
+						<div class="col-12">
+							<input type="text" class="form-control" name="subject" placeholder="Sujet" required="">
+						</div>
+
+						<div class="col-12">
+							<textarea class="form-control" name="message" rows="6" placeholder="Message" required=""></textarea>
+						</div>
+
+						<div class="col-12 text-center">
+							<button type="submit">Envoyer</button>
+						</div>
+					</div>
+				</form>
+			</div><!-- End Contact Form -->
+
+		</div>
+
+	</div>
+
+</section><!-- /Contact Section -->

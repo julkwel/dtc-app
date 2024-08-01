@@ -1,0 +1,26 @@
+<section id="hero" class="hero section">
+	<div class="container">
+		{% for message in app.flashes('error') %}
+			<div class="alert alert-danger" role="alert">
+				{{ message }}
+			</div>
+		{% endfor %}
+		{% for message in app.flashes('success') %}
+			<div class="alert alert-success" role="alert">
+				{{ message }}
+			</div>
+		{% endfor %}
+		<div class="row gy-4">
+			<div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center">
+				<img src="{{ asset('img/frame_lv_up.png') }}" width="400" class="img-fluid mb-3" alt="">
+				<p data-item="fade-up" data-item-delay="400">Des modules de formation qui vous permettant d'acquérir les compétences essentielles pour réussir dans le monde du Digital. </p>
+				<div class="d-flex flex-column flex-md-row mt-2" data-aos="fade-up" data-aos-delay="200">
+					<a href="{{ path('dtc_register') }}" class="btn-get-started">Rejoignez-nous <i class="bi bi-arrow-right"></i></a>
+				</div>
+			</div>
+			<div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-out">
+				<img src="{{ asset('img/dtc_ref.png') }}" class="img-fluid animated" alt="">
+			</div>
+		</div>
+	</div>
+</section><!-- /Hero Section -->
