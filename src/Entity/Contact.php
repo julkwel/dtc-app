@@ -25,10 +25,7 @@ class Contact
     #[ORM\Column(length: 100, nullable: true)]
     private ?string $github = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $email = null;
-
-    #[ORM\ManyToOne(inversedBy: 'contacts')]
+    #[ORM\OneToOne(inversedBy: 'contact', cascade: ['persist', 'remove'])]
     private ?User $user = null;
 
     public function getId(): ?int
@@ -80,18 +77,6 @@ class Contact
     public function setGithub(?string $github): static
     {
         $this->github = $github;
-
-        return $this;
-    }
-
-    public function getEmail(): ?string
-    {
-        return $this->email;
-    }
-
-    public function setEmail(?string $email): static
-    {
-        $this->email = $email;
 
         return $this;
     }

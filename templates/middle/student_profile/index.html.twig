@@ -3,28 +3,15 @@
 {% block title %}DTC | Etudiant {% endblock %}
 
 {% block body %}
-
-<main id="main">
-	<!-- ======= Breadcrumbs ======= -->
-	<section class="breadcrumbs">
-		<div class="container">
-			<h2>{{ app.user.username }}</h2>
-			{% for contact in app.user.contacts %}
-				<p>Téléphone : {{ contact.phone }}, Mail : {{ app.user.username }}<br>
-					Facebook : {{ contact.facebook }}, LinkedIn : {{ contact.linkedIn }}
-				</p>
-			{% endfor %}
-		</div>
-	</section><!-- End Breadcrumbs -->
 	<section id="counts" class="counts">
 		<div class="container" data-item="fade-up">
 			<div class="row gy-4 d-flex justify-content-between">
 				<div class="col-lg-3 col-md-6">
 					<a href="{{ path('dtc_student_edit') }}" class="count-box">
 						{% if app.user.image is null %}
-								<i class="bi bi-person"></i>
-							{% else %}
-								<img class="" height="50" width="50" style="border-radius: 50%" src="{{ asset('img/pictures/'~app.user.image) }}" alt="">
+							<i class="bi bi-person"></i>
+						{% else %}
+							<img class="" height="50" width="50" style="border-radius: 50%" src="{{ asset('img/pictures/'~app.user.image) }}" alt="">
 						{% endif %}
 						<div>
 							<span><i class="bi bi-pencil"></i></span>
@@ -33,8 +20,7 @@
 					</a>
 				</div>
 				<div class="col-lg-3 col-md-6">
-					<a href="{{ path('dtc_student_my_formation') }}" class="count-box">
-						<i class="bi bi-list-check"></i>
+					<a href="{{ path('dtc_student_my_formation') }}" class="count-box"> <i class="bi bi-list-check"></i>
 						<div>
 							<span data-purecounter-start="0" data-purecounter-end="{{ formations|length }}" data-purecounter-duration="1" class="purecounter"></span>
 							<p>Mes formations</p>
@@ -53,5 +39,4 @@
 			</div>
 		</div>
 	</section><!-- End Counts Section -->
-</main>
 {% endblock %}

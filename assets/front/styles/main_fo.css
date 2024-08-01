@@ -6,11 +6,48 @@
 @import 'glightbox/dist/css/glightbox.min.css';
 @import "../theme/css/main.css";
 
-.user-info {
-    background: #e67b24;
-    color: white!important;
-    font-size: 12px!important;
-    border-radius: 8px;
-    padding: 10px!important;
-    margin-left: 10px;
+.img-profile-circle {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+.my-img-profile-circle {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.logout-button {
+    position: fixed;
+    opacity: 1;
+    right: 15px;
+    z-index: 99999;
+    background-color: var(--second-color);
+    width: 40px;
+    height: 40px;
+    top: 48%;
+    border-radius: 50%;
+    transition: all 0.4s;
+}
+
+.logout-button i {
+    font-size: 24px;
+    color: var(--contrast-color);
+    line-height: 0;
+}
+
+.logout-button:hover {
+    background-color: color-mix(in srgb, var(--second-color), transparent 20%);
+    color: var(--contrast-color);
+}
+
+.logout-button.active {
+    visibility: visible;
+    opacity: 1;
+}
+
+.save-profil {
+    background-color: var(--heading-color);
+    border-color: var(--heading-color);
 }

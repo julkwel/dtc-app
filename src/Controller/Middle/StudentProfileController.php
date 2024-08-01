@@ -50,7 +50,6 @@ class StudentProfileController extends AbstractController
         $user = $this->getUser();
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             $this->userService->handleUser($form);
 

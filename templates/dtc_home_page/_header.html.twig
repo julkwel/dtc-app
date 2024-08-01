@@ -1,36 +1,40 @@
 <header id="header" class="header d-flex align-items-center fixed-top">
+	{% if not is_granted('IS_AUTHENTICATED_FULLY') %}
 	<div class="container-fluid container-xl position-relative d-flex align-items-center">
 		<a href="{{ path('dtc_home_page') }}" class="logo d-flex align-items-center me-auto">
 			<img src="{{ asset('img/Logo/DTC-Logo-Blanc-Tranceparent.png') }}" alt="">
 			<h1 class="sitename">DTC.MG</h1>
 		</a>
-
 		<nav id="navmenu" class="navmenu">
 			<ul>
-				{% if not is_granted('IS_AUTHENTICATED_FULLY') %}
 					<li><a href="#hero">Bienvenue</a></li>
 					<li><a href="#services">Nos catalogues</a></li>
 					<li><a href="#contact">Contact</a></li>
 					<li><a href="{{ path('dtc_login') }}">Se connecter <i class="bi bi-arrow-right"></i></a></li>
-				{% endif %}
-				{% if is_granted('IS_AUTHENTICATED_FULLY') %}
-					<li>
-						<a class="nav-link scrollto" href="{{ path('dtc_student_my_formation') }}">Liste des formations</a>
-					</li>
-					<li class="dropdown">
-						<a href="#" class="user-info">{{ app.user.username}}</a>
-						<ul>
-							<li>
-								<a href="{{ path('dtc_student_profile') }}"><i class="bi bi-person" style="color: #e67b24;padding: 10px; font-size: 25px; margin:0"></i>Mon profil</a>
-							</li>
-							<li>
-								<a href="{{ path('dtc_logout') }}"><i class="bi bi-arrow-right" style="color: #e67b24;padding: 10px; font-size: 25px; margin:0"></i>Déconnexion</a>
-							</li>
-						</ul>
-					</li>
-				{% endif %}
 			</ul>
-			<i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
 		</nav>
+		<i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
 	</div>
+	{% endif %}
+
+	{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+		<div class="container-fluid d-flex justify-content-between mx-3">
+			<div class="container-left">
+				<a href="{{ path('dtc_home_page') }}" class="logo d-flex align-items-center me-auto">
+					<img src="{{ asset('img/Logo/DTC-Logo-Blanc-Tranceparent.png') }}" alt="">
+					<h1 class="sitename">DTC.MG</h1>
+				</a>
+			</div>
+			<div class="content-right">
+				{% if app.user.image is not empty %}
+					<img src="{{ asset('img/pictures/'~app.user.image) }}" class="img-profile-circle" width="30" height="30" alt="">
+				{% else %}
+					<img src="{{ asset('img/Favicon/DTC-Favicon.png') }}" class="img-profile-circle" width="30" height="30" alt="">
+				{% endif %}
+				<a href="{{ path('dtc_student_edit') }}" class="user-info">
+					{{ app.user.username }}
+				</a>
+			</div>
+		</div>
+	{% endif %}
 </header>

@@ -51,7 +51,7 @@ class UserType extends AbstractType
                 ]
             )
             ->add('roles',
-            ChoiceType::class,
+                ChoiceType::class,
                 [
                     'choices' => User::ROLES,
                     'label' => 'Role',
@@ -62,7 +62,7 @@ class UserType extends AbstractType
             )
             ->add(
                 'password',
-            PasswordType::class,
+                PasswordType::class,
                 [
                     'label' => 'Mots de passe',
                     'attr' => [
@@ -73,13 +73,21 @@ class UserType extends AbstractType
                 ]
             )
             ->add(
+                'contact',
+                ContactFormType::class,
+                [
+                    'label' => 'Contact'
+                ]
+            )
+            ->add(
                 'image',
                 FileType::class, [
                     'label' => 'Photo de profil',
                     'mapped' => false,
                     'required' => false,
                     'attr' => [
-                        'accept' => "image/*"
+                        'accept' => "image/*",
+                        'class' => 'form-control'
                     ],
                 ]
             );

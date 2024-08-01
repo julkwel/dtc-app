@@ -39,9 +39,6 @@ class User implements UserInterface, Serializable, EquatableInterface, PasswordA
     #[ORM\Column(type: Types::JSON)]
     private array $roles = [];
 
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Contact::class, cascade: ["persist"])]
-    private Collection $contacts;
-
     #[ORM\Column(length: 255)]
     private ?string $firstname = null;
 
@@ -73,9 +70,11 @@ class User implements UserInterface, Serializable, EquatableInterface, PasswordA
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Review::class)]
     private Collection $reviews;
 
+    #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
+    private ?Contact $contact = null;
+
     public function __construct()
     {
-        $this->contacts = new ArrayCollection();
         $this->roles = [self::ROLE_STUDENT];
         $this->isEnabled = true;
         $this->studentFormations = new ArrayCollection();
@@ -214,36 +213,6 @@ class User implements UserInterface, Serializable, EquatableInterface, PasswordA
         return $this;
     }
 
-    /**
-     * @return Collection<int, Contact>
-     */
-    public function getContacts(): Collection
-    {
-        return $this->contacts;
-    }
-
-    public function addContact(Contact $contact): static
-    {
-        if (!$this->contacts->contains($contact)) {
-            $this->contacts->add($contact);
-            $contact->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeContact(Contact $contact): static
-    {
-        if ($this->contacts->removeElement($contact)) {
-            // set the owning side to null (unless already changed)
-            if ($contact->getUser() === $this) {
-                $contact->setUser(null);
-            }
-        }
-
-        return $this;
-    }
-
     public function getSalt()
     {
         return null;
@@ -374,6 +343,28 @@ class User implements UserInterface, Serializable, EquatableInterface, PasswordA
                 $review->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getContact(): ?Contact
+    {
+        return $this->contact;
+    }
+
+    public function setContact(?Contact $contact): static
+    {
+        // unset the owning side of the relation if necessary
+        if ($contact === null && $this->contact !== null) {
+            $this->contact->setUser(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($contact !== null && $contact->getUser() !== $this) {
+            $contact->setUser($this);
+        }
+
+        $this->contact = $contact;
 
         return $this;
     }

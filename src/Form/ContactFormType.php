@@ -43,13 +43,6 @@ class ContactFormType extends AbstractType
                 [
                     'label' => 'GitHub (optional)',
                     'required' => false,
-                ])
-            ->add(
-                'email',
-                EmailType::class,
-                [
-                    'label' => 'Mail (optional)',
-                    'required' => false,
                 ]
             );
     }
