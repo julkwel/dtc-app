@@ -9,7 +9,7 @@
     --font-size2: 72px;
     --font-weight: 400;
     --line-height: 89.4px;
-    --text-align: left;
+    --text-align: center;
   }
   main{
     width: 100%;
@@ -31,7 +31,7 @@
     width: 100%;
   }
   .header-title{
-    width: 100%;
+    width: 550px;
   }
   .header-title h1{
     font-size: 72px;
@@ -44,6 +44,7 @@
   }
 
 body{
+    display: flex;
     justify-content: center;
     font-family: sans-serif;
 
@@ -76,13 +77,16 @@ nav{
     color: #ffffff;
 }
 .module{
-    width: 350px;
+    width: 80%;
     border-radius: 12px;
-    box-shadow: 1px 5px 10px black;
+    box-shadow:  0.5px 1px 5px black;
 }
 .header-img{
     width: 450px;
     height: 350px;
+}
+.prf{
+    width:300px;
 }
 .name{
     font-family: "Poppins",sans-serif;
@@ -160,7 +164,7 @@ nav{
 .text-pro{
     font-family: "Poppins",sans-serif;
     font-size: 16px;
-    font-weight: 400;
+    font-weight: 600;
     line-height: 24px;
     color:#292F36;
 }
@@ -215,6 +219,9 @@ nav{
     .header-img{
         width: 100%;
     }
+    .header-title{
+        width: 100%;
+    }
     .section{
         display: flex;
         flex-direction: column;
@@ -226,13 +233,63 @@ nav{
     .header-title h1{
         font-size: 40px;
         font-weight: 400;
-        line-height: 89.4px;
+        line-height: 50px;
         font-family: var(--font-family);
       }
     .cret{
         width: 100%;
     }
     .mat{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
         gap: 20px;
+        width: 100%;
+    }
+    .cont{
+        display: flex;
+        justify-content: center;
+    }
+    .prf{
+        width:100%;
+    }
+    #triland{
+        width: 30px;
+        height: 20px;
+        position: relative;
+        left: 40px;
+        bottom: 10px;
+    }
+    .module{
+        width: 100%;
+    }
+    .profil{
+        gap: 30px;
+    }
+    .mod{
+        width: 100%;
+    }
+    .jum{
+        padding: 0px;
+    }
+    .fot{
+        gap: 10px;
+    }
+    #flag-fr{
+        width: 0px;
+    }
+    .contact{
+        width: 0px;
+        height: 0px;
+        font-size: 0px;
+    }
+    #logo{
+        width: 140px;
+    }
+    .bout{
+        width: 100px;
+        height:30px;
+        font-size: 16px;
+        line-height: 0px;
     }
 }
