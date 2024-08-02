@@ -48,39 +48,19 @@ class StudentProfileController extends AbstractController
     public function editUser(Request $request): Response
     {
         $user = $this->getUser();
+        $formations = $this->userService->fetchUserFormation($user);
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $this->userService->handleUser($form);
 
-            return $this->redirectToRoute('dtc_student_profile', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('dtc_student_edit', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('middle/student_profile/edit_user.html.twig', [
             'user' => $user,
             'form' => $form->createView(),
+            'formations' => $formations,
         ]);
-    }
-
-    #[Route('/add-contact', name: 'add_contact')]
-    public function addContact(Request $request)
-    {
-        $contact = new Contact();
-        /** @var User $user */
-        $user = $this->getUser();
-        if (!$user->getContacts()->isEmpty()) {
-            $contact = $user->getContacts()->get(0);
-        }
-
-        $form = $this->createForm(ContactFormType::class, $contact);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->userService->addContact($contact, $this->getUser());
-
-            return  $this->redirectToRoute('dtc_student_profile');
-        }
-
-        return $this->render('middle/student_profile/_add_contact.html.twig', ['form' => $form->createView()]);
     }
 }

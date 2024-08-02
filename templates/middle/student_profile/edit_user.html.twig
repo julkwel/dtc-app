@@ -9,21 +9,22 @@
 				<div class="col-md-12 col-lg-3">
 					<div class="team-member p-3">
 						<div class="profile-image">
-							<img src="{{ asset('img/team/stephan.jpg') }}" class="img-fluid my-img-profile-circle" alt="">
+							{% if app.user.image  is not empty %}
+								<img src="{{ asset('img/pictures/'~app.user.image) }}" class="img-fluid my-img-profile-circle" alt="">
+							{% else %}
+								<img src="{{ asset('img/Logo/DTC-Logo.png') }}" class="img-fluid my-img-profile-circle" alt="">
+							{% endif %}
 							<div class="social">
-								<a href=""><i class="bi bi-twitter-x"></i></a>
-								<a href=""><i class="bi bi-facebook"></i></a>
-								<a href=""><i class="bi bi-instagram"></i></a>
-								<a href=""><i class="bi bi-linkedin"></i></a>
+								<a href=""><i class="bi bi-twitter-x"></i></a> <a href=""><i class="bi bi-facebook"></i></a>
+								<a href=""><i class="bi bi-instagram"></i></a> <a href=""><i class="bi bi-linkedin"></i></a>
 							</div>
 						</div>
 						<div class="my-info ">
 							<h4>{{ app.user.firstname }}</h4>
-							<span>Etudiant</span>
+							<span style="font-size:12px;color:#e67c23">(Etudiant)</span>
 							<p style="text-align: left; padding: 10px">
-								Emain : {{ app.user.username }} <br>
-								Nom : {{ app.user.firstname }} <br>
-								Prénom : {{ app.user.lastname }}
+								Emain : {{ app.user.username }} <br> Nom : {{ app.user.firstname }}
+								<br> Prénom : {{ app.user.lastname }}
 							</p>
 						</div>
 					</div>
@@ -73,4 +74,38 @@
 			</div>
 		</div>
 	</section>
+	<section id="pricing" class="pricing section">
+		<!-- Section Title -->
+		<div class="container section-title">
+			<p>Mes formations<br></p>
+		</div><!-- End Section Title -->
+		<div class="container">
+			<div class="row gy-4 m-auto d-flex justify-content-center">
+				{% for userFormation in formations %}
+					<div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="200">
+						<div class="pricing-tem">
+							<span class="featured">En cours</span>
+							<h3 style="color: #0dcaf0;">{{ userFormation.formation.name }}</h3>
+							<div class="price">
+								<sup>Ar</sup>{{ userFormation.formation.amount|number_format(0, 2, '.', ' ') }}</span>
+							</div>
+							<ul style="text-align: left">
+								<li>Date début : {{ userFormation.formation.startDate|date('d-m-Y') }}</li>
+								<li>Date fin : {{ userFormation.formation.endDate|date('d-m-Y') }}</li>
+								<li>Nombre étudiants : {{ userFormation.formation.studentFormations|length }}</li>
+								<li>Paiement : {{ userFormation.paidAmount|default(0) }} Ar</li>
+								<li>Reste à payer : {{ (userFormation.formation.amount - userFormation.paidAmount)|number_format(0, 2, '.', ' ')|default(0) }} Ar</li>
+								{% if userFormation.formation.trainer is not null %}
+									<li>Profs : {{ userFormation.formation.trainer.username }}</li>
+								{% endif %}
+							</ul>
+							{% if not userFormation.isTotalPaid %}
+								<a href="{{ path('transaction_generate', {'formation': userFormation.id}) }}" class="btn-buy">Regler mes frais</a>
+							{% endif %}
+						</div>
+					</div><!-- End Pricing Item -->
+				{% endfor %}
+			</div><!-- End pricing row -->
+		</div>
+	</section><!-- /Pricing Section -->
 {% endblock %}

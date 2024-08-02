@@ -55,6 +55,9 @@ class Cohorte
     #[ORM\OneToMany(mappedBy: 'formation', targetEntity: StudentFormation::class)]
     private Collection $studentFormations;
 
+    #[ORM\ManyToOne(inversedBy: 'cohortes')]
+    private ?TrainerFormation $trainer = null;
+
     public function __construct()
     {
         $this->isRegisterOpen = false;
@@ -213,6 +216,18 @@ class Cohorte
                 $studentFormation->setFormation(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getTrainer(): ?TrainerFormation
+    {
+        return $this->trainer;
+    }
+
+    public function setTrainer(?TrainerFormation $trainer): static
+    {
+        $this->trainer = $trainer;
 
         return $this;
     }

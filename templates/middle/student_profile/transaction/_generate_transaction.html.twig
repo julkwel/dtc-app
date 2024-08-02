@@ -3,44 +3,32 @@
 {% block title %}DTC | Edit Student{% endblock %}
 
 {% block body %}
-	<main id="main">
-		<!-- ======= Breadcrumbs ======= -->
-		<section class="breadcrumbs">
-			<div class="container">
-				<h2>{{ app.user.username }} / Paiement</h2>
-			</div>
-		</section><!-- End Breadcrumbs -->
-		<section id="counts" class="counts">
-			<div class="container" data-item="fade-up">
-				<div class="col-md-6 m-auto">
-					<div class="pb-2">
-						<a href="{{ path('transaction_list') }}" style="text-decoration: none">
-							<i class="bi bi-arrow-left"></i> Retour
-						</a>
-					</div>
-					<ul>
-						<li>
-							Formations : {{ formation.formation.name }}
-						</li>
-						<li>
-							Frais Total : {{ formation.formation.amount }}
-						</li>
-						<li>
-							Frais payé : {{ formation.paidAmount }} Ar.
-						</li>
-						<li>
-							Reste à payer : {{ formation.formation.amount - formation.paidAmount }} Ar.
-						</li>
-					</ul>
-					<p class="mb-3" style="color:#E57B23">*Chez DTC, tous les paiements se font uniquement par mobile money !</p>
-					{{ form_start(form) }}
-					{{ form_widget(form) }}
-					<div class="form-group">
-						<button type="submit" class="btn btn-sm btn-primary text-center m-auto mt-2 form-control">Enregistrer</button>
-					</div>
-					{{ form_end(form) }}
+	<section id="team" class="team section my-5">
+		<div class="container" data-item="fade-upp">
+			<div class="col-md-6 m-auto">
+				<h3>Paiement frais de formation</h3>
+				<p class="mb-3" style="color:#E57B23">*Chez DTC, tous les paiements se font uniquement par mobile money !</p>
+				<ul>
+					<li>
+						Formations : {{ formation.formation.name }}
+					</li>
+					<li>
+						Frais Total : {{ formation.formation.amount }}
+					</li>
+					<li>
+						Frais payé : {{ formation.paidAmount }} Ar.
+					</li>
+					<li>
+						Reste à payer : {{ formation.formation.amount - formation.paidAmount }} Ar.
+					</li>
+				</ul>
+				{{ form_start(form) }}
+				{{ form_widget(form) }}
+				<div class="form-group">
+					<button type="submit" class="btn btn-sm save-profil btn-primary text-center m-auto mt-2 form-control">Enregistrer</button>
 				</div>
+				{{ form_end(form) }}
 			</div>
-		</section>
-	</main>
+		</div>
+	</section>
 {% endblock %}

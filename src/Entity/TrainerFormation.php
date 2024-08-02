@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\TrainerFormationRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
@@ -28,6 +30,17 @@ class TrainerFormation
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description = null;
+
+    /**
+     * @var Collection<int, Cohorte>
+     */
+    #[ORM\OneToMany(mappedBy: 'trainer', targetEntity: Cohorte::class)]
+    private Collection $cohortes;
+
+    public function __construct()
+    {
+        $this->cohortes = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -78,6 +91,36 @@ class TrainerFormation
     public function setDescription(?string $description): static
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Cohorte>
+     */
+    public function getCohortes(): Collection
+    {
+        return $this->cohortes;
+    }
+
+    public function addCohorte(Cohorte $cohorte): static
+    {
+        if (!$this->cohortes->contains($cohorte)) {
+            $this->cohortes->add($cohorte);
+            $cohorte->setTrainer($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCohorte(Cohorte $cohorte): static
+    {
+        if ($this->cohortes->removeElement($cohorte)) {
+            // set the owning side to null (unless already changed)
+            if ($cohorte->getTrainer() === $this) {
+                $cohorte->setTrainer(null);
+            }
+        }
 
         return $this;
     }
