@@ -22,7 +22,7 @@ class TrainerFormation
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
     private ?User $trainer = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable:true)]
     private ?\DateTimeImmutable $startedAt = null;
 
     #[ORM\Column(length: 255)]
@@ -36,6 +36,9 @@ class TrainerFormation
      */
     #[ORM\OneToMany(mappedBy: 'trainer', targetEntity: Cohorte::class)]
     private Collection $cohortes;
+
+    #[ORM\Column]
+    private ?bool $isEnabled = true;
 
     public function __construct()
     {
@@ -113,14 +116,14 @@ class TrainerFormation
         return $this;
     }
 
-    public function removeCohorte(Cohorte $cohorte): static
+    public function isEnabled(): ?bool
     {
-        if ($this->cohortes->removeElement($cohorte)) {
-            // set the owning side to null (unless already changed)
-            if ($cohorte->getTrainer() === $this) {
-                $cohorte->setTrainer(null);
-            }
-        }
+        return $this->isEnabled;
+    }
+
+    public function setEnabled(bool $isEnabled): static
+    {
+        $this->isEnabled = $isEnabled;
 
         return $this;
     }
