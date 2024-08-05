@@ -51,3 +51,7 @@
     background-color: var(--heading-color);
     border-color: var(--heading-color);
 }
+
+.register-btn {
+    background-color: var(--accent-color);
+}

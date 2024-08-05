@@ -1,71 +1,74 @@
 {% extends 'base_front.html.twig' %}
 
 {% block body %}
-	<main id="main">
-		<!-- ======= Breadcrumbs ======= -->
-		<section class="breadcrumbs">
-			<div class="container">
-				<h2>{{ cohorte.name }}</h2>
-			</div>
-		</section><!-- End Breadcrumbs -->
-		<!-- ======= Blog Section ======= -->
-		<section id="blog" class="blog">
-			<div class="container" data-aos="fade-up">
-				<div class="row">
-					<div class="col-lg-8 entries">
-						<article class="entry">
-							<div class="entry-img">
-								<img src="{{ asset('img/Logo/DTC-Logo.png') }}" alt="" class="img-fluid">
+	<div class="container">
+		<div class="row  py-5 justify-content-between">
+			<div class="col-lg-6">
+				<!-- Blog Details Section -->
+				<section id="blog-details" class="blog-details section">
+					<div class="container">
+						<article class="article">
+							<div class="post-img">
+								{% if cohorte.cover is not null %}
+									<img src="{{ asset('img/pictures/'~cohorte.cover) }}" alt="" class="img-fluid">
+								{% else %}
+										<img src="{{ asset('img/Logo/DTC-Logo.png') }}" alt="" class="img-fluid">
+								{% endif %}
 							</div>
-							<h2 class="entry-title">
-								<a href="#">{{ cohorte.name }}</a>
-							</h2>
-							<div class="entry-meta">
+
+							<h2 class="title">{{ cohorte.name }}</h2>
+
+							<div class="meta-top">
 								<ul>
-									<li class="d-flex align-items-center"><i class="bi bi-person"></i>
-										<a href="#">DTC.MG</a></li>
-									<li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="#">
-											<time datetime="2020-01-01">{{ cohorte.startDate|date('d-m-Y') }} - {{ cohorte.endDate|date('d-m-Y') }}</time>
-										</a>
-									</li>
-									<li class="d-flex align-items-center">
-										<i class="bi bi-wallet-fill"></i>
-										<a href="#" class="text-bold">{{ cohorte.amount }} Ar</a>
-									</li>
+									<li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="#">DTC.MG</a></li>
+									<li class="d-flex align-items-center"><i class="bi bi-wallet2"></i> <a href="#">{{ cohorte.amount|number_format(0, 2, ' ', '.') }} Ar</a></li>
+									<li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="#"><time datetime="2020-01-01">{{ cohorte.startDate|date('d-m-Y') }}</time></a></li>
+									<li class="d-flex align-items-center"><i class="bi bi-clock-history"></i> <a href="#"><time datetime="2020-01-01">{{ cohorte.endDate|date('d-m-Y') }}</time></a></li>
 								</ul>
-							</div>
-							<div class="entry-content">
+							</div><!-- End meta top -->
+
+							<div class="content">
 								<p>
 									{{ cohorte.description }}
 								</p>
-								{% if userIsRegistered %}
-									<div class="alert alert-warning" role="alert">
-										Vous êtes déjà inscrit sur ce formation ! <a href="{{ path('dtc_home_page') }}">Retour à la page d'accueil</a>
-									</div>
-								{% else %}
-									<div class="read-more">
-										<a href="{{ path('register_confirmation', {'id' : cohorte.id}) }}"> Je confirme mon inscription </a>
-									</div>
-								{% endif %}
+							</div><!-- End post content -->
+
+							{% if userIsRegistered %}
+								<div class="alert alert-warning" role="alert">
+									Vous êtes déjà inscrit sur ce formation !
+									<a href="{{ path('dtc_home_page') }}">Retour à la page d'accueil</a>
+								</div>
+							{% else %}
+								<div class="read-more text-end">
+									<a class="btn btn-primary register-btn" href="{{ path('register_confirmation', {'id' : cohorte.id}) }}">
+										Je confirme mon inscription <i class="bi bi-check"></i>
+									</a>
+								</div>
+							{% endif %}
+						</article>
+					</div>
+				</section><!-- /Blog Details Section -->
+			</div>
+
+			<div class="col-lg-4 sidebar">
+
+				<div class="widgets-container">
+					<!-- Recent Posts Widget -->
+					<div class="recent-posts-widget widget-item">
+
+						<h3 class="widget-title">Recent Posts</h3>
+						{% for formation in formations %}
+							<div class="post-item">
+								<img src="{{ asset('img/Logo/DTC-Logo.png') }}" style="max-width:100px" alt="" class="flex-shrink-0">
+								<div>
+									<h4><a href="{{ path('register_cohorte', {id: formation.id}) }}">{{ formation.name }}</a></h4>
+									<time datetime="2020-01-01">{{ formation.startDate|date('d/m/Y') }} - {{ formation.endDate|date('d/m/Y') }}</time>
+								</div>
 							</div>
-						</article><!-- End blog entry -->
-					</div><!-- End blog entries list -->
-					<div class="col-lg-4">
-						<div class="sidebar">
-							<h3 class="sidebar-title">Nos formations</h3>
-							<div class="sidebar-item recent-posts">
-								{% for formation in formations %}
-									<div class="post-item clearfix">
-										<img src="{{ asset('img/Logo/DTC-Logo.png') }}" alt="">
-										<h4><a href="#">{{ formation.name }}</a></h4>
-										<time datetime="2020-01-01">{{ formation.startDate|date('d/m/Y') }} - {{ formation.endDate|date('d/m/Y') }}</time>
-									</div>
-								{% endfor %}
-							</div>
-						</div><!-- End sidebar -->
-					</div><!-- End blog sidebar -->
+						{% endfor %}
+					</div><!--/Recent Posts Widget -->
 				</div>
 			</div>
-		</section><!-- End Blog Section -->
-	</main><!-- End #main -->
+		</div>
+	</div>
 {% endblock %}
