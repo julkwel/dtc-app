@@ -23,6 +23,7 @@
                                     <th>Date fin</th>
                                     <th>Frais</th>
                                     <th>Ouverte</th>
+                                    <th>Nb inscrits</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -38,6 +39,9 @@
                                         <a href="{{ path('admin_formation_edit_status', {'id': formation.id}) }}">
                                             <span class="badge badge-{{ formation.isRegisterOpen ? 'success' : 'warning' }}">{{ formation.isRegisterOpen ? 'OUI' : 'NON' }}</span>
                                         </a>
+                                    </td>
+                                    <td>
+                                        {{ formation.studentFormations|length }}
                                     </td>
                                     <td>
                                         <a class="btn btn-sm btn-success" href="{{ path('admin_formation_edit', {'id': formation.id}) }}">

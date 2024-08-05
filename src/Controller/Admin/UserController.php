@@ -12,6 +12,7 @@ use App\Entity\User;
 use App\Form\UserType;
 use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -38,7 +39,7 @@ class UserController extends AbstractController
     }
 
     #[Route('/change-status/{id}', name: 'status')]
-    public function changeUserStatus(User $user)
+    public function changeUserStatus(User $user): RedirectResponse
     {
         $this->userService->changeStatus($user);
         $this->addFlash('success', 'Action effectuée avec success !');
