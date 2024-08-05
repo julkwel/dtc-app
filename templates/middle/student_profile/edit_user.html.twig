@@ -3,74 +3,67 @@
 {% block title %}DTC | Mon profil{% endblock %}
 
 {% block body %}
-	<section id="team" class="team section">
-		<div class="container py-5" data-item="fade-up">
-			<div class="row">
-				<div class="col-md-12 col-lg-3">
-					<div class="team-member p-3">
-						<div class="profile-image">
-							{% if app.user.image  is not empty %}
-								<img src="{{ asset('img/pictures/'~app.user.image) }}" class="img-fluid my-img-profile-circle" alt="">
-							{% else %}
-								<img src="{{ asset('img/Logo/DTC-Logo.png') }}" class="img-fluid my-img-profile-circle" alt="">
-							{% endif %}
-							<div class="social">
-								<a href=""><i class="bi bi-twitter-x"></i></a> <a href=""><i class="bi bi-facebook"></i></a>
-								<a href=""><i class="bi bi-instagram"></i></a> <a href=""><i class="bi bi-linkedin"></i></a>
-							</div>
+	<section id="team" class="blog-details section">
+		<div class="container-lg m-auto">
+			<div class="m-auto text-center">
+				<div class="team-member p-3">
+					<div class="profile-image">
+						{% if app.user.image  is not empty %}
+							<img src="{{ asset('img/pictures/'~app.user.image) }}" class="img-fluid my-img-profile-circle" alt="">
+						{% else %}
+							<img src="{{ asset('img/Logo/DTC-Logo.png') }}" class="img-fluid my-img-profile-circle" alt="">
+						{% endif %}
+					</div>
+					<div class="my-info ">
+						<h4>{{ app.user.firstname }} <span class="badge badge-warning" style="font-size:12px;color:#e67c23">(Etudiant)</span></h4>
+						<p style="text-align: left;">
+							Emain : {{ app.user.username }} <br> Nom : {{ app.user.firstname }}
+							<br> Prénom : {{ app.user.lastname }}
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-12">
+				{{ form_start(form) }}
+				<div class="d-flex">
+					<div class="col px-3">
+						<h3>Informations</h3>
+						<div class="">
+							{{ form_row(form.firstname) }}
+							{{ form_row(form.lastname) }}
+							{{ form_row(form.username) }}
+							{{ form_row(form.password) }}
+							{{ form_row(form.image) }}
 						</div>
-						<div class="my-info ">
-							<h4>{{ app.user.firstname }}</h4>
-							<span style="font-size:12px;color:#e67c23">(Etudiant)</span>
-							<p style="text-align: left; padding: 10px">
-								Emain : {{ app.user.username }} <br> Nom : {{ app.user.firstname }}
-								<br> Prénom : {{ app.user.lastname }}
-							</p>
+						<div class="py-3"></div>
+					</div>
+					<div class="col px-3">
+						<h3>Contact</h3>
+						<div class="contact-form">
+							<div class="form-group">
+								{{ form_label(form.contact.phone) }}
+								{{ form_widget(form.contact.phone) }}
+							</div>
+							<div class="form-group">
+								{{ form_label(form.contact.facebook) }}
+								{{ form_widget(form.contact.facebook) }}
+							</div>
+							<div class="form-group">
+								{{ form_label(form.contact.linkedin) }}
+								{{ form_widget(form.contact.linkedin) }}
+							</div>
+							<div class="form-group">
+								{{ form_label(form.contact.github) }}
+								{{ form_widget(form.contact.github) }}
+							</div>
 						</div>
 					</div>
 				</div>
-				<div class="col-lg-8 col-md-12">
-					{{ form_start(form) }}
-					<div class="d-flex">
-						<div class="col px-3">
-							<h3>Informations</h3>
-							<div class="">
-								{{ form_row(form.firstname) }}
-								{{ form_row(form.lastname) }}
-								{{ form_row(form.username) }}
-								{{ form_row(form.password) }}
-								{{ form_row(form.image) }}
-							</div>
-							<div class="py-3"></div>
-						</div>
-						<div class="col px-3">
-							<h3>Contact</h3>
-							<div class="contact-form">
-								<div class="form-group">
-									{{ form_label(form.contact.phone) }}
-									{{ form_widget(form.contact.phone) }}
-								</div>
-								<div class="form-group">
-									{{ form_label(form.contact.facebook) }}
-									{{ form_widget(form.contact.facebook) }}
-								</div>
-								<div class="form-group">
-									{{ form_label(form.contact.linkedin) }}
-									{{ form_widget(form.contact.linkedin) }}
-								</div>
-								<div class="form-group">
-									{{ form_label(form.contact.github) }}
-									{{ form_widget(form.contact.github) }}
-								</div>
-							</div>
-						</div>
-					</div>
-					{{ form_row(form._token) }}
-					<div class="form-group">
-						<button type="submit" class="btn btn-sm btn-primary save-profil text-center m-auto mt-2 form-control" style="min-width: 150px;">Enregistrer</button>
-					</div>
-					{{ form_end(form, {'render_rest': false}) }}
+				{{ form_row(form._token) }}
+				<div class="form-group">
+					<button type="submit" class="btn btn-sm btn-primary save-profil text-center m-auto mt-2 form-control" style="min-width: 150px;">Enregistrer</button>
 				</div>
+				{{ form_end(form, {'render_rest': false}) }}
 			</div>
 		</div>
 	</section>
