@@ -15,16 +15,24 @@
             <ul class="nav d-flex justify-content-between px-3 py-3 ">
               <li class="nav-item"><img src="../image/logo3.svg" id="logo"></li>
               <li class="nav-item d-flex justify-content-center align-items-center right-nav gap-2">
-                <img src="../image/flag-fr.png" alt="" id="flag-fr">
+                <button type="button" class="btn  dropdown-toggle" data-bs-toggle="dropdown">
+                  <img src="../image/flag-fr.png" alt="" class="flag-fr">
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Link 1</a></li>
+                  <li><a class="dropdown-item" href="#">Link 2</a></li>
+                  <li><a class="dropdown-item" href="#">Link 3</a></li>
+                </ul>
+                
                 <p class="pt-3 contact">Contactez-nous</p>
                 <button class="btn bout">S'inscrire</button>
               </li>
             </ul>
           </nav>
 
-          <header class="fluid-container d-flex justify-content-around ">
+          <header class="fluid-container d-flex justify-content-between px-5 ">
             <div class="fluid-container">
-                <div class="header-title px-5 text-start">
+                <div class="header-title text-start">
                   
                     <h1 class="title1">Level-<span>up</span><img src="../image/triangleland.svg" id="triland" alt=""><br>your skills</h1>
                     <p class="ste">“Si vous voulez maîtriser une compétence qui sera toujours demandée, apprenez à coder.” - Steve Jobs</p>
@@ -38,7 +46,7 @@
 
             <jumbotron class="row d-flex justify-content-center  jum">
               <h1 class="entête pt-5">Nos modules de cours </h1>
-              <p class="texte">Inscrivez-vous à nos formations et transformez votre carrière avec les compétences de demain.</p>
+              <p class="texte">Inscrivez-vous à nos formations et<br> transformez votre carrière avec les compétences de demain.</p>
               <div class="container">
                 <div class="row cont gap-5">
                   <div class="row mat">
@@ -136,14 +144,14 @@
             <module class="container">
               <div class=" Professeurs">
               <h1 class="entête"> Professeurs expérimentés </h1>
-              <p> Nos formateurs bénéficient d'une expérience éprouvée 
+              <p> Nos formateurs bénéficient d'une expérience éprouvée<br> 
                 et approfondie dans leur domaine.</p>
 
               <div class="container ">
                 <div class="row profil">
                   <div class="col-sm-4">
                     <div class="card prf">
-                      <img src="../image/Ellipse 1.svg" class="rounded prof" alt="...">
+                      <img src="../image/Ellipse 1.svg" class="rounded mx-3 prof" alt="...">
                       <div class="card-text p-3">
                         <h5 class="d-flex justify-content-start name">Mr Julien</h5>
                         <p class="card-text text-start text-pro">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
@@ -153,7 +161,7 @@
 
                   <div class="col-sm-4">
                     <div class="card prf">
-                      <img src="../image/Ellipse 12.svg" class="rounded prof" alt="...">
+                      <img src="../image/Ellipse 12.svg" class="rounded  mx-3 prof" alt="...">
                       <div class="card-text p-3">
                         <h5 class="d-flex justify-content-start name">Wade Warren</h5>
                         <p class="card-text text-start text-pro">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
@@ -162,7 +170,7 @@
                   </div>
                   <div class="col-sm-4">
                     <div class="card prf" >
-                      <img src="../image/Ellipse 13.svg" class="rounded prof" alt="...">
+                      <img src="../image/Ellipse 13.svg" class="rounded  mx-3 prof" alt="...">
                       <div class="card-text p-3">
                         <h5 class="d-flex justify-content-start name">Annette Black</h5>
                         <p class="card-text text-start text-pro">Some quick example text to build on the card title and make up the bulk of the card's content.</p>

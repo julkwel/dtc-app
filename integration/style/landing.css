@@ -56,7 +56,7 @@ nav{
     width: 100%;
 }
 
-#flag-fr{
+.flag-fr{
     width: 30px;
     height: 20px;
 }
@@ -79,7 +79,7 @@ nav{
 .module{
     width: 80%;
     border-radius: 12px;
-    box-shadow:  0.5px 1px 5px black;
+    box-shadow:  1px 1px 10px rgb(206, 205, 205);
 }
 .header-img{
     width: 450px;
@@ -275,8 +275,8 @@ nav{
     .fot{
         gap: 10px;
     }
-    #flag-fr{
-        width: 0px;
+    .flag-fr{
+        width: 25px;
     }
     .contact{
         width: 0px;
@@ -287,7 +287,7 @@ nav{
         width: 140px;
     }
     .bout{
-        width: 100px;
+        width: 90px;
         height:30px;
         font-size: 16px;
         line-height: 0px;
