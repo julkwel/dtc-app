@@ -39,14 +39,13 @@ class RegistrationFormType extends AbstractType
             )
             ->add(
                 'phone',
-                TextType::class, [
+                TextType::class,
                 [
                     'label' => 'Téléphone',
                     'attr' => [
                         'class' => $inputStyle
                     ]
-                ]
-            ])
+                ])
             ->add(
                 'username',
                 EmailType::class,
@@ -65,7 +64,7 @@ class RegistrationFormType extends AbstractType
                     'options' => [
                         'attr' => [
                             'autocomplete' => 'new-password',
-                            'class' => $inputStyle.' password-input',
+                            'class' => $inputStyle . ' password-input',
                         ],
                     ],
                     'first_options' => [
@@ -74,7 +73,7 @@ class RegistrationFormType extends AbstractType
                     'second_options' => [
                         'label' => 'Entrer à nouveau votre mots de passe',
                         'attr' => [
-                            'class' => $inputStyle.' password-input',
+                            'class' => $inputStyle . ' password-input',
                         ],
                     ],
                 ]
