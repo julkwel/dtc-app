@@ -38,6 +38,16 @@ class RegistrationFormType extends AbstractType
                 ]
             )
             ->add(
+                'phone',
+                TextType::class, [
+                [
+                    'label' => 'Téléphone',
+                    'att' => [
+                        'class' => $inputStyle
+                    ]
+                ]
+            ])
+            ->add(
                 'username',
                 EmailType::class,
                 [

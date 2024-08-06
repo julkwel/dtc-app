@@ -73,6 +73,9 @@ class User implements UserInterface, Serializable, EquatableInterface, PasswordA
     #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
     private ?Contact $contact = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private string $phone = '';
+
     public function __construct()
     {
         $this->roles = [self::ROLE_STUDENT];
@@ -365,6 +368,18 @@ class User implements UserInterface, Serializable, EquatableInterface, PasswordA
         }
 
         $this->contact = $contact;
+
+        return $this;
+    }
+
+    public function getPhone(): string
+    {
+        return $this->phone;
+    }
+
+    public function setPhone(string $phone): static
+    {
+        $this->phone = $phone;
 
         return $this;
     }
