@@ -15,8 +15,9 @@
 {{ include('dtc_home_page/_header.html.twig') }}
 <main class="main">
 	{% block body %}{% endblock %}
-	{% if is_granted('ROLE_STUDENT') %}
-		<a href="{{ path('dtc_logout') }}" id="logout-button" title="deconnexion" class="logout-button d-sm-none d-lg-flex align-items-center position-fixed justify-content-center">
+
+	{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+		<a href="{{ path('dtc_logout') }}" id="logout-button" title="deconnexion" class="logout-button d-md-none d-lg-flex align-items-center position-fixed justify-content-center">
 			<i class="bi bi-power"></i>
 		</a>
 	{% endif %}
