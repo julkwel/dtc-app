@@ -74,7 +74,7 @@ class User implements UserInterface, Serializable, EquatableInterface, PasswordA
     private ?Contact $contact = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private string $phone = '';
+    private ?string $phone = null;
 
     public function __construct()
     {
