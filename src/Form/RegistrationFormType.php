@@ -42,7 +42,7 @@ class RegistrationFormType extends AbstractType
                 TextType::class, [
                 [
                     'label' => 'Téléphone',
-                    'att' => [
+                    'attr' => [
                         'class' => $inputStyle
                     ]
                 ]
