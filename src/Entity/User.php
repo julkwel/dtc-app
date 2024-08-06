@@ -9,13 +9,13 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\EquatableInterface;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[UniqueEntity(fields: ['username'], message: 'There is already an account with this username')]
-class User implements UserInterface, PasswordAuthenticatedUserInterface
+class User implements UserInterface, EquatableInterface, PasswordAuthenticatedUserInterface
 {
     use TimestampableEntity;
 
@@ -86,7 +86,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         return $this->id;
     }
-
 
     public function getRoles(): array
     {
@@ -227,16 +226,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function getUserIdentifier(): string
     {
         return $this->username;
-    }
-
-    public function serialize(): ?string
-    {
-        return serialize(array($this->id, $this->username, $this->password, $this->salt));
-    }
-
-    public function unserialize(?string $data)
-    {
-        list($this->id, $this->username, $this->password, $this->salt) = unserialize($data, array('allowed_classes' => false));
     }
 
     public function isEqualTo(UserInterface $user): bool
@@ -380,5 +369,23 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->phone = $phone;
 
         return $this;
+    }
+
+    public function __serialize(): array
+    {
+        return [
+            'id' => $this->id,
+            'username' => $this->username,
+            'password' => $this->password,
+            'salt' => $this->salt
+        ];
+    }
+
+    public function __unserialize(array $data): void
+    {
+        $this->id = $data['id'];
+        $this->username = $data['username'];
+        $this->password = $data['password'];
+        $this->salt = $data['salt'];
     }
 }
