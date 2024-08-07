@@ -52,8 +52,8 @@
 						<tbody>
 						{% for user in pagination %}
 							<tr>
-								<td>{{ user.firstname }}</td>
 								<td>{{ user.lastname }}</td>
+								<td>{{ user.firstname }}</td>
 								<td>
 									{% if user.contact %}
 										{{ user.contact.phone }} - C.
