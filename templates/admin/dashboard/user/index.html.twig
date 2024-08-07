@@ -55,8 +55,8 @@
 								<td>{{ user.firstname }}</td>
 								<td>{{ user.lastname }}</td>
 								<td>
-									{% if user.contact is not null %}
-										{{ user.contact.phone }}
+									{% if user.contact %}
+										{{ user.contact.phone }} - C.
 									{% else %}
 										{{ user.phone }}
 									{% endif %}
