@@ -359,7 +359,7 @@ class User implements UserInterface, EquatableInterface, PasswordAuthenticatedUs
         return $this;
     }
 
-    public function getPhone(): string
+    public function getPhone(): ?string
     {
         return $this->phone;
     }
