@@ -30,7 +30,7 @@ class DtcAuthenticator extends AbstractLoginFormAuthenticator
 
     public const LOGIN_ROUTE = 'dtc_login';
 
-    public function __construct(private readonly UrlGeneratorInterface $urlGenerator, private EntityManagerInterface $entityManager){}
+    public function __construct(private readonly UrlGeneratorInterface $urlGenerator, private readonly EntityManagerInterface $entityManager){}
 
     public function authenticate(Request $request): Passport
     {
