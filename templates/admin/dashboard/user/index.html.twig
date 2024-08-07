@@ -55,11 +55,7 @@
 								<td>{{ user.lastname }}</td>
 								<td>{{ user.firstname }}</td>
 								<td>
-									{% if user.contact %}
-										{{ user.contact.phone }} - C.
-									{% else %}
-										{{ user.phone }}
-									{% endif %}
+									{{ user.getPhone() }}
 								</td>
 								<td>{{ user.username }}</td>
 								<td>{{ user.createdAt | date('Y-m-d') }}</td>

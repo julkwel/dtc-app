@@ -19,6 +19,7 @@
 							<tr>
 								<th>Nom formation</th>
 								<th>Etudiant</th>
+								<th>Contact</th>
 								<th>Date d'inscription</th>
 								<th>Frais payé</th>
 							</tr>
@@ -28,6 +29,7 @@
 								<tr>
 									<td>{{ studentCohorte.formation.name }}</td>
 									<td>{{ studentCohorte.user.username }}</td>
+									<td>{{ studentCohorte.user.getPhone() }}</td>
 									<td>{{ studentCohorte.createdAt|date('d-m-Y') }}</td>
 									<td>{{ studentCohorte.isTotalPaid ? 'OUI' : 'NON' }}</td>
 								</tr>

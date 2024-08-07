@@ -361,6 +361,10 @@ class User implements UserInterface, EquatableInterface, PasswordAuthenticatedUs
 
     public function getPhone(): ?string
     {
+        if ($this->getContact() && $this->getContact()->getPhone()) {
+            return $this->getContact()->getPhone();
+        }
+
         return $this->phone;
     }
 
