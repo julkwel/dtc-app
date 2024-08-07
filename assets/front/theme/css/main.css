@@ -323,6 +323,8 @@ h6 {
     line-height: 0;
     margin-right: 10px;
     cursor: pointer;
+    position: absolute;
+    right: 15px;
     transition: color 0.3s;
   }
 
