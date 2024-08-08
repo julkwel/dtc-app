@@ -20,6 +20,7 @@
 								<th>Email</th>
 								<th>Sujet</th>
 								<th>Message</th>
+								<th>Action</th>
 							</tr>
 							</thead>
 							<tbody>
@@ -30,6 +31,13 @@
 									<td>{{ message.email }}</td>
 									<td>{{ message.subject }}</td>
 									<td>{{ message.message }}</td>
+									<td>
+										{% if message.view %}
+											Vu <i class="fa fa-check"></i> {{ message.viewDate|date('d-m-Y H:i:s') }}
+											{% else %}
+												<a href="{{ path('admin_site_contact_view', {id: message.id}) }}">Vu</a>
+										{% endif %}
+									</td>
 								</tr>
 							{% endfor %}
 							</tbody>

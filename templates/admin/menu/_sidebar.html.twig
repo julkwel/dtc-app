@@ -46,7 +46,9 @@
 
     <li class="nav-item active">
         <a class="nav-link" href="{{ path('admin_site_contact_list') }}">
-            <span>Message site</span></a>
+            <span>Message site</span>
+            <span class="text-danger">{{ getMessageNotSeenCount() }}</span>
+        </a>
     </li>
 </ul>
 <!-- End of Sidebar -->

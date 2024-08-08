@@ -51,7 +51,7 @@ class DtcHomePageController extends AbstractController
 
         $siteMessage = new SiteContact();
         $siteMessage->setMessage($message)->setFirstname($firstName)->setEmail($email)->setSubject($subject);
-        $this->entityManager->persist($message);
+        $this->entityManager->persist($siteMessage);
         $this->entityManager->flush();
         $this->addFlash('success', 'Nous avons bien reçu votre message !');
 

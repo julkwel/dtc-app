@@ -29,6 +29,9 @@ class Review
     #[ORM\Column(type: Types::TEXT)]
     private ?string $review = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?bool $isView = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -78,6 +81,18 @@ class Review
     public function setReview(string $review): static
     {
         $this->review = $review;
+
+        return $this;
+    }
+
+    public function isView(): ?bool
+    {
+        return $this->isView;
+    }
+
+    public function setView(?bool $isView): static
+    {
+        $this->isView = $isView;
 
         return $this;
     }

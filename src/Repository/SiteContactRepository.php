@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\SiteContact;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\DBAL\Exception;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -16,28 +17,14 @@ class SiteContactRepository extends ServiceEntityRepository
         parent::__construct($registry, SiteContact::class);
     }
 
-    //    /**
-    //     * @return SiteContact[] Returns an array of SiteContact objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('s')
-    //            ->andWhere('s.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('s.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
+    /**
+     * @throws Exception
+     */
+    public function findNotViewMessage(): int
+    {
+        $query = 'SELECT COUNT(*) FROM site_contact WHERE is_view IS NOT true';
+        $stmt = $this->getEntityManager()->getConnection()->prepare($query);
 
-    //    public function findOneBySomeField($value): ?SiteContact
-    //    {
-    //        return $this->createQueryBuilder('s')
-    //            ->andWhere('s.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
+        return $stmt->executeQuery()->rowCount();
+    }
 }
