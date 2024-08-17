@@ -80,7 +80,7 @@
 							<span class="featured">En cours</span>
 							<h3 style="color: #0dcaf0;">{{ userFormation.formation.name }}</h3>
 							<div class="price">
-								<sup>Ar</sup>{{ userFormation.formation.amount|number_format(0, 2, '.', ' ') }}</span>
+								<sup>Ar</sup>{{ userFormation.formation.amount|number_format(0, 2, '.', ' ') }}
 							</div>
 							<ul style="text-align: left">
 								<li>Date début : {{ userFormation.formation.startDate|date('d-m-Y') }}</li>
@@ -92,9 +92,12 @@
 									<li>Profs : {{ userFormation.formation.trainer.username }}</li>
 								{% endif %}
 							</ul>
-							{% if not userFormation.isTotalPaid %}
-								<a href="{{ path('transaction_generate', {'formation': userFormation.id}) }}" class="btn-buy">Regler mes frais</a>
-							{% endif %}
+							<div class="row">
+								{% if not userFormation.isTotalPaid %}
+									<a href="{{ path('transaction_generate', {'formation': userFormation.id}) }}" class="btn-buy">Regler mes frais</a>
+								{% endif %}
+								<a href="{{ path('dtc_student_cancel_subscription', {'id': userFormation.id}) }}" class="btn-cancel mt-1">Annuler mon inscription</a>
+							</div>
 						</div>
 					</div><!-- End Pricing Item -->
 				{% endfor %}

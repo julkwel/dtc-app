@@ -146,11 +146,20 @@ class UserService
     public function addContact(Contact $contact, ?User $getUser): bool
     {
         $contact->setUser($getUser);
-        $getUser->addContact($contact);
 
         $this->entityManager->persist($contact);
         $this->entityManager->flush();
 
         return true;
+    }
+
+    public function cancelSubscription(StudentFormation $studentFormation, User $user): void
+    {
+        $formation = $studentFormation->getFormation();
+        $user->removeStudentFormation($studentFormation);
+        $formation->removeStudentFormation($studentFormation);
+
+        $this->entityManager->remove($studentFormation);
+        $this->entityManager->flush();
     }
 }

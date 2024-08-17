@@ -3,13 +3,16 @@
 namespace App\Controller\Middle;
 
 use App\Domain\User\UserService;
+use App\Entity\Cohorte;
 use App\Entity\Contact;
+use App\Entity\StudentFormation;
 use App\Entity\User;
 use App\Form\ContactFormType;
 use App\Form\UserType;
 use App\Repository\TransactionRepository;
 use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -39,6 +42,16 @@ class StudentProfileController extends AbstractController
         $student = $this->getUser();
 
         return $this->render('middle/student_profile/formations.html.twig', ['formations' => $this->userService->fetchUserFormation($student)]);
+    }
+
+    #[Route('/subscription-cancel/{id}', name: 'cancel_subscription')]
+    public function cancelSubscription(StudentFormation $studentFormation): RedirectResponse
+    {
+        /** @var User $user */
+        $user = $this->getUser();
+        $this->userService->cancelSubscription($studentFormation, $user);
+
+        return $this->redirectToRoute('dtc_student_edit');
     }
 
     /**

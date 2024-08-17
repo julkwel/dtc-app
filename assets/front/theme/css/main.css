@@ -1376,6 +1376,25 @@ section,
   color: var(--contrast-color);
 }
 
+.pricing .btn-cancel {
+  display: inline-block;
+  padding: 8px 40px 10px 40px;
+  border-radius: 50px;
+  color: var(--second-color);
+  transition: none;
+  font-size: 16px;
+  font-weight: 400;
+  font-family: var(--heading-font);
+  font-weight: 600;
+  transition: 0.3s;
+  border: 1px solid var(--second-color);
+}
+
+.pricing .btn-cancel:hover {
+  background: var(--second-color);
+  color: var(--contrast-color);
+}
+
 .pricing .featured {
   width: 200px;
   position: absolute;
