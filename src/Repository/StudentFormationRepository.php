@@ -45,4 +45,12 @@ class StudentFormationRepository extends ServiceEntityRepository
     {
         return $this->findBy(['user' => $user, 'isTotalPaid' => false]);
     }
+
+    public function switchUserStatus(StudentFormation $studentFormation)
+    {
+        $studentFormation->setConfirmed(!$studentFormation->isConfirmed());
+        $this->getEntityManager()->flush();
+
+        return true;
+    }
 }

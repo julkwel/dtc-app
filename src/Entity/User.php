@@ -74,12 +74,19 @@ class User implements UserInterface, EquatableInterface, PasswordAuthenticatedUs
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $phone = null;
 
+    /**
+     * @var Collection<int, Certificat>
+     */
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Certificat::class, orphanRemoval: true)]
+    private Collection $certificats;
+
     public function __construct()
     {
         $this->roles = [self::ROLE_STUDENT];
         $this->isEnabled = true;
         $this->studentFormations = new ArrayCollection();
         $this->reviews = new ArrayCollection();
+        $this->certificats = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -391,5 +398,35 @@ class User implements UserInterface, EquatableInterface, PasswordAuthenticatedUs
         $this->username = $data['username'];
         $this->password = $data['password'];
         $this->salt = $data['salt'];
+    }
+
+    /**
+     * @return Collection<int, Certificat>
+     */
+    public function getCertificats(): Collection
+    {
+        return $this->certificats;
+    }
+
+    public function addCertificat(Certificat $certificat): static
+    {
+        if (!$this->certificats->contains($certificat)) {
+            $this->certificats->add($certificat);
+            $certificat->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCertificat(Certificat $certificat): static
+    {
+        if ($this->certificats->removeElement($certificat)) {
+            // set the owning side to null (unless already changed)
+            if ($certificat->getUser() === $this) {
+                $certificat->setUser(null);
+            }
+        }
+
+        return $this;
     }
 }

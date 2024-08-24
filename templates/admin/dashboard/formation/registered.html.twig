@@ -32,7 +32,9 @@
 									<td>{{ studentCohorte.user.username }}</td>
 									<td>{{ studentCohorte.user.getPhone() }}</td>
 									<td>{{ studentCohorte.createdAt|date('d-m-Y') }}</td>
-									<td>{{ studentCohorte.isConfirmed ? 'OUI' : 'NON' }}</td>
+									<td>
+										<a class="badge badge-{{ studentCohorte.confirmed ? 'success' : 'warning'  }}" href="{{ path('admin_formation_switch_student_formation', {'id': studentCohorte.id}) }}">{{ studentCohorte.confirmed ? 'OUI' : 'NON' }}</a>
+									</td>
 									<td>{{ studentCohorte.isTotalPaid ? 'OUI' : 'NON' }}</td>
 								</tr>
 							{% endfor %}

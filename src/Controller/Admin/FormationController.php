@@ -9,11 +9,13 @@ namespace App\Controller\Admin;
 
 use App\Domain\Cohorte\CohorteService;
 use App\Entity\Cohorte;
+use App\Entity\StudentFormation;
 use App\Form\AddFormationFormType;
 use App\Repository\CohorteRepository;
 use App\Repository\StudentFormationRepository;
 use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -21,7 +23,7 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route(path: '/admin/formation', name: 'admin_formation_')]
 class FormationController extends AbstractController
 {
-    public function __construct(private readonly CohorteRepository $cohorteRepository, private StudentFormationRepository $studentFormationRepository)
+    public function __construct(private readonly CohorteRepository $cohorteRepository, private readonly StudentFormationRepository $studentFormationRepository)
     {
     }
 
@@ -96,5 +98,13 @@ class FormationController extends AbstractController
                 'formation' => $cohorte,
             ]
         );
+    }
+
+    #[Route('/switch_student_status/{id}', name: 'switch_student_formation')]
+    public function switchUserIsConfirmed(StudentFormation $studentFormation): RedirectResponse
+    {
+        $this->studentFormationRepository->switchUserStatus($studentFormation);
+
+        return $this->redirectToRoute('admin_formation_show_registered', ['id' => $studentFormation->getFormation()->getId()]);
     }
 }

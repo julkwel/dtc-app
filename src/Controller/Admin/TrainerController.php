@@ -51,7 +51,7 @@ class TrainerController extends AbstractController
     }
 
     #[Route('/change/statut/{id}', name: 'change_statut')]
-    public function changeState(TrainerFormation $trainerFormation)
+    public function changeState(TrainerFormation $trainerFormation): RedirectResponse
     {
         $trainerFormation->setEnabled(!$trainerFormation->isEnabled());
         $this->entityManager->flush();

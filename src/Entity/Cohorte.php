@@ -58,11 +58,18 @@ class Cohorte
     #[ORM\ManyToOne(inversedBy: 'cohortes')]
     private ?TrainerFormation $trainer = null;
 
+    /**
+     * @var Collection<int, Certificat>
+     */
+    #[ORM\OneToMany(mappedBy: 'formation', targetEntity: Certificat::class)]
+    private Collection $certificats;
+
     public function __construct()
     {
         $this->isRegisterOpen = false;
         $this->isEnded = false;
         $this->studentFormations = new ArrayCollection();
+        $this->certificats = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -228,6 +235,36 @@ class Cohorte
     public function setTrainer(?TrainerFormation $trainer): static
     {
         $this->trainer = $trainer;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Certificat>
+     */
+    public function getCertificats(): Collection
+    {
+        return $this->certificats;
+    }
+
+    public function addCertificat(Certificat $certificat): static
+    {
+        if (!$this->certificats->contains($certificat)) {
+            $this->certificats->add($certificat);
+            $certificat->setFormation($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCertificat(Certificat $certificat): static
+    {
+        if ($this->certificats->removeElement($certificat)) {
+            // set the owning side to null (unless already changed)
+            if ($certificat->getFormation() === $this) {
+                $certificat->setFormation(null);
+            }
+        }
 
         return $this;
     }
