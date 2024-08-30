@@ -87,7 +87,7 @@
 								<li>Date fin : {{ userFormation.formation.endDate|date('d-m-Y') }}</li>
 								{% if userFormation.formation.startHour is not null %}
 									<li>Heure début : {{ userFormation.formation.startHour }}</li>
-									<li>Heure début : {{ userFormation.formation.endHour }}</li>
+									<li>Heure fin : {{ userFormation.formation.endHour }}</li>
 								{% endif %}
 								{% if userFormation.formation.location is not null %}
 									<li>Lieu : {{ userFormation.formation.location }}</li>
