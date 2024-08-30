@@ -40,6 +40,7 @@ class UserRepository extends ServiceEntityRepository
             $qb->andWhere('u.roles LIKE :role')
                 ->setParameter('role', "%$role%");
         }
+
         return $qb->getQuery();
     }
 

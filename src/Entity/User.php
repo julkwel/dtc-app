@@ -302,6 +302,17 @@ class User implements UserInterface, EquatableInterface, PasswordAuthenticatedUs
         return $this;
     }
 
+    public function getStudentFormationsAsString()
+    {
+        $studentFormationStr = [];
+        /** @var StudentFormation $studentFormation */
+        foreach ($this->studentFormations as $studentFormation) {
+            $studentFormationStr[] = $studentFormation->getFormation()->getName();
+        }
+
+        return implode(',', $studentFormationStr);
+    }
+
     public function getCover(): ?string
     {
         return $this->cover;
