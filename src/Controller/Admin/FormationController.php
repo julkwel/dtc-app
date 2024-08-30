@@ -38,6 +38,9 @@ class FormationController extends AbstractController
         );
     }
 
+    /**
+     * @throws \Exception
+     */
     #[Route(path: '/add', name: 'add')]
     public function addFormation(Request $request, CohorteService $cohorteService): Response
     {
@@ -58,6 +61,9 @@ class FormationController extends AbstractController
         );
     }
 
+    /**
+     * @throws \Exception
+     */
     #[Route(path: '/edit/{id}', name: 'edit')]
     public function editFormation(Request $request, Cohorte $cohorte, CohorteService $cohorteService): Response
     {

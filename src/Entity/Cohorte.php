@@ -64,6 +64,15 @@ class Cohorte
     #[ORM\OneToMany(mappedBy: 'formation', targetEntity: Certificat::class)]
     private Collection $certificats;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $location = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $startHour = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $endHour = null;
+
     public function __construct()
     {
         $this->isRegisterOpen = false;
@@ -265,6 +274,42 @@ class Cohorte
                 $certificat->setFormation(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getLocation(): ?string
+    {
+        return $this->location;
+    }
+
+    public function setLocation(?string $location): static
+    {
+        $this->location = $location;
+
+        return $this;
+    }
+
+    public function getStartHour(): ?string
+    {
+        return $this->startHour;
+    }
+
+    public function setStartHour(?string $startHour): static
+    {
+        $this->startHour = $startHour;
+
+        return $this;
+    }
+
+    public function getEndHour(): ?string
+    {
+        return $this->endHour;
+    }
+
+    public function setEndHour(?string $endHour): static
+    {
+        $this->endHour = $endHour;
 
         return $this;
     }

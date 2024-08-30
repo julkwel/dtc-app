@@ -12,6 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\GreaterThanOrEqual;
+use function Sodium\add;
 
 class AddFormationFormType extends AbstractType
 {
@@ -51,6 +52,27 @@ class AddFormationFormType extends AbstractType
                 IntegerType::class,
                 [
                     'label' => 'Frais de formation',
+                    'attr' => ['class' => $inputStyle]
+                ]
+            )
+            ->add('location',
+                TextType::class,
+                [
+                    'label' => 'Lieu de formation',
+                    'attr' => ['class' => $inputStyle]
+                ]
+            )
+            ->add('startHour',
+                TextType::class,
+                [
+                    'label' => 'Heure début formation',
+                    'attr' => ['class' => $inputStyle]
+                ]
+            )
+            ->add('endHour',
+                TextType::class,
+                [
+                    'label' => 'Heure fin formation',
                     'attr' => ['class' => $inputStyle]
                 ]
             )

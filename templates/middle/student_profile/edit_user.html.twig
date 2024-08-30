@@ -85,7 +85,13 @@
 							<ul style="text-align: left">
 								<li>Date début : {{ userFormation.formation.startDate|date('d-m-Y') }}</li>
 								<li>Date fin : {{ userFormation.formation.endDate|date('d-m-Y') }}</li>
-								<li>Nombre étudiants : {{ userFormation.formation.studentFormations|length }}</li>
+								{% if userFormation.formation.startHour is not null %}
+									<li>Heure début : {{ userFormation.formation.startHour }}</li>
+									<li>Heure début : {{ userFormation.formation.endHour }}</li>
+								{% endif %}
+								{% if userFormation.formation.location is not null %}
+									<li>Lieu : {{ userFormation.formation.location }}</li>
+								{% endif %}
 								<li>Paiement : {{ userFormation.paidAmount|default(0) }} Ar</li>
 								<li>Reste à payer : {{ (userFormation.formation.amount - userFormation.paidAmount)|number_format(0, 2, '.', ' ')|default(0) }} Ar</li>
 								{% if userFormation.formation.trainer is not null %}
