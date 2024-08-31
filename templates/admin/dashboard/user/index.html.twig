@@ -48,6 +48,7 @@
                             <th {% if pagination.isSorted(['u.createdAt']) %} class="sorted"{% endif %}>
                                 {{ knp_pagination_sortable(pagination, 'Date de création', ['u.createdAt']) }}
                             </th>
+                            <th>Affectation</th>
                             <th>Formations</th>
                             <th>
                                 Action
@@ -66,7 +67,7 @@
                                 <td>{{ user.createdAt | date('Y-m-d') }}</td>
                                 <td>
                                     {% if user.isStudent() %}
-                                        <a href="{{ path('admin_formation_affect_student', {'cohorte': user.id}) }}">Affecter a une formation</a>
+                                        <a href="{{ path('admin_formation_affect_student', {'id': user.id}) }}">Affecter a une formation</a>
                                     {% endif %}
                                 </td>
                                 <td>
