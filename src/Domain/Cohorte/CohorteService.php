@@ -4,6 +4,8 @@ namespace App\Domain\Cohorte;
 
 use App\Domain\Files\FileUploadService;
 use App\Entity\Cohorte;
+use App\Entity\StudentFormation;
+use App\Entity\User;
 use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\FormInterface;
@@ -36,6 +38,17 @@ class CohorteService
     public function switchStatus(Cohorte $cohorte): void
     {
         $cohorte->setIsRegisterOpen(!$cohorte->isIsRegisterOpen());
+        $this->entityManager->flush();
+    }
+
+    public function affectStudent(User $user, Cohorte $cohorte): void
+    {
+        $stutendFormation = new StudentFormation();
+        $stutendFormation->setFormation($cohorte);
+        $stutendFormation->setUser($user);
+        $stutendFormation->setConfirmed(true);
+
+        $this->entityManager->persist($stutendFormation);
         $this->entityManager->flush();
     }
 }

@@ -10,6 +10,7 @@ namespace App\Controller\Admin;
 use App\Domain\Cohorte\CohorteService;
 use App\Entity\Cohorte;
 use App\Entity\StudentFormation;
+use App\Entity\User;
 use App\Form\AddFormationFormType;
 use App\Repository\CohorteRepository;
 use App\Repository\StudentFormationRepository;
@@ -112,5 +113,24 @@ class FormationController extends AbstractController
         $this->studentFormationRepository->switchUserStatus($studentFormation);
 
         return $this->redirectToRoute('admin_formation_show_registered', ['id' => $studentFormation->getFormation()->getId()]);
+    }
+
+    #[Route('/affect_student/{id}/{cohorte?}', name: 'affect_student')]
+    public function affectUserWithFormation(CohorteService $cohorteService, User $user, Cohorte $cohorte = null)
+    {
+        $formations = $this->cohorteRepository->getEnabledFormations();
+
+        if ($cohorte) {
+            $cohorteService->affectStudent($user, $cohorte);
+
+            return $this->redirectToRoute('admin_formation_list');
+        }
+
+        return $this->render('admin/dashboard/formation/affectation.html.twig',
+            [
+                'lists' => $formations,
+                'student' => $user,
+            ]
+        );
     }
 }

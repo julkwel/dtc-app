@@ -65,6 +65,11 @@
                                 <td>{{ user.username }}</td>
                                 <td>{{ user.createdAt | date('Y-m-d') }}</td>
                                 <td>
+                                    {% if user.isStudent() %}
+                                        <a href="{{ path('admin_formation_affect_student', {'cohorte': user.id}) }}">Affecter a une formation</a>
+                                    {% endif %}
+                                </td>
+                                <td>
                                     {% for formation in user.studentFormations %}
                                         <a class="badge badge-info badge-sm" href="{{ path('admin_formation_show_registered', {id: formation.formation.id}) }}">{{ formation.formation.name }}</a>
                                     {% else %}
@@ -87,8 +92,6 @@
                                             <span class="fa fa-edit"></span>
                                         </a>
                                     {% endif %}
-                                </td>
-                                <td>
                                 </td>
                             </tr>
                         {% else %}
