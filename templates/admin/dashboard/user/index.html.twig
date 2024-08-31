@@ -83,15 +83,18 @@
                                             <i class="fa fa-check"></i>
                                         </a>
                                     {% else %}
-                                        <a title="{{ user.isEnabled ? 'Désactivé' : 'Activé' }}"
-                                           href="{{ path('admin_user_status', {'id': user.id}) }}"
-                                           class="btn btn-sm btn-{{ user.isEnabled ? 'warning' : 'success' }}">
-                                            <i class="fa fa-{{ user.isEnabled ? 'times' : 'check' }}"></i>
-                                        </a>
-                                        <a href="{{ path('admin_user_edit', {'id': user.id}) }}"
-                                           class="btn btn-sm btn-success">
-                                            <span class="fa fa-edit"></span>
-                                        </a>
+                                        <div class="d-flex flex-column">
+                                            <a title="{{ user.isEnabled ? 'Désactivé' : 'Activé' }}"
+                                               href="{{ path('admin_user_status', {'id': user.id}) }}"
+                                               class="btn btn-sm btn-{{ user.isEnabled ? 'warning' : 'success' }}">
+                                                <i class="fa fa-{{ user.isEnabled ? 'times' : 'check' }}"></i>
+                                            </a>
+                                            <a href="{{ path('admin_user_edit', {'id': user.id}) }}"
+                                               class="btn btn-sm btn-success">
+                                                <span class="fa fa-edit"></span>
+                                            </a>
+                                            <a href="{{ path('admin_user_remove', {'id': user.id}) }}" class="badge badge-danger">Supprimer</a>
+                                        </div>
                                     {% endif %}
                                 </td>
                             </tr>

@@ -116,7 +116,7 @@ class FormationController extends AbstractController
     }
 
     #[Route('/affect_student/{id}/{cohorte?}', name: 'affect_student')]
-    public function affectUserWithFormation(CohorteService $cohorteService, User $user, Cohorte $cohorte = null)
+    public function affectUserWithFormation(CohorteService $cohorteService, User $user, Cohorte $cohorte = null): RedirectResponse|Response
     {
         $formations = $this->cohorteRepository->getEnabledFormations();
 

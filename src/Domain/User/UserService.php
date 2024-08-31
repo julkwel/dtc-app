@@ -162,4 +162,14 @@ class UserService
         $this->entityManager->remove($studentFormation);
         $this->entityManager->flush();
     }
+
+    public function removeUser(User $user): void
+    {
+        $studentFormations = $this->entityManager->getRepository(StudentFormation::class)->findBy(['user' => $user]);
+        foreach ($studentFormations as $studentFormation) {
+            $this->cancelSubscription($studentFormation, $user);
+        }
+        $this->entityManager->remove($user);
+        $this->entityManager->flush();
+    }
 }
