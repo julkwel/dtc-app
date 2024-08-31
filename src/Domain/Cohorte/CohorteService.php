@@ -51,4 +51,15 @@ class CohorteService
         $this->entityManager->persist($stutendFormation);
         $this->entityManager->flush();
     }
+
+    public function removeUserAffectation(StudentFormation $studentFormation): void
+    {
+        $formation = $studentFormation->getFormation();
+        $user = $studentFormation->getUser();
+        $formation->removeStudentFormation($studentFormation);
+        $user->removeStudentFormation($studentFormation);
+
+        $this->entityManager->remove($studentFormation);
+        $this->entityManager->flush();
+    }
 }

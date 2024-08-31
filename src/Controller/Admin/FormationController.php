@@ -133,4 +133,12 @@ class FormationController extends AbstractController
             ]
         );
     }
+
+    #[Route('/remove_affectation/{id}', name: 'remove_affectation')]
+    public function removeUserFromFormation(CohorteService $cohorteService, StudentFormation $studentFormation): RedirectResponse
+    {
+        $cohorteService->removeUserAffectation($studentFormation);
+
+        return $this->redirectToRoute('admin_formation_list');
+    }
 }

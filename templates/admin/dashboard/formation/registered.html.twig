@@ -23,6 +23,7 @@
 								<th>Date d'inscription</th>
 								<th>Confirmé</th>
 								<th>Frais payé</th>
+								<th>Action</th>
 							</tr>
 							</thead>
 							<tbody>
@@ -36,6 +37,9 @@
 										<a class="badge badge-{{ studentCohorte.confirmed ? 'success' : 'warning'  }}" href="{{ path('admin_formation_switch_student_formation', {'id': studentCohorte.id}) }}">{{ studentCohorte.confirmed ? 'OUI' : 'NON' }}</a>
 									</td>
 									<td>{{ studentCohorte.isTotalPaid ? 'OUI' : 'NON' }}</td>
+									<td>
+										<a class="badge badge-danger" href="{{ path('admin_formation_remove_affectation', {'id': studentCohorte.id}) }}">Supprimer</a>
+									</td>
 								</tr>
 							{% endfor %}
 							</tbody>
