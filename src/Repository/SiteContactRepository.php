@@ -22,9 +22,9 @@ class SiteContactRepository extends ServiceEntityRepository
      */
     public function findNotViewMessage(): int
     {
-        $query = 'SELECT COUNT(*) FROM site_contact WHERE is_view IS NOT true';
+        $query = 'SELECT * FROM site_contact WHERE is_view IS NOT true';
         $stmt = $this->getEntityManager()->getConnection()->prepare($query);
 
-        return $stmt->executeQuery()->rowCount();
+        return count($stmt->executeQuery()->fetchAllAssociative());
     }
 }
