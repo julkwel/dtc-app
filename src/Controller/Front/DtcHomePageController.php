@@ -23,7 +23,7 @@ class DtcHomePageController extends AbstractController
     #[Route('/', name: 'home_page')]
     public function index(): Response
     {
-        $openFormation = $this->entityManager->getRepository(Cohorte::class)->findBy(['isRegisterOpen' => true]);
+        $openFormation = $this->entityManager->getRepository(Cohorte::class)->findBy([]);
         $students = $this->entityManager->getRepository(StudentFormation::class)->findBy([]);
         $reviews = $this->entityManager->getRepository(Review::class)->findBy(['isEnabled' => true]);
 

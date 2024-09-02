@@ -1,11 +1,9 @@
 <section id="services" class="services section">
-
 	<!-- Section Title -->
 	<div class="container section-title" data-aos="fade-up">
 		<p>Nos catalogues de formation<br></p>
 		<span>( formation spécial samedi )</span>
 	</div><!-- End Section Title -->
-
 	<div class="container">
 		<div class="row gy-4">
 			{% for formation in formations %}
@@ -20,16 +18,32 @@
 							<h3>{{ formation.name }}</h3>
 							<div class="meta-top py-2">
 								<ul class="d-lg-flex justify-content-lg-between">
-									<li class="d-flex align-items-center"><i class="bi bi-wallet2"></i> <a href="#">{{ formation.amount|number_format(0, 2, ' ', '.') }} Ar</a></li>
-									<li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="#"><time datetime="2020-01-01">{{ formation.startDate|date('d-m-Y') }}</time></a></li>
-									<li class="d-flex align-items-center"><i class="bi bi-clock-history"></i> <a href="#"><time datetime="2020-01-01">{{ formation.endDate|date('d-m-Y') }}</time></a></li>
+									<li class="d-flex align-items-center"><i class="bi bi-wallet2"></i>
+										<a href="#">{{ formation.amount|number_format(0, 2, ' ', '.') }} Ar</a>
+									</li>
+									<li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="#">
+											<time datetime="2020-01-01">{{ formation.startDate|date('d-m-Y') }}</time>
+										</a>
+									</li>
+									<li class="d-flex align-items-center"><i class="bi bi-clock-history"></i>
+										<a href="#">
+											<time datetime="2020-01-01">{{ formation.endDate|date('d-m-Y') }}</time>
+										</a>
+									</li>
 								</ul>
 							</div><!-- End meta top -->
 							<p>{{ formation.description|slice(0, 90)~' ...' }}</p>
-							<a href="{{ path('register_cohorte', {id: formation.id}) }}" class="read-more stretched-link">
-								<span>Je m'inscris</span>
-								<i class="bi bi-arrow-right"></i>
-							</a>
+							{% if formation.isRegisterOpen %}
+								<a href="{{ path('register_cohorte', {id: formation.id}) }}" class="read-more stretched-link">
+									<span>Je m'inscris</span>
+									<i class="bi bi-arrow-right"></i>
+								</a>
+							{% else %}
+								<a href="#" class="read-more stretched-link">
+									<span>Formation en cours</span>
+									<i class="bi bi-arrow-right"></i>
+								</a>
+							{% endif %}
 						</div>
 					</div>
 				</div>
