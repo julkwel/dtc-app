@@ -47,6 +47,7 @@ class AdminTransactionController extends AbstractController
         return $this->render(
             'admin/transaction/index_unpaid.html.twig',
             [
+                'search' => $request->get('search'),
                 'pagination' => $pagination,
             ]
         );

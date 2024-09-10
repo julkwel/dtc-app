@@ -71,7 +71,7 @@ class TransactionServices
 
     public function getAllUpaidFormations(Request $request): PaginationInterface
     {
-        $query = $this->entityManager->getRepository(StudentFormation::class)->getAllUnpaidFormations();
+        $query = $this->entityManager->getRepository(StudentFormation::class)->getAllUnpaidFormations($request);
 
         return $this->paginator->paginate($query, $request->query->get('page') ?? 1, 10);
     }

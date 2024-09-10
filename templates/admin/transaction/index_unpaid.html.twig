@@ -10,15 +10,28 @@
 			<div class="card shadow mb-4">
 				<div class="card-header py-3">
 					<h6 class="m-0 font-weight-bold text-primary">Liste des transactions ({{ pagination.getTotalItemCount }})</h6>
+					<form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search p-3">
+						<div class="input-group">
+							<input type="text" class="form-control bg-light border-0 small" name="search"
+								   placeholder="Recherche" aria-label="Search" aria-describedby="basic-addon2"
+								   value="{{ search|default('') }}">
+							<div class="input-group-append">
+								<button class="btn btn-primary" type="submit">
+									<i class="fas fa-search fa-sm"></i>
+								</button>
+							</div>
+						</div>
+					</form>
 				</div>
 				<div class="card-body">
 					<table class="table table-bordered" width="100%" cellspacing="0">
 						<thead>
 							<tr>
 								<th{% if pagination.isSorted(['t.createdAt']) %} class="sorted"{% endif %}>
-									{{ knp_pagination_sortable(pagination, 'Date de transaction', ['t.createdAt']) }}
+									{{ knp_pagination_sortable(pagination, 'Date d\'inscription', ['t.createdAt']) }}
 								</th>
 								<th>Utilisateur</th>
+								<th>Téléphone</th>
 								<th>Formation</th>
 								<th>Reste à payer</th>
 								<th>Action</th>
@@ -29,6 +42,7 @@
 							<tr>
 								<td>{{ studentFormation.createdAt | date('Y-m-d H:i:s') }}</td>
 								<td>{{ studentFormation.user.username }}</td>
+								<td>{{ studentFormation.user.getPhone() }}</td>
 								<td>{{ studentFormation.formation.name }}</td>
 								<td>{{ studentFormation.getToBePaid() }}</td>
 								<td>

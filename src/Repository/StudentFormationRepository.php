@@ -9,6 +9,7 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 use Exception;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
@@ -47,10 +48,20 @@ class StudentFormationRepository extends ServiceEntityRepository
         return $this->findBy(['user' => $user, 'isTotalPaid' => false]);
     }
 
-    public function getAllUnpaidFormations(): QueryBuilder
+    public function getAllUnpaidFormations(Request $request): QueryBuilder
     {
+        $search = $request->get('search');
         $query = $this->createQueryBuilder('s');
-        $query->where('s.isTotalPaid NOT LIKE :notPaid');
+
+        if (!empty($search)) {
+            $query->innerJoin('s.user', 'u');
+            $query->orWhere('u.username LIKE :query');
+            $query->orWhere('u.firstname LIKE :query');
+            $query->orWhere('u.lastname LIKE :query');
+            $query->setParameter('query', "%$search%");
+        }
+
+        $query->andWhere('s.isTotalPaid NOT LIKE :notPaid');
         $query->setParameter('notPaid', true);
 
         return $query;
