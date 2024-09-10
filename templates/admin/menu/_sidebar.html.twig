@@ -45,6 +45,11 @@
     </li>
 
     <li class="nav-item active">
+        <a class="nav-link" href="{{ path('admin_transaction_unpaid') }}">
+            <span>Non payés</span></a>
+    </li>
+
+    <li class="nav-item active">
         <a class="nav-link" href="{{ path('admin_site_contact_list') }}">
             <span>Message site</span>
             <span class="text-danger">{{ getMessageNotSeenCount() }}</span>

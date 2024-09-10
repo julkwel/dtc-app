@@ -22,14 +22,15 @@ class TransactionServices
     {
     }
 
-    public function generateTransaction(Transaction $transaction, User $user): bool
+    public function generateTransaction(Transaction $transaction, StudentFormation $studentFormation): Transaction
     {
-        $transaction->setUser($user);
+        $transaction->setFormation($studentFormation);
+        $transaction->setUser($studentFormation->getUser());
 
         $this->entityManager->persist($transaction);
         $this->entityManager->flush();
 
-        return true;
+        return $transaction;
     }
 
     public function validateByAdmin(Transaction $transaction): bool
@@ -68,6 +69,13 @@ class TransactionServices
         return true;
     }
 
+    public function getAllUpaidFormations(Request $request): PaginationInterface
+    {
+        $query = $this->entityManager->getRepository(StudentFormation::class)->getAllUnpaidFormations();
+
+        return $this->paginator->paginate($query, $request->query->get('page') ?? 1, 10);
+    }
+
     public function getMyTransactions(User $user)
     {
         return $this->transactionRepository->findBy(['user' => $user]);
@@ -75,6 +83,6 @@ class TransactionServices
 
     public function getUnpaidFormations(User $user)
     {
-        return $this->entityManager->getRepository(StudentFormation::class)->getUnpaidFormation($user);
+        return $this->entityManager->getRepository(StudentFormation::class)->getUnpaidFormationByUser($user);
     }
 }

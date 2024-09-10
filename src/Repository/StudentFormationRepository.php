@@ -6,6 +6,7 @@ use App\Entity\Cohorte;
 use App\Entity\StudentFormation;
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 use Exception;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -41,12 +42,21 @@ class StudentFormationRepository extends ServiceEntityRepository
         return true;
     }
 
-    public function getUnpaidFormation(User $user): array
+    public function getUnpaidFormationByUser(User $user): array
     {
         return $this->findBy(['user' => $user, 'isTotalPaid' => false]);
     }
 
-    public function switchUserStatus(StudentFormation $studentFormation)
+    public function getAllUnpaidFormations(): QueryBuilder
+    {
+        $query = $this->createQueryBuilder('s');
+        $query->where('s.isTotalPaid NOT LIKE :notPaid');
+        $query->setParameter('notPaid', true);
+
+        return $query;
+    }
+
+    public function switchUserStatus(StudentFormation $studentFormation): bool
     {
         $studentFormation->setConfirmed(!$studentFormation->isConfirmed());
         $this->getEntityManager()->flush();

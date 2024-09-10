@@ -40,19 +40,16 @@ class TransactionController extends AbstractController
     public function manageTransaction(Request $request, StudentFormation $formation): RedirectResponse|Response
     {
         $transaction = new Transaction();
-        $transaction->setFormation($formation);
         $form = $this->createForm(TransactionType::class, $transaction);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            /** @var User $user */
-            $user = $this->getUser();
-            $this->transactionServices->generateTransaction($transaction, $user);
+            $transaction = $this->transactionServices->generateTransaction($transaction, $formation);
+
             return  $this->redirectToRoute('transaction_validate', ['transaction' => $transaction->getId()]);
         }
 
         return $this->render('middle/student_profile/transaction/_generate_transaction.html.twig', ['form' => $form->createView(), 'formation' => $formation]);
-
     }
 
 

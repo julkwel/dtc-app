@@ -82,6 +82,11 @@ class StudentFormation
         return $this;
     }
 
+    public function getToBePaid()
+    {
+        return (int) ($this->formation->getAmount() - $this->getPaidAmount());
+    }
+
     public function isIsTotalPaid(): ?bool
     {
         return $this->isTotalPaid;

@@ -20,32 +20,26 @@
 								</th>
 								<th>Utilisateur</th>
 								<th>Formation</th>
-								<th>Réference</th>
-								<th>Montant</th>
-								<th>Validation</th>
+								<th>Reste à payer</th>
+								<th>Action</th>
 							</tr>
 						</thead>
 						<tbody>
-						{% for transaction in pagination %}
+						{% for studentFormation in pagination %}
 							<tr>
-								<td>{{ transaction.createdAt | date('Y-m-d H:i:s') }}</td>
-								<td>{{ transaction.user.username }}</td>
-								<td>{{ transaction.formation.formation.name }}</td>
-								<td>{{ transaction.reference }}</td>
-								<td>{{ transaction.amount }}</td>
+								<td>{{ studentFormation.createdAt | date('Y-m-d H:i:s') }}</td>
+								<td>{{ studentFormation.user.username }}</td>
+								<td>{{ studentFormation.formation.name }}</td>
+								<td>{{ studentFormation.getToBePaid() }}</td>
 								<td>
-									{% if transaction.isValidByAdmin %}
-										Validé
-									{% else %}
-										<a href="{{ path('admin_transaction_validate', {'id': transaction.id}) }}" class="btn btn-sm btn-success">
-											<span class="fa fa-check"></span> Valider
-										</a>
-									{% endif %}
+									<a href="{{ path('admin_transaction_generate', {'id': studentFormation.id}) }}">
+										Generer un paiement
+									</a>
 								</td>
 							</tr>
 						{% else %}
 							<tr>
-								<td colspan="3" class="text-center">Aucun résultats</td>
+								<td colspan="5" class="text-center">Aucun résultats</td>
 							</tr>
 						{% endfor %}
 						</tbody>

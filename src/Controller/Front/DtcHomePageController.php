@@ -28,7 +28,6 @@ class DtcHomePageController extends AbstractController
         $reviews = $this->entityManager->getRepository(Review::class)->findBy(['isEnabled' => true]);
 
         return $this->render('dtc_home_page/index.html.twig', [
-            'controller_name' => '',
             'formations' => $openFormation,
             'students' => $students,
             'reviews' => $reviews,

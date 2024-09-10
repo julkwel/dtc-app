@@ -1,0 +1,30 @@
+{% extends 'admin/_entry_admin.html.twig' %}
+{% block content %}
+	<div class="container-fluid">
+		<div class="card shadow mb-4">
+			<div class="col-md-8 m-auto">
+				<h3>Paiement frais de formation pour : {{ formation.user.username }}</h3>
+				<ul>
+					<li>
+						Formations : {{ formation.formation.name }}
+					</li>
+					<li>
+						Frais Total : {{ formation.formation.amount }}
+					</li>
+					<li>
+						Frais payé : {{ formation.paidAmount }} Ar.
+					</li>
+					<li>
+						Reste à payer : {{ formation.formation.amount - formation.paidAmount }} Ar.
+					</li>
+				</ul>
+				{{ form_start(form) }}
+				{{ form_widget(form) }}
+				<div class="form-group">
+					<button type="submit" class="btn btn-sm save-profil btn-primary text-center m-auto mt-2 form-control">Enregistrer</button>
+				</div>
+				{{ form_end(form) }}
+			</div>
+		</div>
+	</div>
+{% endblock %}
