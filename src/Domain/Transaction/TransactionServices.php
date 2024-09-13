@@ -52,7 +52,7 @@ class TransactionServices
 
     public function getTransactionPagination(Request $request): PaginationInterface
     {
-        $query = $this->transactionRepository->getAllTransactions();
+        $query = $this->transactionRepository->getAllTransactions($request);
 
         return $this->paginator->paginate($query, $request->query->get('page') ?? 1, 10);
     }

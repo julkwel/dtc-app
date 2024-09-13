@@ -31,7 +31,10 @@ class AdminTransactionController extends AbstractController
     {
         $pagination = $this->transactionServices->getTransactionPagination($request);
 
-        return $this->render('admin/transaction/index.html.twig', ['pagination' => $pagination]);
+        return $this->render('admin/transaction/index.html.twig', [
+            'pagination' => $pagination,
+            'search' => $request->get('search'),
+        ]);
     }
 
     /**
@@ -65,7 +68,7 @@ class AdminTransactionController extends AbstractController
             $this->transactionServices->validateTransaction($transaction);
             $this->transactionServices->validateByAdmin($transaction);
 
-            return  $this->redirectToRoute('admin_transaction_list');
+            return $this->redirectToRoute('admin_transaction_list');
         }
 
         return $this->render('admin/transaction/generate_transaction.html.twig', ['form' => $form->createView(), 'formation' => $studentFormation]);

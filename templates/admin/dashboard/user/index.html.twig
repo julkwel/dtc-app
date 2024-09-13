@@ -21,29 +21,29 @@
                         </div>
                     </div>
                 </form>
+
+                <div class="form-group col-md-4 p-2 m-auto">
+                    <label for="role-filter">Filtrer par role</label>
+                    <select name="role" id="role-filter" class="form-control">
+                        <option data-url="{{ path('admin_user_list') }}" value="">tous</option>
+                        {% for role in constant("App\\Entity\\User::ROLES") %}
+                            <option data-url="{{ path('admin_user_list', {'role': role}) }}" {% if app.request.get('role') == role %} selected {% endif %}
+                                    value="{{ role }}">{{ role }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
                 <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold text-primary">Liste des utilisateurs
                         ({{ pagination.getTotalItemCount }})</h6>
                 </div>
                 <div class="card-body">
-                    <div class="form-group col-md-4 p-2 m-auto">
-                        <label for="role-filter">Filtrer par role</label>
-                        <select name="role" id="role-filter" class="form-control">
-                            <option data-url="{{ path('admin_user_list') }}" value="">tous</option>
-                            {% for role in constant("App\\Entity\\User::ROLES") %}
-                                <option data-url="{{ path('admin_user_list', {'role': role}) }}" {% if app.request.get('role') == role %} selected {% endif %}
-                                        value="{{ role }}">{{ role }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
                     <table class="table table-bordered" width="100%" cellspacing="0">
                         <thead>
                         <tr>
                             <th>Nom</th>
-                            <th>Prénom</th>
                             <th>Téléphone</th>
                             <th {% if pagination.isSorted('u.username') %} class="sorted"{% endif %}>
-                                {{ knp_pagination_sortable(pagination, "Nom d'utilisateur", 'u.username') }}
+                                {{ knp_pagination_sortable(pagination, "Mail", 'u.username') }}
                             </th>
                             <th {% if pagination.isSorted(['u.createdAt']) %} class="sorted"{% endif %}>
                                 {{ knp_pagination_sortable(pagination, 'Date de création', ['u.createdAt']) }}
@@ -58,8 +58,7 @@
                         <tbody>
                         {% for user in pagination %}
                             <tr>
-                                <td>{{ user.lastname }}</td>
-                                <td>{{ user.firstname }}</td>
+                                <td>{{ user.lastname ~ ' ' ~ user.firstname }}</td>
                                 <td>
                                     {{ user.getPhone() }}
                                 </td>

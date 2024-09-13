@@ -18,10 +18,20 @@ class TransactionRepository extends ServiceEntityRepository
         parent::__construct($registry, Transaction::class);
     }
 
-    public function getAllTransactions(): Query
+    public function getAllTransactions(Request $request): Query
     {
-        $qb = $this->createQueryBuilder('t');
+        $query = $this->createQueryBuilder('t');
 
-        return $qb->getQuery();
+        $search = $request->get('search');
+        if (!empty($search)) {
+            $query->innerJoin('t.user', 'u');
+            $query->orWhere('u.username LIKE :query');
+            $query->orWhere('u.firstname LIKE :query');
+            $query->orWhere('u.lastname LIKE :query');
+            $query->orWhere('t.reference LIKE :query');
+            $query->setParameter('query', "%$search%");
+        }
+
+        return $query->getQuery();
     }
 }

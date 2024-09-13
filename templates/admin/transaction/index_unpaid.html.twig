@@ -30,7 +30,8 @@
 								<th{% if pagination.isSorted(['t.createdAt']) %} class="sorted"{% endif %}>
 									{{ knp_pagination_sortable(pagination, 'Date d\'inscription', ['t.createdAt']) }}
 								</th>
-								<th>Utilisateur</th>
+								<th>Nom complet</th>
+								<th>Mail</th>
 								<th>Téléphone</th>
 								<th>Formation</th>
 								<th>Reste à payer</th>
@@ -41,13 +42,14 @@
 						{% for studentFormation in pagination %}
 							<tr>
 								<td>{{ studentFormation.createdAt | date('Y-m-d H:i:s') }}</td>
+								<td>{{ studentFormation.user.firstname ~ ' ' ~studentFormation.user.lastname }}</td>
 								<td>{{ studentFormation.user.username }}</td>
 								<td>{{ studentFormation.user.getPhone() }}</td>
 								<td>{{ studentFormation.formation.name }}</td>
 								<td>{{ studentFormation.getToBePaid() }}</td>
 								<td>
 									<a href="{{ path('admin_transaction_generate', {'id': studentFormation.id}) }}">
-										Generer un paiement
+										Créer un paiement
 									</a>
 								</td>
 							</tr>
