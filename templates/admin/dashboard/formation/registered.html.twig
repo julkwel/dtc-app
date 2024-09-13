@@ -17,8 +17,9 @@
 						<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 							<thead>
 							<tr>
-								<th>Nom formation</th>
-								<th>Etudiant</th>
+								<th>Formation</th>
+								<th>Nom</th>
+								<th>Mail</th>
 								<th>Contact</th>
 								<th>Date d'inscription</th>
 								<th>Confirmé</th>
@@ -30,6 +31,7 @@
 							{% for studentCohorte in lists %}
 								<tr>
 									<td>{{ studentCohorte.formation.name }}</td>
+									<td>{{ studentCohorte.user.firstname ~ ' ' ~ studentCohorte.user.lastname }}</td>
 									<td>{{ studentCohorte.user.username }}</td>
 									<td>{{ studentCohorte.user.getPhone() }}</td>
 									<td>{{ studentCohorte.createdAt|date('d-m-Y') }}</td>
