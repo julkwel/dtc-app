@@ -32,6 +32,11 @@ class TransactionRepository extends ServiceEntityRepository
             $query->setParameter('query', "%$search%");
         }
 
+        if (!is_null($request->get('isValid'))) {
+            $query->andWhere('t.isValidByAdmin LIKE :isvalid');
+            $query->setParameter('isvalid', $request->get('isValid') !== '0' );
+        }
+
         return $query->getQuery();
     }
 }
