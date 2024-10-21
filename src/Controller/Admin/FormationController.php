@@ -14,6 +14,7 @@ use App\Entity\User;
 use App\Form\AddFormationFormType;
 use App\Repository\CohorteRepository;
 use App\Repository\StudentFormationRepository;
+use Exception;
 use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -137,9 +138,15 @@ class FormationController extends AbstractController
     #[Route('/remove_affectation/{id}', name: 'remove_affectation')]
     public function removeUserFromFormation(CohorteService $cohorteService, StudentFormation $studentFormation): RedirectResponse
     {
-        $idFormation = $studentFormation->getFormation()->getId();
-        $cohorteService->removeUserAffectation($studentFormation);
+        try {
+            $idFormation = $studentFormation->getFormation()->getId();
+            $cohorteService->removeUserAffectation($studentFormation);
 
-        return $this->redirectToRoute('admin_formation_show_registered', ['id' => $idFormation]);
+            return $this->redirectToRoute('admin_formation_show_registered', ['id' => $idFormation]);
+        }catch (Exception $exception) {
+            $this->addFlash('error', 'Suppression impossible, l\'utilisateur a peut être effectuée une transaction, app error:'.$exception->getMessage());
+
+            return $this->redirectToRoute('admin_formation_show_registered', ['id' => $idFormation]);
+        }
     }
 }
