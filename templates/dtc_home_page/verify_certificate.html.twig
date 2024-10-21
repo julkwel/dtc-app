@@ -1,0 +1,10 @@
+{% extends 'base_front.html.twig' %}
+
+{% block title %}Certificate|DTC-MG{% endblock %}
+{% block body %}
+	{% if isValid %}
+		Validé
+	{% else %}
+		Non validé
+	{% endif %}
+{% endblock %}

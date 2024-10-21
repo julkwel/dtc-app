@@ -94,7 +94,7 @@ class FormationController extends AbstractController
     }
 
     #[Route(path: '/registered/{id}', name: 'show_registered')]
-    public function showRegistered(Cohorte $cohorte)
+    public function showRegistered(Cohorte $cohorte): Response
     {
         $registered = $this->studentFormationRepository->findBy(['formation' => $cohorte]);
 
@@ -137,8 +137,9 @@ class FormationController extends AbstractController
     #[Route('/remove_affectation/{id}', name: 'remove_affectation')]
     public function removeUserFromFormation(CohorteService $cohorteService, StudentFormation $studentFormation): RedirectResponse
     {
+        $idFormation = $studentFormation->getFormation()->getId();
         $cohorteService->removeUserAffectation($studentFormation);
 
-        return $this->redirectToRoute('admin_formation_list');
+        return $this->redirectToRoute('admin_formation_show_registered', ['id' => $idFormation]);
     }
 }

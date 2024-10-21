@@ -5,14 +5,17 @@ namespace App\Entity;
 use App\Repository\CertificatRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Types\UuidType;
+use Symfony\Component\Uid\Uuid;
 
 #[ORM\Entity(repositoryClass: CertificatRepository::class)]
 class Certificat
 {
     #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?int $id = null;
+    #[ORM\Column(type: UuidType::NAME, unique: true)]
+    #[ORM\GeneratedValue(strategy: 'CUSTOM')]
+    #[ORM\CustomIdGenerator(class: 'doctrine.uuid_generator')]
+    private ?Uuid $id = null;
 
     #[ORM\ManyToOne(inversedBy: 'certificats')]
     #[ORM\JoinColumn(nullable: false)]
@@ -33,7 +36,7 @@ class Certificat
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $sign = null;
 
-    public function getId(): ?int
+    public function getId(): Uuid
     {
         return $this->id;
     }

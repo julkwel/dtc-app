@@ -5,7 +5,6 @@
 		<div class="d-flex align-items-center justify-content-between">
 			<h2>Inscriptions formations {{ formation.name }}</h2>
 		</div>
-
 		<div class="container-fluid">
 			<!-- DataTales Example -->
 			<div class="card shadow mb-4">
@@ -25,6 +24,7 @@
 								<th>Confirmé</th>
 								<th>Frais payé</th>
 								<th>Action</th>
+								<th>Cértificat</th>
 							</tr>
 							</thead>
 							<tbody>
@@ -36,11 +36,18 @@
 									<td>{{ studentCohorte.user.getPhone() }}</td>
 									<td>{{ studentCohorte.createdAt|date('d-m-Y') }}</td>
 									<td>
-										<a class="badge badge-{{ studentCohorte.confirmed ? 'success' : 'warning'  }}" href="{{ path('admin_formation_switch_student_formation', {'id': studentCohorte.id}) }}">{{ studentCohorte.confirmed ? 'OUI' : 'NON' }}</a>
+										<a class="badge badge-{{ studentCohorte.confirmed ? 'success' : 'warning' }}" href="{{ path('admin_formation_switch_student_formation', {'id': studentCohorte.id}) }}">{{ studentCohorte.confirmed ? 'OUI' : 'NON' }}</a>
 									</td>
 									<td>{{ studentCohorte.isTotalPaid ? 'OUI' : 'NON' }}</td>
 									<td>
-										<a class="badge badge-danger" href="{{ path('admin_formation_remove_affectation', {'id': studentCohorte.id}) }}">Supprimer</a>
+										<a class="btn btn-sm btn-danger" href="{{ path('admin_formation_remove_affectation', {'id': studentCohorte.id}) }}">Supprimer</a>
+									</td>
+									<td>
+										{% if studentCohorte.certificate is null %}
+											<a class="btn btn-sm btn-success" href="{{ path('dtc_certificat_generate', {'id': studentCohorte.id}) }}">Cértification</a>
+										{% else %}
+											<a class="btn btn-sm btn-success" href="{{ path('dtc_certificat_revoque', {'id': studentCohorte.id}) }}">Révoquer le certificat</a>
+										{% endif %}
 									</td>
 								</tr>
 							{% endfor %}
@@ -49,7 +56,6 @@
 					</div>
 				</div>
 			</div>
-
 		</div>
 	</div>
 	<!-- /.container-fluid -->
